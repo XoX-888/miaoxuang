@@ -62,3 +62,9 @@ body {
   padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
 }
 
+
+/* Site-wide background */
+body {
+    background: url('images/miaoxuang_bg.png') no-repeat center center fixed;
+    background-size: cover;
+}
