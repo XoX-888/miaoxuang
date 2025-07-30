@@ -5,177 +5,138 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
   <style>
-    /* --- 全域設定 --- */
-    body {
+    * { box-sizing: border-box; }
+    body, html {
       margin: 0;
-      font-family: "Noto Sans TC", sans-serif;
-      background: url("images/S__10657796.jpg") no-repeat center center fixed;
+      padding: 0;
+      font-family: "Microsoft JhengHei", sans-serif;
+      scroll-behavior: smooth;
+    }
+
+    /* 背景設計 */
+    body {
+      background: url('images/S__10657796.jpg') no-repeat center center fixed;
       background-size: cover;
-      color: #fff;
     }
 
-    /* --- 頂部公告 --- */
-    .marquee-notice {
+    /* 半透明黑色漸層覆蓋，讓文字清楚 */
+    body::before {
+      content: "";
       position: fixed;
-      top: 0;
-      left: 0;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.5);
+      z-index: -1;
+    }
+
+    /* 導覽列 */
+    nav {
+      position: fixed;
+      top: 0; left: 0;
       width: 100%;
-      background-color: rgba(255, 248, 225, 0.85);
-      color: #5e412f;
-      font-weight: bold;
-      padding: 8px 0;
-      z-index: 9999;
-      overflow: hidden;
-    }
-    .marquee-notice span {
-      display: inline-block;
-      padding-left: 100%;
-      animation: scroll-left 12s linear infinite;
-      white-space: nowrap;
-    }
-    @keyframes scroll-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* --- 導覽列 --- */
-    header {
-      margin-top: 40px;
-      background-color: rgba(245, 232, 215, 0.85);
-      padding: 1em;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      color: #5e412f;
-    }
-    nav a {
-      margin: 0 10px;
-      color: #5e412f;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* --- 內容框 --- */
-    main {
-      padding: 2em 1em;
       display: flex;
       justify-content: center;
+      background: rgba(0,0,0,0.3);
+      transition: 0.3s;
+      z-index: 1000;
+      backdrop-filter: blur(5px);
     }
-    .content-box {
-      background-color: rgba(255, 255, 255, 0.85);
-      color: #333;
-      padding: 2em;
-      border-radius: 12px;
-      max-width: 800px;
-      width: 100%;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-    }
-
-    /* --- 浮動 QR Code --- */
-    .floating-qr {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 80px;
-      cursor: pointer;
-      z-index: 9999;
-      transition: transform 0.3s;
-    }
-    .floating-qr img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-    }
-    .floating-qr img.zoom {
-      transform: scale(2);
-    }
-
-    /* --- 社群連結 --- */
-    .social-links {
-      position: fixed;
-      bottom: 120px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 9999;
-    }
-    .social-links a {
-      background: #4267B2;
+    nav:hover { background: rgba(0,0,0,0.6); }
+    nav a {
       color: white;
-      padding: 6px 10px;
-      border-radius: 6px;
       text-decoration: none;
-      font-size: 14px;
+      padding: 15px 25px;
+      font-size: 18px;
+      transition: 0.3s;
     }
-    .social-links a:hover {
-      background: #365899;
+    nav a:hover {
+      color: #ffd700;
     }
 
-    /* --- 頁尾 --- */
-    footer {
-      background-color: rgba(245, 232, 215, 0.85);
+    /* 區塊 */
+    section {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 80px 20px 40px;
       text-align: center;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #5e412f;
-      margin-top: 2em;
     }
 
-    /* --- 響應式調整 --- */
+    /* 卡片設計 */
+    .card {
+      background: rgba(255,255,255,0.1);
+      border-radius: 15px;
+      padding: 40px;
+      max-width: 800px;
+      width: 90%;
+      color: white;
+      text-shadow: 0 0 5px black;
+      backdrop-filter: blur(8px);
+    }
+
+    h1, h2 { margin-bottom: 20px; }
+
+    /* 響應式文字 */
     @media (max-width: 768px) {
-      .content-box {
-        padding: 1.5em;
-      }
-      nav a {
-        display: inline-block;
-        margin: 5px;
-      }
+      h1 { font-size: 28px; }
+      h2 { font-size: 22px; }
+      nav a { font-size: 16px; padding: 10px 15px; }
     }
-
   </style>
 </head>
 <body>
-  <!-- 跑馬燈公告 -->
-  <div class="marquee-notice">
-    <span>歡迎蒞臨卓蘭妙玄宮｜中元普渡法會報名中！線上登記供品與超渡項目開放中！</span>
-  </div>
 
-  <header>
-    <h1>卓蘭妙玄宮</h1>
-    <nav>
-      <a href="#">關於</a>
-      <a href="#">服務</a>
-      <a href="#">公告</a>
-      <a href="#">行事曆</a>
-      <a href="#">聯絡</a>
-    </nav>
-  </header>
+  <!-- 導覽列 -->
+  <nav>
+    <a href="#about">關於</a>
+    <a href="#services">服務</a>
+    <a href="#news">公告</a>
+    <a href="#calendar">行事曆</a>
+    <a href="#contact">聯絡</a>
+  </nav>
 
-  <main>
-    <div class="content-box">
-      <h2>最新公告</h2>
-      <p>📢 中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
-      <p>地點：苗栗縣卓蘭鎮仁愛路14-1號</p>
-      <p>洽詢電話：04-25896101</p>
+  <!-- 區塊內容 -->
+  <section id="about">
+    <div class="card">
+      <h1>卓蘭妙玄宮</h1>
+      <p>主祀：大行菩薩、代行僧菩薩、九天玄女</p>
+      <p>地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
     </div>
-  </main>
+  </section>
 
-  <footer>
-    <p>地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101</p>
-    <p>© 2025 卓蘭妙玄宮</p>
-  </footer>
+  <section id="services">
+    <div class="card">
+      <h2>服務項目</h2>
+      <p>問事、收驚、中元普渡法會報名</p>
+    </div>
+  </section>
 
-  <!-- 浮動QR Code -->
-  <div class="floating-qr">
-      <img src="images/line_qr.png" alt="LINE QR Code" onclick="this.classList.toggle('zoom')">
-  </div>
+  <section id="news">
+    <div class="card">
+      <h2>最新公告</h2>
+      <p>中元普渡法會報名中！</p>
+      <p>（此處可放線上報名表單）</p>
+    </div>
+  </section>
 
-  <!-- 社群連結 -->
-  <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">Facebook</a>
-  </div>
+  <section id="calendar">
+    <div class="card">
+      <h2>行事曆</h2>
+      <p>可放每月法會日期或嵌入 Google 日曆</p>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="card">
+      <h2>聯絡我們</h2>
+      <p>電話：04-25896101</p>
+      <p>
+        <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank" style="color:#ffd700">Facebook</a> |
+        <a href="#" target="_blank" style="color:#ffd700">LINE</a>
+      </p>
+    </div>
+  </section>
+
 </body>
 </html>
