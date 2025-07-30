@@ -110,5 +110,57 @@
     <p>地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101</p>
     <p>© 2025 卓蘭妙玄宮</p>
   </footer>
+
+<!-- 浮動QR Code -->
+<div class="floating-qr">
+    <img src="images/line_qr.png" alt="LINE QR Code" onclick="this.classList.toggle('zoom')">
+</div>
+
+<!-- 社群連結 -->
+<div class="social-links">
+    <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">Facebook</a>
+</div>
+
+<style>
+.floating-qr {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 80px;
+    cursor: pointer;
+    z-index: 9999;
+    transition: transform 0.3s;
+}
+.floating-qr img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+.floating-qr img.zoom {
+    transform: scale(2);
+}
+
+.social-links {
+    position: fixed;
+    bottom: 120px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 9999;
+}
+.social-links a {
+    background: #4267B2;
+    color: white;
+    padding: 6px 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+}
+.social-links a:hover {
+    background: #365899;
+}
+</style>
+
 </body>
 </html>
