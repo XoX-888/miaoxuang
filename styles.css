@@ -1,12 +1,46 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding-top: 48px;
+  background-color: #fffefc;
+  color: #333;
+}
 
-body { font-family: "Noto Sans TC", sans-serif; margin: 0; background: #fffbe6; }
-header, footer { background-color: #990000; color: white; text-align: center; padding: 1em 0; }
-nav a { margin: 0 15px; color: white; text-decoration: none; font-weight: bold; }
-.hero img { width: 100%; max-height: 500px; object-fit: cover; }
-.section { padding: 2em; text-align: center; }
-.section h2 { color: #990000; margin-bottom: 1em; }
-.qrcode { position: fixed; bottom: 20px; right: 20px; z-index: 999; }
-.qrcode img { width: 120px; border: 2px solid #990000; border-radius: 8px; }
-.social { margin-top: 1em; }
-.social a { margin: 0 10px; color: #990000; font-weight: bold; }
-footer p { margin: 0.2em 0; }
+header {
+  background-color: #f5e8d7;
+  padding: 1em;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin: 0 10px;
+  color: #5e412f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+main {
+  padding: 2em;
+}
+
+footer {
+  background-color: #f5e8d7;
+  text-align: center;
+  padding: 1em;
+  font-size: 0.9em;
+}
+
+.marquee-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff8e1;
+  color: #5e412f;
+  font-weight: bold;
+  padding: 8px 0;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 1em;
+}
