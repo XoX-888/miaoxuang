@@ -1,0 +1,70 @@
+
+body {
+    margin: 0;
+    font-family: "Microsoft JhengHei", sans-serif;
+    background-color: #fdf6f0;
+}
+
+.hero-section {
+    position: relative;
+    text-align: center;
+}
+
+.hero-image {
+    width: 100%;
+    max-height: 600px;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.6);
+}
+
+.hero-text h1 {
+    font-size: 3em;
+}
+
+.hero-text h2 {
+    font-size: 2em;
+}
+
+.nav-bar {
+    background-color: #8b0000;
+    text-align: center;
+    padding: 10px 0;
+}
+
+.nav-bar a {
+    color: white;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.content {
+    padding: 20px;
+    text-align: center;
+}
+
+footer {
+    text-align: center;
+    background-color: #8b0000;
+    color: white;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+.floating-qr {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    width: 120px;
+}
+.floating-qr img {
+    width: 100%;
+}
