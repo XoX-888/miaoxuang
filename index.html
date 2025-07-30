@@ -9,14 +9,16 @@
       font-family: sans-serif;
       margin: 0;
       padding-top: 48px;
-      background-color: #fffefc;
-      color: #333;
+      background: url("images/S__10657796.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
     header {
-      background-color: #f5e8d7;
+      background-color: rgba(245, 232, 215, 0.85);
       padding: 1em;
       text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      color: #5e412f;
     }
     nav a {
       margin: 0 10px;
@@ -27,53 +29,34 @@
     main {
       padding: 2em;
     }
+    .content-box {
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      padding: 2em;
+      border-radius: 10px;
+      max-width: 800px;
+      margin: 2em auto;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
     footer {
-      background-color: #f5e8d7;
+      background-color: rgba(245, 232, 215, 0.85);
       text-align: center;
       padding: 1em;
       font-size: 0.9em;
+      color: #5e412f;
     }
     .marquee-notice {
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
-      background-color: #fff8e1;
+      background-color: rgba(255, 248, 225, 0.85);
       color: #5e412f;
       font-weight: bold;
       padding: 8px 0;
       z-index: 9999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
       font-size: 1em;
-    }
-    .banner {
-      position: relative;
-      width: 100%;
-      height: 400px;
-      overflow: hidden;
-    }
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      filter: brightness(75%);
-    }
-    .banner-text {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: white;
-      text-align: center;
-      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
-    }
-    .banner-text h1 {
-      font-size: 3em;
-      margin: 0;
-    }
-    .banner-text p {
-      font-size: 1.5em;
-      margin-top: 0.5em;
     }
 
     /* 浮動 QR Code */
@@ -134,18 +117,11 @@
     </nav>
   </header>
 
-  <!-- Banner 使用代行僧菩薩照片 -->
-  <div class="banner">
-    <img src="images/S__10657796.jpg" alt="代行僧菩薩">
-    <div class="banner-text">
-      <h1>大行菩薩</h1>
-      <p>九天玄女庇佑</p>
-    </div>
-  </div>
-
   <main>
-    <h2>最新公告</h2>
-    <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
+    <div class="content-box">
+      <h2>最新公告</h2>
+      <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
+    </div>
   </main>
 
   <footer>
