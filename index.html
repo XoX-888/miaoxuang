@@ -1,205 +1,168 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>卓蘭妙玄宮</title>
-  <style>
-    body {
-      font-family: "Noto Sans TC", sans-serif;
-      margin: 0;
-      padding-top: 60px;
-      background: url("images/S__10657796.jpg") no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>卓蘭妙玄宮</title>
+    <meta name="description" content="卓蘭妙玄宮 - 主祀大行菩薩、代行僧菩薩、九天玄女，提供問事、收驚服務，最新公告與活動訊息。">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
 
-    header {
-      background-color: rgba(245, 232, 215, 0.85);
-      padding: 0.8em 1em;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      color: #5e412f;
-      position: fixed;
-      top: 40px; /* 避開跑馬燈 */
-      left: 0;
-      width: 100%;
-      z-index: 999;
-    }
+    <style>
+        /* 全局設定 */
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Microsoft JhengHei", sans-serif;
+            background: url("images/S__10657796.jpg") no-repeat center center fixed;
+            background-size: cover;
+            background-attachment: fixed;
+            background-color: #000;
+        }
 
-    nav {
-      margin-top: 5px;
-    }
-    nav a {
-      margin: 0 10px;
-      color: #5e412f;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-    nav a:hover {
-      color: #a05a2c;
-    }
+        /* 手機或平板背景完整顯示菩薩 */
+        @media (max-width: 1024px) {
+            body {
+                background: url("images/S__10657796.jpg") no-repeat center center fixed;
+                background-size: contain;
+                background-attachment: scroll;
+                background-color: #000;
+            }
+        }
 
-    /* 現代跑馬燈 */
-    .marquee-notice {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(255, 248, 225, 0.9);
-      color: #5e412f;
-      font-weight: bold;
-      padding: 8px 0;
-      z-index: 1000;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      overflow: hidden;
-    }
-    .marquee-inner {
-      display: inline-block;
-      white-space: nowrap;
-      animation: scroll-left 12s linear infinite;
-      font-size: 1rem;
-    }
-    @keyframes scroll-left {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
+        /* 導覽列 */
+        nav {
+            background: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 10px;
+        }
 
-    main {
-      padding: 2em 1em;
-    }
-    .content-box {
-      background-color: rgba(255, 255, 255, 0.85);
-      color: #333;
-      padding: 2em;
-      border-radius: 12px;
-      max-width: 800px;
-      margin: 2em auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-      text-align: center;
-    }
-    .content-box h2 {
-      margin-top: 0;
-      color: #5e412f;
-    }
+        nav a {
+            color: #ffd700;
+            text-decoration: none;
+            margin: 8px 15px;
+            font-weight: bold;
+            font-size: 18px;
+        }
 
-    footer {
-      background-color: rgba(245, 232, 215, 0.85);
-      text-align: center;
-      padding: 1em;
-      font-size: 0.9em;
-      color: #5e412f;
-    }
+        nav a:hover {
+            color: #fff;
+        }
 
-    /* 浮動 QR Code */
-    .floating-qr {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 80px;
-      cursor: pointer;
-      z-index: 9999;
-      transition: transform 0.3s;
-    }
-    .floating-qr img {
-      width: 100%;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.3);
-      transition: transform 0.3s;
-    }
-    .floating-qr img.zoom {
-      transform: scale(2);
-    }
+        /* 主標題 */
+        header {
+            text-align: center;
+            color: #fff;
+            padding: 50px 20px 20px 20px;
+            text-shadow: 2px 2px 5px #000;
+        }
 
-    /* 社群連結 */
-    .social-links {
-      position: fixed;
-      bottom: 120px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      z-index: 9999;
-    }
-    .social-links a {
-      background: #4267B2;
-      color: white;
-      padding: 6px 10px;
-      border-radius: 6px;
-      text-decoration: none;
-      font-size: 14px;
-      transition: background 0.3s;
-    }
-    .social-links a:hover {
-      background: #365899;
-    }
+        header h1 {
+            font-size: 48px;
+            margin: 0;
+            font-family: "DFKai-SB", "KaiTi", serif;
+        }
 
-    /* 響應式設計 */
-    @media (max-width: 768px) {
-      header h1 {
-        font-size: 1.5em;
-      }
-      nav a {
-        margin: 0 5px;
-        font-size: 0.9em;
-      }
-      .content-box {
-        padding: 1.5em 1em;
-        margin: 1em;
-      }
-      .floating-qr {
-        width: 60px;
-      }
-    }
-    @media (max-width: 480px) {
-      .marquee-inner {
-        font-size: 0.9rem;
-      }
-      .social-links a {
-        font-size: 12px;
-        padding: 4px 8px;
-      }
-    }
-  </style>
+        /* 跑馬燈公告 */
+        .marquee {
+            background: rgba(0, 0, 0, 0.6);
+            color: #ffd700;
+            font-size: 20px;
+            padding: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 15s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(-100%, 0); }
+        }
+
+        /* 內容區 */
+        .content {
+            max-width: 900px;
+            margin: 40px auto;
+            background: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .content h2 {
+            color: #8B0000;
+        }
+
+        /* 浮動 QR Code */
+        .floating-qr {
+            position: fixed;
+            right: 10px;
+            bottom: 10px;
+            width: 100px;
+            cursor: pointer;
+            z-index: 999;
+        }
+
+        /* RWD：手機排版調整 */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 32px;
+            }
+
+            nav a {
+                font-size: 16px;
+                margin: 5px 10px;
+            }
+
+            .content {
+                margin: 20px;
+                padding: 20px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <!-- 現代跑馬燈 -->
-  <div class="marquee-notice">
-    <div class="marquee-inner">歡迎蒞臨卓蘭妙玄宮｜中元普渡法會熱烈報名中！</div>
-  </div>
 
-  <header>
-    <h1>卓蘭妙玄宮</h1>
+    <!-- 導覽列 -->
     <nav>
-      <a href="#">關於</a>
-      <a href="#">服務</a>
-      <a href="#">公告</a>
-      <a href="#">行事曆</a>
-      <a href="#">聯絡</a>
+        <a href="#">關於妙玄宮</a>
+        <a href="#">服務項目</a>
+        <a href="#">最新公告</a>
+        <a href="#">行事曆</a>
+        <a href="#">聯絡我們</a>
     </nav>
-  </header>
 
-  <main>
-    <div class="content-box">
-      <h2>最新公告</h2>
-      <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
+    <!-- 頁面標題 -->
+    <header>
+        <h1>卓蘭妙玄宮</h1>
+        <p>主祀：大行菩薩、代行僧菩薩、九天玄女</p>
+    </header>
+
+    <!-- 跑馬燈公告 -->
+    <div class="marquee">
+        <span>📢 中元普渡報名開放中！贊普、超渡及個人供品線上報名中，歡迎踴躍參加 🙏</span>
     </div>
-  </main>
 
-  <footer>
-    <p>地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101</p>
-    <p>© 2025 卓蘭妙玄宮</p>
-  </footer>
+    <!-- 最新公告區 -->
+    <div class="content">
+        <h2>最新公告</h2>
+        <p>中元普渡法會報名中，敬請提前登記供品與超渡項目。</p>
+        <p>地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101</p>
+        <p>
+            <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">Facebook</a> | 
+            <a href="#">加入 LINE</a>
+        </p>
+    </div>
 
-  <!-- 浮動 QR Code -->
-  <div class="floating-qr">
-      <img src="images/line_qr.png" alt="LINE QR Code" onclick="this.classList.toggle('zoom')">
-  </div>
+    <!-- 浮動 QR Code -->
+    <img src="images/line_qr.png" alt="LINE QR Code" class="floating-qr">
 
-  <!-- 社群連結 -->
-  <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">Facebook</a>
-  </div>
 </body>
 </html>
