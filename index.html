@@ -1,18 +1,89 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="卓蘭妙玄宮官方網站">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
-  <link rel="stylesheet" href="styles.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding-top: 48px;
+      background-color: #fffefc;
+      color: #333;
+    }
+    header {
+      background-color: #f5e8d7;
+      padding: 1em;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    nav a {
+      margin: 0 10px;
+      color: #5e412f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    main {
+      padding: 2em;
+    }
+    footer {
+      background-color: #f5e8d7;
+      text-align: center;
+      padding: 1em;
+      font-size: 0.9em;
+    }
+    .marquee-notice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff8e1;
+      color: #5e412f;
+      font-weight: bold;
+      padding: 8px 0;
+      z-index: 9999;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      font-size: 1em;
+    }
+    .banner {
+      position: relative;
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(70%);
+    }
+    .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-align: center;
+      text-shadow: 2px 2px 6px rgba(0,0,0,0.7);
+    }
+    .banner-text h1 {
+      font-size: 3em;
+      margin: 0;
+    }
+    .banner-text p {
+      font-size: 1.5em;
+      margin-top: 0.5em;
+    }
+  </style>
 </head>
 <body>
   <div class="marquee-notice">
-    🔔 最新公告：中元普渡報名開放中！詳情請見下方公告。
+    <marquee>歡迎蒞臨卓蘭妙玄宮｜中元普渡法會報名中！</marquee>
   </div>
 
   <header>
+    <h1>卓蘭妙玄宮</h1>
     <nav>
       <a href="#">關於</a>
       <a href="#">服務</a>
@@ -23,21 +94,21 @@
   </header>
 
   <div class="banner">
-    <img src="images/S__10657796.jpg" alt="妙玄宮主祀神明" />
+    <img src="https://picsum.photos/1600/400?random=1" alt="banner">
     <div class="banner-text">
-      <h1>卓蘭妙玄宮</h1>
-      <p>大行菩薩、代行僧菩薩、九天玄女</p>
+      <h1>大行菩薩</h1>
+      <p>九天玄女庇佑</p>
     </div>
   </div>
 
   <main>
     <h2>最新公告</h2>
-    <p>中元普渡法會報名開放中，歡迎信眾踴躍參加！</p>
+    <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
   </main>
 
   <footer>
-    © 2025 卓蘭妙玄宮
+    <p>地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101</p>
+    <p>© 2025 卓蘭妙玄宮</p>
   </footer>
 </body>
-
 </html>
