@@ -5,41 +5,85 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
   <style>
-  body {
-  font-family: sans-serif;
-  margin: 0;
-  padding-top: 48px;
-  background: 
-    linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
-    url("images/S__10657796.jpg") no-repeat center center fixed;
-  background-size: cover;
-  color: #fff;
-}
+    body {
+      font-family: "Noto Sans TC", sans-serif;
+      margin: 0;
+      padding-top: 60px;
+      background: url("images/S__10657796.jpg") no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
     header {
       background-color: rgba(245, 232, 215, 0.85);
-      padding: 1em;
+      padding: 0.8em 1em;
       text-align: center;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
       color: #5e412f;
+      position: fixed;
+      top: 40px; /* 避開跑馬燈 */
+      left: 0;
+      width: 100%;
+      z-index: 999;
+    }
+
+    nav {
+      margin-top: 5px;
     }
     nav a {
       margin: 0 10px;
       color: #5e412f;
       text-decoration: none;
       font-weight: bold;
+      transition: color 0.3s;
     }
+    nav a:hover {
+      color: #a05a2c;
+    }
+
+    /* 現代跑馬燈 */
+    .marquee-notice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 248, 225, 0.9);
+      color: #5e412f;
+      font-weight: bold;
+      padding: 8px 0;
+      z-index: 1000;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      overflow: hidden;
+    }
+    .marquee-inner {
+      display: inline-block;
+      white-space: nowrap;
+      animation: scroll-left 12s linear infinite;
+      font-size: 1rem;
+    }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
     main {
-      padding: 2em;
+      padding: 2em 1em;
     }
     .content-box {
-      background-color: rgba(255, 255, 255, 0.8);
+      background-color: rgba(255, 255, 255, 0.85);
       color: #333;
       padding: 2em;
-      border-radius: 10px;
+      border-radius: 12px;
       max-width: 800px;
       margin: 2em auto;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      text-align: center;
     }
+    .content-box h2 {
+      margin-top: 0;
+      color: #5e412f;
+    }
+
     footer {
       background-color: rgba(245, 232, 215, 0.85);
       text-align: center;
@@ -47,65 +91,82 @@
       font-size: 0.9em;
       color: #5e412f;
     }
-    .marquee-notice {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(255, 248, 225, 0.85);
-      color: #5e412f;
-      font-weight: bold;
-      padding: 8px 0;
-      z-index: 9999;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-      font-size: 1em;
-    }
 
     /* 浮動 QR Code */
     .floating-qr {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-        width: 80px;
-        cursor: pointer;
-        z-index: 9999;
-        transition: transform 0.3s;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 80px;
+      cursor: pointer;
+      z-index: 9999;
+      transition: transform 0.3s;
     }
     .floating-qr img {
-        width: 100%;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s;
     }
     .floating-qr img.zoom {
-        transform: scale(2);
+      transform: scale(2);
     }
 
     /* 社群連結 */
     .social-links {
-        position: fixed;
-        bottom: 120px;
-        right: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        z-index: 9999;
+      position: fixed;
+      bottom: 120px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      z-index: 9999;
     }
     .social-links a {
-        background: #4267B2;
-        color: white;
-        padding: 6px 10px;
-        border-radius: 6px;
-        text-decoration: none;
-        font-size: 14px;
+      background: #4267B2;
+      color: white;
+      padding: 6px 10px;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 14px;
+      transition: background 0.3s;
     }
     .social-links a:hover {
-        background: #365899;
+      background: #365899;
+    }
+
+    /* 響應式設計 */
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 1.5em;
+      }
+      nav a {
+        margin: 0 5px;
+        font-size: 0.9em;
+      }
+      .content-box {
+        padding: 1.5em 1em;
+        margin: 1em;
+      }
+      .floating-qr {
+        width: 60px;
+      }
+    }
+    @media (max-width: 480px) {
+      .marquee-inner {
+        font-size: 0.9rem;
+      }
+      .social-links a {
+        font-size: 12px;
+        padding: 4px 8px;
+      }
     }
   </style>
 </head>
 <body>
+  <!-- 現代跑馬燈 -->
   <div class="marquee-notice">
-    <marquee>歡迎蒞臨卓蘭妙玄宮｜中元普渡法會報名中！</marquee>
+    <div class="marquee-inner">歡迎蒞臨卓蘭妙玄宮｜中元普渡法會熱烈報名中！</div>
   </div>
 
   <header>
@@ -131,7 +192,7 @@
     <p>© 2025 卓蘭妙玄宮</p>
   </footer>
 
-  <!-- 浮動QR Code -->
+  <!-- 浮動 QR Code -->
   <div class="floating-qr">
       <img src="images/line_qr.png" alt="LINE QR Code" onclick="this.classList.toggle('zoom')">
   </div>
