@@ -10,3 +10,13 @@ nav a { margin: 0 15px; color: white; text-decoration: none; font-weight: bold; 
 .social { margin-top: 1em; }
 .social a { margin: 0 10px; color: #990000; font-weight: bold; }
 footer p { margin: 0.2em 0; }
+.floating-line {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
