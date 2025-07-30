@@ -3,36 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="description" content="卓蘭妙玄宮官方網站">
-  <title>卓蘭妙玄宮</title>
+  <meta name="description" content="卓蘭妙玄宮 官方網站 - 最新公告、線上報名、服務介紹與聯絡資訊">
+  <title>卓蘭妙玄宮｜首頁</title>
   <link rel="stylesheet" href="styles.css" />
+  <style>
+    body { font-family: sans-serif; margin: 0; padding: 0; background-color: #fffaf5; }
+    header { background-color: #6e1414; color: white; padding: 1em 0; text-align: center; }
+    nav { background-color: #8b1a1a; text-align: center; padding: 0.5em 0; }
+    nav a { color: white; margin: 0 1em; text-decoration: none; font-weight: bold; }
+    .marquee { background-color: #fff0e6; color: #b30000; padding: 0.5em 1em; font-weight: bold; }
+    .marquee span { display: inline-block; animation: scroll-left 15s linear infinite; white-space: nowrap; }
+    @keyframes scroll-left {
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+    .section { max-width: 900px; margin: 2em auto; padding: 1em; background: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05); }
+    footer { background-color: #6e1414; color: white; text-align: center; padding: 1em 0; margin-top: 2em; }
+    .social a { color: white; margin: 0 1em; }
+  </style>
 </head>
 <body>
- <div class="marquee-notice">
-  <marquee behavior="scroll" direction="left" scrollamount="5">
-    🔔 辦事時間為 15:00～18:00、19:00～21:30。每逢農曆初一、十五、星期一靜修日、農曆七月及重要宮慶祭典皆 ❌ 不辦事。建議先電話詢問師姐是否在宮中以免白跑一趟。
-  </marquee>
-</div>
-
   <header>
     <h1>卓蘭妙玄宮</h1>
-    <nav>
-      <a href="index.html">首頁</a>
-      <a href="about.html">關於本宮</a>
-      <a href="service.html">服務項目</a>
-      <a href="news.html">最新消息</a>
-      <a href="calendar.html">行事曆</a>
-      <a href="form.html">線上報名</a>
-      <a href="contact.html">聯絡我們</a>
-    </nav>
   </header>
 
-  <main>
-    <h2>歡迎蒞臨卓蘭妙玄宮</h2>
-    <p>本宮主祀：大行菩薩、代行僧菩薩、九天玄女。</p>
+  <nav>
+    <a href="index.html">首頁</a>
+    <a href="about.html">關於本宮</a>
+    <a href="service.html">服務項目</a>
+    <a href="news.html">最新消息</a>
+    <a href="calendar.html">行事曆</a>
+    <a href="form.html">線上報名</a>
+    <a href="contact.html">聯絡我們</a>
+  </nav>
+
+  <div class="marquee"><span>📢 辦事時間：15:00～18:00、19:00～21:30　｜　農曆初一/十五、星期一、農曆七月及祭典活動皆不辦事　｜　建議來宮前先來電洽詢師姐是否在宮，以免白跑一趟</span></div>
+
+  <main class="section">
+    <h2 style="text-align:center;">📌 最新公告</h2>
+    <ul>
+      <li>🧧 2025年中元普渡報名表已開放，請至「<a href="form.html">線上報名</a>」填寫。</li>
+      <li>🔮 問事時間：15:00～18:00、19:00～21:30。星期一與農曆初一、十五不辦事。</li>
+      <li>📵 建議出發前來電詢問是否有人在宮中。</li>
+    </ul>
   </main>
 
   <footer>
+    <p>📍 苗栗縣卓蘭鎮仁愛路14-1號 ｜ ☎️ 04-25896101</p>
+    <div class="social">
+      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">Facebook</a>
+      <a href="#">LINE 加入</a>
+    </div>
     <p>&copy; 2025 卓蘭妙玄宮</p>
   </footer>
 </body>

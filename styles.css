@@ -1,64 +1,50 @@
+
 body {
   font-family: sans-serif;
   margin: 0;
-  padding-top: 48px;
-  background-color: #fffefc;
-  color: #333;
+  padding-top: 40px;
 }
 
 header {
-  background-color: #f5e8d7;
+  background-color: #800000;
+  color: white;
   padding: 1em;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 nav a {
+  color: white;
   margin: 0 10px;
-  color: #5e412f;
   text-decoration: none;
-  font-weight: bold;
 }
 
-main {
+.section {
   padding: 2em;
 }
 
 footer {
-  background-color: #f5e8d7;
+  background-color: #f8f8f8;
   text-align: center;
   padding: 1em;
   font-size: 0.9em;
 }
 
-.marquee-notice {
+.floating-notice {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  right: 0;
   background-color: #fff8e1;
-  color: #5e412f;
+  color: #8b0000;
   font-weight: bold;
-  padding: 8px 0;
+  padding: 8px 10px;
+  text-align: center;
+  font-size: 14px;
   z-index: 9999;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 1em;
-}
-.marquee-notice {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff8e1;
-  color: #5e412f;
-  font-weight: bold;
-  padding: 8px 0;
-  z-index: 9999;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  font-size: 1em;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
 }
 
-body {
-  padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
+.floating-notice a {
+  color: #8b0000;
+  text-decoration: underline;
 }
-
