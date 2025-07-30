@@ -1,11 +1,17 @@
+/* =========================
+   全局設定
+========================= */
 body {
   font-family: sans-serif;
   margin: 0;
-  padding-top: 48px;
+  padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
   background-color: #fffefc;
   color: #333;
 }
 
+/* =========================
+   Header & 導覽列
+========================= */
 header {
   background-color: #f5e8d7;
   padding: 1em;
@@ -20,16 +26,26 @@ nav a {
   font-weight: bold;
 }
 
+/* =========================
+   主要內容區塊
+========================= */
 main {
   padding: 2em;
 }
 
+/* =========================
+   頁尾
+========================= */
 footer {
   background-color: #f5e8d7;
   text-align: center;
   padding: 1em;
   font-size: 0.9em;
 }
+
+/* =========================
+   跑馬燈公告
+========================= */
 .marquee-notice {
   position: fixed;
   top: 0;
@@ -40,13 +56,13 @@ footer {
   font-weight: bold;
   padding: 8px 0;
   z-index: 9999;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-size: 1em;
 }
 
-body {
-  padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
-}
+/* =========================
+   Banner 區塊
+========================= */
 .banner {
   position: relative;
   width: 100%;
