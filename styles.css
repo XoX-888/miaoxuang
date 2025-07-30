@@ -44,3 +44,21 @@ footer {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
   font-size: 1em;
 }
+.marquee-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff8e1;
+  color: #5e412f;
+  font-weight: bold;
+  padding: 8px 0;
+  z-index: 9999;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  font-size: 1em;
+}
+
+body {
+  padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
+}
+
