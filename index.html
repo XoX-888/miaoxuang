@@ -4,43 +4,124 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
-  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =========================
+       全局設定
+    ========================= */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding-top: 48px;
+      background: url('images/main-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    /* =========================
+       Header & 導覽列
+    ========================= */
+    header {
+      background-color: rgba(245, 232, 215, 0.85);
+      padding: 1em;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+
+    nav a {
+      margin: 0 10px;
+      color: #5e412f;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* =========================
+       標題區塊
+    ========================= */
+    .main-title {
+      text-align: center;
+      color: gold;
+      font-size: 3em;
+      margin-top: 150px;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+    }
+
+    /* =========================
+       浮動社群按鈕
+    ========================= */
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10000;
+    }
+
+    .social-icons img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    /* =========================
+       QR Code 彈窗
+    ========================= */
+    .qr-popup {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 10001;
+      text-align: center;
+    }
+
+    .qr-popup img {
+      width: 150px;
+    }
+  </style>
 </head>
 <body>
-  <!-- 導覽列 -->
+
+  <!-- 主標題 -->
   <header>
-    <nav class="navbar">
-      <div class="logo">卓蘭妙玄宮</div>
-      <ul class="nav-links">
-        <li><a href="#">首頁</a></li>
-        <li><a href="#">關於本宮</a></li>
-        <li><a href="#">服務項目</a></li>
-        <li><a href="#">最新消息</a></li>
-        <li><a href="#">行事曆</a></li>
-        <li><a href="#">線上報名</a></li>
-        <li><a href="#">聯絡我們</a></li>
-      </ul>
-    </nav>
+    <h1 class="main-title">妙玄宮</h1>
   </header>
 
-  <!-- 滿版背景與文字區塊 -->
-  <section class="hero">
-    <div class="hero-text">
-      <h1>代行僧菩薩・妙玄宮</h1>
-      <p>主祀：大行菩薩、代行僧菩薩、九天玄女<br>
-         問事、收驚，誠心為民服務</p>
-    </div>
-  </section>
-
-  <!-- 浮動社群連結 -->
-  <div class="social-float">
-    <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">
-      <img src="images/facebook.png" alt="Facebook" class="social-icon">
-    </a>
-    <div class="line-qr">
-      <img src="images/line-qr.png" alt="LINE QR Code" class="social-icon">
-      <span class="qr-text">掃描加入</span>
-    </div>
+  <!-- 浮動社群按鈕 -->
+  <div class="social-icons">
+    <img src="images/line-icon.png" alt="LINE" id="line-btn">
+    <img src="images/fb-icon.png" alt="Facebook" onclick="window.open('https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW')">
   </div>
+
+  <!-- QR Code 彈出 -->
+  <div class="qr-popup" id="qr-popup">
+    <p>掃描加入官方LINE</p>
+    <img src="images/line-qr.png" alt="LINE QR Code">
+  </div>
+
+  <script>
+    // 浮動 LINE QR Code
+    const lineBtn = document.getElementById('line-btn');
+    const qrPopup = document.getElementById('qr-popup');
+    let popupVisible = false;
+
+    lineBtn.addEventListener('click', () => {
+      popupVisible = !popupVisible;
+      qrPopup.style.display = popupVisible ? 'block' : 'none';
+    });
+  </script>
+
 </body>
 </html>
