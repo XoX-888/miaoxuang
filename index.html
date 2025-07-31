@@ -33,6 +33,23 @@
     }
 
     /* =========================
+       跑馬燈公告
+    ========================= */
+    .marquee-notice {
+      position: fixed;
+      top: 50px;  /* 調整跑馬燈顯示位置 */
+      left: 0;
+      width: 100%;
+      background-color: #fff8e1;
+      color: #5e412f;
+      font-weight: bold;
+      padding: 8px 0;
+      z-index: 100;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 1em;
+    }
+
+    /* =========================
        固定在頁面下方的導航欄
     ========================= */
     .navbar {
@@ -60,6 +77,13 @@
   </style>
 </head>
 <body>
+
+  <!-- 跑馬燈公告 -->
+  <div class="marquee-notice">
+    <marquee behavior="scroll" direction="left" scrollamount="5">
+      🔔 辦事時間為 15:00～18:00、19:00～21:30。每逢農曆初一、十五、星期一靜修日、農曆七月及重要宮慶祭典皆 ❌ 不辦事。建議先電話詢問師姐是否在宮中以免白跑一趟。
+    </marquee>
+  </div>
 
   <!-- 主標題 -->
   <div class="main-title">
