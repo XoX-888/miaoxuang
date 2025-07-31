@@ -48,7 +48,7 @@ body, html {
 .hero {
   position: relative;
   height: 100vh;
-  background: url('images/菩薩照片.jpg') no-repeat center center/cover;
+  background: url('images/buddha.png') no-repeat center center/cover;
   display: flex;
   align-items: center;
   justify-content: center;
