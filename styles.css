@@ -1,139 +1,51 @@
-/* =========================
-   全局設定
-========================= */
-body {
-  font-family: "Microsoft JhengHei", sans-serif;
-  margin: 0;
-  padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
-  background-color: #fffefc;
-  color: #333;
+/* 重設預設值 */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
 }
 
-/* =========================
-   跑馬燈公告
-========================= */
-.marquee-notice {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background-color: #fff8e1;
-  color: #5e412f;
-  font-weight: bold;
-  padding: 8px 0;
-  z-index: 9999;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  font-size: 1em;
+/* 背景圖片 */
+.bg img {
+    width: 100%;
+    height: auto;
+    display: block;
 }
 
-/* =========================
-   Header & 導覽列
-========================= */
-header {
-  background-color: #f5e8d7;
-  padding: 1em;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+/* 導覽列 */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(0,0,0,0.6);
+    padding: 15px 0;
+    text-align: center;
+    z-index: 1000;
 }
 
-nav a {
-  margin: 0 10px;
-  color: #5e412f;
-  text-decoration: none;
-  font-weight: bold;
+.navbar ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
 }
 
-nav a:hover {
-  color: #b22222;
+.navbar li {
+    display: inline-block;
+    margin: 0 20px;
 }
 
-/* =========================
-   Banner 區塊
-========================= */
-.banner {
-  position: relative;
-  width: 100%;
-  height: 400px; /* 可依需求調整高度 */
-  overflow: hidden;
+.navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
 }
 
-.banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* =========================
-   我們的服務區塊
-========================= */
-.services-section {
-  padding: 80px 20px;
-  background: #fdf8f2;
-  text-align: center;
-}
-
-.services-section h2 {
-  font-size: 2.5em;
-  margin-bottom: 50px;
-  color: #8b0000;
-}
-
-.service-item {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 60px;
-  flex-wrap: wrap;
-}
-
-.service-item img {
-  width: 300px;
-  border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-}
-
-.service-text {
-  max-width: 400px;
-  margin: 20px;
-  text-align: left;
-}
-
-.service-text h3 {
-  font-size: 1.8em;
-  margin-bottom: 15px;
-  color: #b22222;
-}
-
-.service-text p {
-  font-size: 1.1em;
-  line-height: 1.6em;
-}
-
-/* 進場動畫效果 */
-.fade-in-left, .fade-in-right {
-  opacity: 0;
-  transition: all 0.8s ease-out;
-}
-
-.fade-in-left {
-  transform: translateX(-50px);
-}
-
-.fade-in-right {
-  transform: translateX(50px);
-}
-
-.fade-in-left.show, .fade-in-right.show {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-/* =========================
-   頁尾
-========================= */
-footer {
-  background-color: #f5e8d7;
-  text-align: center;
-  padding: 1em;
-  font-size: 0.9em;
+/* 主要內容置中 */
+.content {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+    transform: translateY(-50%);
 }
