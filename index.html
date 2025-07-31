@@ -4,138 +4,88 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
-  <meta name="description" content="卓蘭妙玄宮主祀大行菩薩、代行僧菩薩、九天玄女，提供問事、收驚服務與線上報名活動。">
-  <link rel="stylesheet" href="style.css">
   <style>
-    body { margin:0; font-family: "Microsoft JhengHei", sans-serif; background-color: #fff; }
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      font-family: 'Noto Serif TC', serif;
+      overflow: hidden;
+    }
+
+    /* 背景全幅神像圖 */
+    .background {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: url('images/S__10657796.jpg') no-repeat center center/cover;
+      z-index: -2;
+    }
+
+    /* 半透明遮罩 */
+    .overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.45);
+      z-index: -1;
+    }
+
+    /* 導覽列 */
     nav {
-      background: #8b0000;
-      padding: 10px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      color: white;
+      text-align: center;
+      padding: 15px 0;
+      font-size: 18px;
     }
     nav a {
       color: white;
+      margin: 0 20px;
       text-decoration: none;
-      margin: 0 10px;
-      font-weight: bold;
+      transition: 0.3s;
     }
-    nav a:hover { text-decoration: underline; }
+    nav a:hover {
+      color: gold;
+    }
 
-    /* Hero 區塊 */
-    .hero {
-      position: relative;
-      text-align: center;
-      overflow: hidden;
-    }
-    .hero-bg {
-      width: 100%;
-      height: 70vh;
-      object-fit: cover;
-      filter: brightness(0.6);
-    }
-    .hero-text {
+    /* 毛筆字淡入動畫 + 金色字體 */
+    .title {
       position: absolute;
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      color: white;
-      text-shadow: 0 0 15px black;
-    }
-    .hero-text h1 {
-      font-size: 4rem;
-      font-family: 'KaiTi', 'DFKai-SB', serif;
-    }
-    .hero-text p {
-      font-size: 1.2rem;
-      margin-top: 10px;
+      color: gold;
+      font-size: 100px;
+      font-weight: bold;
+      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
+                   0 0 30px rgba(255, 215, 0, 0.5);
+      opacity: 0;
+      animation: fadeIn 3s ease forwards;
     }
 
-    /* 最新公告 */
-    .announcement {
-      padding: 50px 20px;
-      text-align: center;
-      background: #fff8e1;
-    }
-    .announcement h2 {
-      font-size: 2rem;
-      margin-bottom: 20px;
-    }
-    .announcement-item {
-      background: white;
-      padding: 20px;
-      margin: 0 auto;
-      max-width: 600px;
-      border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    }
-    .announcement-item h3 {
-      color: #d35400;
-    }
-    .announcement-item .btn {
-      display: inline-block;
-      margin-top: 15px;
-      padding: 10px 20px;
-      background: #d35400;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-      transition: 0.3s;
-    }
-    .announcement-item .btn:hover {
-      background: #e67e22;
-    }
-
-    /* 響應式字體縮放 */
-    @media (max-width: 768px) {
-      .hero-text h1 { font-size: 2.5rem; }
-      .hero-text p { font-size: 1rem; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translate(-50%, -40%); }
+      to { opacity: 1; transform: translate(-50%, -50%); }
     }
   </style>
 </head>
 <body>
-
-<!-- 導覽列 -->
-<nav>
-  <div class="logo">卓蘭妙玄宮</div>
-  <div class="nav-links">
-    <a href="#about">關於</a>
-    <a href="#services">服務</a>
-    <a href="#announcement">公告</a>
-    <a href="#calendar">行事曆</a>
-    <a href="#contact">聯絡</a>
-  </div>
-</nav>
-
-<!-- Hero 區塊 -->
-<section class="hero">
-  <div class="hero-content">
-    <img src="images/S__10657796.jpg" alt="妙玄宮神像" class="hero-bg">
-    <div class="hero-text">
-      <h1>妙玄宮</h1>
-      <p>主祀：大行菩薩、代行僧菩薩、九天玄女</p>
-    </div>
-  </div>
-</section>
-
-<!-- 最新公告區塊 -->
-<section class="announcement" id="announcement">
-  <h2>📢 最新公告</h2>
-  <div class="announcement-item">
-    <h3>中元普渡法會報名中</h3>
-    <p>日期：農曆七月十五日（國曆 2025/08/07）<br>
-       地點：卓蘭妙玄宮（苗栗縣卓蘭鎮仁愛路14-1號）<br>
-       內容：贊普、個人供品、祖先超渡<br>
-    </p>
-    <a href="registration.html" class="btn">立即線上報名</a>
-  </div>
-</section>
-
-<!-- 底部 -->
-<footer style="text-align:center; padding: 20px; background:#8b0000; color:white;">
-  <p>© 2025 卓蘭妙玄宮 | 電話：04-25896101 | FB：<a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" style="color:white;">官方粉專</a></p>
-</footer>
-
+  <div class="background"></div>
+  <div class="overlay"></div>
+  <nav>
+    <a href="#">關於</a>
+    <a href="#">服務</a>
+    <a href="#">公告</a>
+    <a href="#">聯絡</a>
+  </nav>
+  <div class="title">妙玄宮</div>
 </body>
 </html>
