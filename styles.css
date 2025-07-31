@@ -13,7 +13,99 @@ body, html {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  align-items: center;/* 全域設定 */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Microsoft JhengHei", sans-serif;
+}
+
+/* 導覽列 */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
   align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  padding: 10px 30px;
+  z-index: 100;
+}
+
+.navbar .logo {
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin-left: 20px;
+}
+
+.nav-links a {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.nav-links a:hover {
+  color: #ffd700;
+}
+
+/* 滿版背景 */
+.hero {
+  height: 100vh;
+  background: url('images/bodhisattva-bg.jpg') no-repeat center center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+}
+
+.hero-text {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 10px;
+}
+
+/* 浮動社群連結 */
+.social-float {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  z-index: 200;
+}
+
+.social-icon {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+
+.line-qr {
+  text-align: center;
+}
+
+.qr-text {
+  color: white;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}
+
   background: rgba(0, 0, 0, 0.4);
   padding: 10px 30px;
   z-index: 100;
