@@ -5,138 +5,222 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
   <style>
-    * { box-sizing: border-box; }
-    body, html {
-      margin: 0;
-      padding: 0;
-      font-family: "Microsoft JhengHei", sans-serif;
-      scroll-behavior: smooth;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: "Microsoft JhengHei", sans-serif; scroll-behavior: smooth; }
+
+    /* 背景全螢幕 */
+    header {
+      position: relative;
+      height: 100vh;
+      background: url('images/S__10657796.jpg') no-repeat center center / cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
     }
 
-    /* 背景設計 */
-    body {
-      background: url('images/S__10657796.jpg') no-repeat center center fixed;
-      background-size: cover;
-    }
-
-    /* 半透明黑色漸層覆蓋，讓文字清楚 */
-    body::before {
-      content: "";
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+    header h1 {
+      font-size: 3em;
       background: rgba(0,0,0,0.5);
-      z-index: -1;
+      padding: 20px 40px;
+      border-radius: 15px;
     }
 
     /* 導覽列 */
     nav {
       position: fixed;
-      top: 0; left: 0;
-      width: 100%;
+      top: 0; left: 0; width: 100%;
+      background: rgba(0,0,0,0.6);
       display: flex;
       justify-content: center;
-      background: rgba(0,0,0,0.3);
-      transition: 0.3s;
+      gap: 30px;
+      padding: 15px 0;
       z-index: 1000;
-      backdrop-filter: blur(5px);
     }
-    nav:hover { background: rgba(0,0,0,0.6); }
     nav a {
-      color: white;
-      text-decoration: none;
-      padding: 15px 25px;
-      font-size: 18px;
-      transition: 0.3s;
+      color: white; text-decoration: none; font-size: 18px;
+      transition: color 0.3s;
     }
-    nav a:hover {
-      color: #ffd700;
-    }
+    nav a:hover { color: gold; }
 
-    /* 區塊 */
-    section {
-      min-height: 100vh;
+    /* 區塊通用 */
+    section { padding: 80px 20px; text-align: center; }
+    section h2 { font-size: 2.5em; margin-bottom: 50px; color: #8b0000; }
+
+    /* 服務項目 */
+    .service-item {
       display: flex;
-      justify-content: center;
       align-items: center;
-      padding: 80px 20px 40px;
-      text-align: center;
+      justify-content: center;
+      margin-bottom: 60px;
+      flex-wrap: wrap;
     }
-
-    /* 卡片設計 */
-    .card {
-      background: rgba(255,255,255,0.1);
+    .service-item img {
+      width: 300px;
       border-radius: 15px;
-      padding: 40px;
-      max-width: 800px;
-      width: 90%;
-      color: white;
-      text-shadow: 0 0 5px black;
-      backdrop-filter: blur(8px);
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    }
+    .service-text {
+      max-width: 400px;
+      margin: 20px;
+      text-align: left;
+    }
+    .service-text h3 {
+      font-size: 1.8em;
+      margin-bottom: 15px;
+      color: #b22222;
+    }
+    .service-text p {
+      font-size: 1.1em;
+      line-height: 1.6em;
     }
 
-    h1, h2 { margin-bottom: 20px; }
+    /* 滾動動畫 */
+    .fade-in-left, .fade-in-right {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: all 0.8s ease-out;
+    }
+    .fade-in-left { transform: translateX(-50px); }
+    .fade-in-right { transform: translateX(50px); }
+    .fade-in-left.show, .fade-in-right.show {
+      opacity: 1;
+      transform: translateX(0);
+    }
 
-    /* 響應式文字 */
-    @media (max-width: 768px) {
-      h1 { font-size: 28px; }
-      h2 { font-size: 22px; }
-      nav a { font-size: 16px; padding: 10px 15px; }
+    /* 公告 */
+    .notice {
+      background: #fdf8f2;
+      padding: 50px 20px;
+    }
+
+    /* 聯絡 */
+    .contact {
+      background: #eee;
+    }
+    .contact p { font-size: 1.2em; margin: 10px 0; }
+
+    /* 浮動 QR Code */
+    .float-qr {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      text-align: center;
+      z-index: 1000;
+    }
+    .float-qr img {
+      width: 100px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+    .float-qr img:hover { transform: scale(1.2); }
+    .social-links a { display: inline-block; margin: 10px; color: #333; }
+
+    /* RWD */
+    @media(max-width:768px){
+      .service-item { flex-direction: column; }
+      .service-text { text-align: center; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 導覽列 -->
   <nav>
     <a href="#about">關於</a>
     <a href="#services">服務</a>
-    <a href="#news">公告</a>
+    <a href="#notice">公告</a>
     <a href="#calendar">行事曆</a>
     <a href="#contact">聯絡</a>
   </nav>
 
-  <!-- 區塊內容 -->
+  <header>
+    <h1>卓蘭妙玄宮</h1>
+  </header>
+
+  <!-- 關於 -->
   <section id="about">
-    <div class="card">
-      <h1>卓蘭妙玄宮</h1>
-      <p>主祀：大行菩薩、代行僧菩薩、九天玄女</p>
-      <p>地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
+    <h2>關於妙玄宮</h2>
+    <p style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
+      妙玄宮位於苗栗縣卓蘭鎮仁愛路14-1號，主祀
+      <strong>大行菩薩、代行僧菩薩、九天玄女</strong>。
+      本宮致力於服務信眾，提供問事、收驚、祈福法會等服務，
+      以慈悲心與正信，庇佑地方民眾，祈願人人平安吉祥。
+    </p>
+  </section>
+
+  <!-- 服務項目 -->
+  <section id="services" class="services-section">
+    <h2>服務項目</h2>
+
+    <div class="service-item fade-in-left">
+      <img src="images/service1.jpg" alt="問事服務">
+      <div class="service-text">
+        <h3>問事解惑</h3>
+        <p>由代行僧菩薩指引方向，協助信眾解決人生困惑，尋得心靈平安。</p>
+      </div>
+    </div>
+
+    <div class="service-item fade-in-right">
+      <img src="images/service2.jpg" alt="收驚安神">
+      <div class="service-text">
+        <h3>收驚安神</h3>
+        <p>提供成人與小朋友收驚安神服務，讓身心安定，遠離不適與不安。</p>
+      </div>
+    </div>
+
+    <div class="service-item fade-in-left">
+      <img src="images/service3.jpg" alt="法會祈福">
+      <div class="service-text">
+        <h3>法會祈福</h3>
+        <p>舉辦節慶法會與中元普渡，為家人祈求平安、健康與福報。</p>
+      </div>
     </div>
   </section>
 
-  <section id="services">
-    <div class="card">
-      <h2>服務項目</h2>
-      <p>問事、收驚、中元普渡法會報名</p>
-    </div>
+  <!-- 公告 -->
+  <section id="notice" class="notice">
+    <h2>最新公告</h2>
+    <p>📢 中元普渡法會報名中！歡迎點擊報名表單參加。</p>
   </section>
 
-  <section id="news">
-    <div class="card">
-      <h2>最新公告</h2>
-      <p>中元普渡法會報名中！</p>
-      <p>（此處可放線上報名表單）</p>
-    </div>
-  </section>
-
+  <!-- 行事曆 -->
   <section id="calendar">
-    <div class="card">
-      <h2>行事曆</h2>
-      <p>可放每月法會日期或嵌入 Google 日曆</p>
-    </div>
+    <h2>行事曆</h2>
+    <p>本宮行事曆將於近期更新，敬請期待。</p>
   </section>
 
-  <section id="contact">
-    <div class="card">
-      <h2>聯絡我們</h2>
-      <p>電話：04-25896101</p>
-      <p>
-        <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank" style="color:#ffd700">Facebook</a> |
-        <a href="#" target="_blank" style="color:#ffd700">LINE</a>
-      </p>
-    </div>
+  <!-- 聯絡 -->
+  <section id="contact" class="contact">
+    <h2>聯絡我們</h2>
+    <p>📍 地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
+    <p>📞 電話：04-25896101</p>
+    <p>
+      <a href="https://www.facebook.com/profile.php?id=100064331726590" target="_blank">Facebook</a> |
+      <a href="#">LINE</a>
+    </p>
   </section>
 
+  <!-- 浮動 QR -->
+  <div class="float-qr">
+    <img src="images/line_qr.png" alt="LINE QR Code">
+    <div class="social-links">
+      <a href="https://www.facebook.com/profile.php?id=100064331726590" target="_blank">FB</a>
+    </div>
+  </div>
+
+  <script>
+    // 滾動動畫
+    const items = document.querySelectorAll('.fade-in-left, .fade-in-right');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    items.forEach(item => observer.observe(item));
+  </script>
 </body>
 </html>
