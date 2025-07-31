@@ -5,50 +5,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { font-family: "Microsoft JhengHei", sans-serif; scroll-behavior: smooth; }
+    /* =========================
+       全局設定
+    ========================= */
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding-top: 48px;
+      background-color: #fffefc;
+      color: #333;
+    }
 
-    /* 背景全螢幕 */
+    /* =========================
+       Header & 導覽列
+    ========================= */
     header {
-      position: relative;
-      height: 100vh;
-      background: url('images/S__10657796.jpg') no-repeat center center / cover;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
+      background-color: #f5e8d7;
+      padding: 1em;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
-    header h1 {
-      font-size: 3em;
-      background: rgba(0,0,0,0.5);
-      padding: 20px 40px;
-      border-radius: 15px;
-    }
-
-    /* 導覽列 */
-    nav {
-      position: fixed;
-      top: 0; left: 0; width: 100%;
-      background: rgba(0,0,0,0.6);
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      padding: 15px 0;
-      z-index: 1000;
-    }
     nav a {
-      color: white; text-decoration: none; font-size: 18px;
-      transition: color 0.3s;
+      margin: 0 10px;
+      color: #5e412f;
+      text-decoration: none;
+      font-weight: bold;
     }
-    nav a:hover { color: gold; }
 
-    /* 區塊通用 */
-    section { padding: 80px 20px; text-align: center; }
-    section h2 { font-size: 2.5em; margin-bottom: 50px; color: #8b0000; }
+    /* =========================
+       頁尾
+    ========================= */
+    footer {
+      background-color: #f5e8d7;
+      text-align: center;
+      padding: 1em;
+      font-size: 0.9em;
+    }
 
-    /* 服務項目 */
+    /* =========================
+       跑馬燈公告
+    ========================= */
+    .marquee-notice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: #fff8e1;
+      color: #5e412f;
+      font-weight: bold;
+      padding: 8px 0;
+      z-index: 9999;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      font-size: 1em;
+    }
+
+    /* =========================
+       服務項目
+    ========================= */
+    .services-section {
+      padding: 80px 20px;
+      background: #fdf8f2;
+      text-align: center;
+    }
+
+    .services-section h2 {
+      font-size: 2.5em;
+      margin-bottom: 50px;
+      color: #8b0000;
+    }
+
     .service-item {
       display: flex;
       align-items: center;
@@ -56,171 +82,183 @@
       margin-bottom: 60px;
       flex-wrap: wrap;
     }
+
     .service-item img {
       width: 300px;
       border-radius: 15px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
     }
+
     .service-text {
       max-width: 400px;
       margin: 20px;
       text-align: left;
     }
+
     .service-text h3 {
       font-size: 1.8em;
       margin-bottom: 15px;
       color: #b22222;
     }
+
     .service-text p {
       font-size: 1.1em;
       line-height: 1.6em;
     }
 
-    /* 滾動動畫 */
+    /* 進場動畫效果 */
     .fade-in-left, .fade-in-right {
       opacity: 0;
       transform: translateX(50px);
       transition: all 0.8s ease-out;
     }
-    .fade-in-left { transform: translateX(-50px); }
-    .fade-in-right { transform: translateX(50px); }
+
+    .fade-in-left {
+      transform: translateX(-50px);
+    }
+
     .fade-in-left.show, .fade-in-right.show {
       opacity: 1;
       transform: translateX(0);
     }
 
-    /* 公告 */
-    .notice {
-      background: #fdf8f2;
-      padding: 50px 20px;
-    }
-
-    /* 聯絡 */
-    .contact {
-      background: #eee;
-    }
-    .contact p { font-size: 1.2em; margin: 10px 0; }
-
-    /* 浮動 QR Code */
-    .float-qr {
+    /* =========================
+       浮動社群按鈕
+    ========================= */
+    .social-icons {
       position: fixed;
       bottom: 20px;
       right: 20px;
-      text-align: center;
-      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 10000;
     }
-    .float-qr img {
-      width: 100px;
-      cursor: pointer;
-      transition: transform 0.3s;
-    }
-    .float-qr img:hover { transform: scale(1.2); }
-    .social-links a { display: inline-block; margin: 10px; color: #333; }
 
-    /* RWD */
-    @media(max-width:768px){
-      .service-item { flex-direction: column; }
-      .service-text { text-align: center; }
+    .social-icons img {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      transition: transform 0.2s;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.1);
+    }
+
+    /* =========================
+       QR Code 彈窗
+    ========================= */
+    .qr-popup {
+      display: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      background: white;
+      padding: 10px;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+      z-index: 10001;
+      text-align: center;
+    }
+
+    .qr-popup img {
+      width: 150px;
     }
   </style>
 </head>
 <body>
 
-  <nav>
-    <a href="#about">關於</a>
-    <a href="#services">服務</a>
-    <a href="#notice">公告</a>
-    <a href="#calendar">行事曆</a>
-    <a href="#contact">聯絡</a>
-  </nav>
+  <!-- 跑馬燈公告 -->
+  <div class="marquee-notice">
+    🌟 最新公告：中元普渡報名開放中，歡迎線上登記參加 🌟
+  </div>
 
+  <!-- Header 導覽列 -->
   <header>
     <h1>卓蘭妙玄宮</h1>
+    <nav>
+      <a href="#">關於我們</a>
+      <a href="#">服務項目</a>
+      <a href="#">最新公告</a>
+      <a href="#">行事曆</a>
+      <a href="#">聯絡我們</a>
+    </nav>
   </header>
 
-  <!-- 關於 -->
-  <section id="about">
-    <h2>關於妙玄宮</h2>
-    <p style="max-width: 600px; margin: 0 auto; line-height: 1.8;">
-      妙玄宮位於苗栗縣卓蘭鎮仁愛路14-1號，主祀
-      <strong>大行菩薩、代行僧菩薩、九天玄女</strong>。
-      本宮致力於服務信眾，提供問事、收驚、祈福法會等服務，
-      以慈悲心與正信，庇佑地方民眾，祈願人人平安吉祥。
-    </p>
-  </section>
+  <main>
+    <!-- 服務項目區塊 -->
+    <section class="services-section">
+      <h2>我們的服務</h2>
 
-  <!-- 服務項目 -->
-  <section id="services" class="services-section">
-    <h2>服務項目</h2>
-
-    <div class="service-item fade-in-left">
-      <img src="images/service1.jpg" alt="問事服務">
-      <div class="service-text">
-        <h3>問事解惑</h3>
-        <p>由代行僧菩薩指引方向，協助信眾解決人生困惑，尋得心靈平安。</p>
+      <div class="service-item fade-in-left">
+        <img src="images/service1.jpg" alt="服務一">
+        <div class="service-text">
+          <h3>問事服務</h3>
+          <p>提供民眾問事、指點迷津服務，幫助您解決生活與工作上的疑惑。</p>
+        </div>
       </div>
-    </div>
 
-    <div class="service-item fade-in-right">
-      <img src="images/service2.jpg" alt="收驚安神">
-      <div class="service-text">
-        <h3>收驚安神</h3>
-        <p>提供成人與小朋友收驚安神服務，讓身心安定，遠離不適與不安。</p>
+      <div class="service-item fade-in-right">
+        <img src="images/service2.jpg" alt="服務二">
+        <div class="service-text">
+          <h3>收驚服務</h3>
+          <p>專業師父協助收驚，安定心神，讓生活重回平安順遂。</p>
+        </div>
       </div>
-    </div>
 
-    <div class="service-item fade-in-left">
-      <img src="images/service3.jpg" alt="法會祈福">
-      <div class="service-text">
-        <h3>法會祈福</h3>
-        <p>舉辦節慶法會與中元普渡，為家人祈求平安、健康與福報。</p>
+      <div class="service-item fade-in-left">
+        <img src="images/service3.jpg" alt="服務三">
+        <div class="service-text">
+          <h3>中元普渡法會</h3>
+          <p>每年舉辦中元普渡及法會超渡先人，提供線上報名服務。</p>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  </main>
 
-  <!-- 公告 -->
-  <section id="notice" class="notice">
-    <h2>最新公告</h2>
-    <p>📢 中元普渡法會報名中！歡迎點擊報名表單參加。</p>
-  </section>
+  <footer>
+    © 2025 卓蘭妙玄宮 | 地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101
+  </footer>
 
-  <!-- 行事曆 -->
-  <section id="calendar">
-    <h2>行事曆</h2>
-    <p>本宮行事曆將於近期更新，敬請期待。</p>
-  </section>
+  <!-- 浮動社群按鈕 -->
+  <div class="social-icons">
+    <img src="images/line-icon.png" alt="LINE" id="line-btn">
+    <img src="images/fb-icon.png" alt="Facebook" onclick="window.open('https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW')">
+  </div>
 
-  <!-- 聯絡 -->
-  <section id="contact" class="contact">
-    <h2>聯絡我們</h2>
-    <p>📍 地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
-    <p>📞 電話：04-25896101</p>
-    <p>
-      <a href="https://www.facebook.com/profile.php?id=100064331726590" target="_blank">Facebook</a> |
-      <a href="#">LINE</a>
-    </p>
-  </section>
-
-  <!-- 浮動 QR -->
-  <div class="float-qr">
-    <img src="images/line_qr.png" alt="LINE QR Code">
-    <div class="social-links">
-      <a href="https://www.facebook.com/profile.php?id=100064331726590" target="_blank">FB</a>
-    </div>
+  <!-- QR Code 彈出 -->
+  <div class="qr-popup" id="qr-popup">
+    <p>掃描加入官方LINE</p>
+    <img src="images/line-qr.png" alt="LINE QR Code">
   </div>
 
   <script>
-    // 滾動動畫
-    const items = document.querySelectorAll('.fade-in-left, .fade-in-right');
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
+    // 滾動淡入動畫
+    function checkFadeIn() {
+      const elements = document.querySelectorAll('.fade-in-left, .fade-in-right');
+      elements.forEach(el => {
+        const rect = el.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          el.classList.add('show');
         }
       });
-    }, { threshold: 0.2 });
+    }
+    window.addEventListener('DOMContentLoaded', checkFadeIn);
+    window.addEventListener('scroll', checkFadeIn);
 
-    items.forEach(item => observer.observe(item));
+    // 浮動 LINE QR Code
+    const lineBtn = document.getElementById('line-btn');
+    const qrPopup = document.getElementById('qr-popup');
+    let popupVisible = false;
+
+    lineBtn.addEventListener('click', () => {
+      popupVisible = !popupVisible;
+      qrPopup.style.display = popupVisible ? 'block' : 'none';
+    });
   </script>
+
 </body>
 </html>
