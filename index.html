@@ -15,98 +15,59 @@
       background: url('images/main-bg.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
-    }
-
-    /* =========================
-       Header & 導覽列
-    ========================= */
-    header {
-      background-color: rgba(245, 232, 215, 0.85);
-      padding: 1em;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    nav {
-      text-align: center;
-      margin-top: 20px;
-    }
-
-    nav a {
-      margin: 0 15px;
-      color: #5e412f;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2em;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
+      height: 100vh;
+      overflow: hidden;
     }
 
     /* =========================
        主標題區塊
     ========================= */
     .main-title {
-      text-align: center;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
       color: gold;
       font-size: 3em;
-      margin-top: 150px;
       text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+    }
+
+    /* =========================
+       固定在頁面下方的導航欄
+    ========================= */
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(245, 232, 215, 0.85);
+      text-align: center;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      margin: 0 20px;
+      color: #5e412f;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
     }
 
     /* =========================
        內容區域
     ========================= */
     .content {
-      background-color: rgba(255, 248, 225, 0.85);
       padding: 30px;
-      margin-top: 50px;
-      margin-bottom: 50px;
+      background-color: rgba(255, 248, 225, 0.85);
+      margin-top: 100px;
+      margin-bottom: 100px;
       text-align: center;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .content p {
-      font-size: 1.2em;
-      line-height: 1.6;
-    }
-
-    /* =========================
-       聯絡我們區塊
-    ========================= */
-    .contact {
-      background-color: rgba(245, 232, 215, 0.85);
-      padding: 30px;
-      margin: 50px 0;
-      text-align: center;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    }
-
-    .contact p {
-      font-size: 1.2em;
-    }
-
-    .social-icons {
-      margin-top: 20px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-    }
-
-    .social-icons a {
-      background-color: #4267B2;
-      padding: 10px 15px;
-      border-radius: 50%;
-      color: white;
-      font-size: 1.5em;
-      text-decoration: none;
-    }
-
-    .social-icons a:hover {
-      background-color: #365899;
     }
 
   </style>
@@ -114,13 +75,9 @@
 <body>
 
   <!-- 主標題 -->
-  <header>
-    <h1 class="main-title">妙玄宮</h1>
-    <nav>
-      <a href="#announcement">最新公告</a>
-      <a href="#contact">聯絡我們</a>
-    </nav>
-  </header>
+  <div class="main-title">
+    <h1>卓蘭妙玄宮</h1>
+  </div>
 
   <!-- 內容區域 -->
   <div class="content">
@@ -129,22 +86,15 @@
     <p>每週一、十五號閉宮，請來訪前確認。</p>
   </div>
 
-  <!-- 最新公告 -->
-  <section id="announcement" class="content">
-    <h2>最新公告</h2>
-    <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
-  </section>
-
-  <!-- 聯絡我們 -->
-  <section id="contact" class="contact">
-    <h2>聯絡我們</h2>
-    <p>地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
-    <p>電話：04-25896101</p>
-    <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">F</a>
-      <a href="https://line.me/R/ti/p/%40example" target="_blank">L</a>
-    </div>
-  </section>
+  <!-- 固定在頁面下方的導航欄 -->
+  <div class="navbar">
+    <a href="#">首頁</a>
+    <a href="#">本宮介紹</a>
+    <a href="#">服務項目</a>
+    <a href="#">最新消息</a>
+    <a href="#">行事曆</a>
+    <a href="#">與我聯絡</a>
+  </div>
 
 </body>
 </html>
