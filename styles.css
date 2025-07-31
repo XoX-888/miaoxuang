@@ -139,7 +139,7 @@ body, html {
 /* 滿版背景 */
 .hero {
   height: 100vh;
-  background: url('images/bodhisattva-bg.jpg') no-repeat center center/cover;
+  background: url('images/buddha.png') no-repeat center center/cover;
   display: flex;
   justify-content: center;
   align-items: center;
