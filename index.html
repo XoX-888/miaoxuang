@@ -15,21 +15,20 @@
       background: url('images/main-bg.jpg') no-repeat center center fixed;
       background-size: cover;
       color: #fff;
-      height: 100vh;
-      overflow: hidden;
     }
 
     /* =========================
-       主標題區塊
+       主標題區塊（移動至頁面頂部）
     ========================= */
     .main-title {
       position: fixed;
-      top: 50%;
+      top: 10px;
       left: 50%;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       color: gold;
       font-size: 3em;
       text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+      z-index: 100;
     }
 
     /* =========================
@@ -63,8 +62,8 @@
     .content {
       padding: 30px;
       background-color: rgba(255, 248, 225, 0.85);
-      margin-top: 100px;
-      margin-bottom: 100px;
+      margin-top: 100px; /* 增加上方空間避免被標題擋住 */
+      margin-bottom: 50px;
       text-align: center;
       border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
@@ -81,9 +80,8 @@
 
   <!-- 內容區域 -->
   <div class="content">
-    <h2>服務時間</h2>
-    <p>15:00 ～ 18:00, 19:00 ～ 21:30</p>
-    <p>每週一、十五號閉宮，請來訪前確認。</p>
+    <h2>最新公告</h2>
+    <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
   </div>
 
   <!-- 固定在頁面下方的導航欄 -->
