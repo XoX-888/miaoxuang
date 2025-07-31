@@ -4,261 +4,138 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
+  <meta name="description" content="卓蘭妙玄宮主祀大行菩薩、代行僧菩薩、九天玄女，提供問事、收驚服務與線上報名活動。">
+  <link rel="stylesheet" href="style.css">
   <style>
-    /* =========================
-       全局設定
-    ========================= */
-    body {
-      font-family: sans-serif;
-      margin: 0;
-      padding-top: 48px;
-      background-color: #fffefc;
-      color: #333;
-    }
-
-    /* =========================
-       Header & 導覽列
-    ========================= */
-    header {
-      background-color: #f5e8d7;
-      padding: 1em;
-      text-align: center;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    }
-
-    nav a {
-      margin: 0 10px;
-      color: #5e412f;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    /* =========================
-       頁尾
-    ========================= */
-    footer {
-      background-color: #f5e8d7;
-      text-align: center;
-      padding: 1em;
-      font-size: 0.9em;
-    }
-
-    /* =========================
-       跑馬燈公告
-    ========================= */
-    .marquee-notice {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: #fff8e1;
-      color: #5e412f;
-      font-weight: bold;
-      padding: 8px 0;
-      z-index: 9999;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-      font-size: 1em;
-    }
-
-    /* =========================
-       服務項目
-    ========================= */
-    .services-section {
-      padding: 80px 20px;
-      background: #fdf8f2;
-      text-align: center;
-    }
-
-    .services-section h2 {
-      font-size: 2.5em;
-      margin-bottom: 50px;
-      color: #8b0000;
-    }
-
-    .service-item {
+    body { margin:0; font-family: "Microsoft JhengHei", sans-serif; background-color: #fff; }
+    nav {
+      background: #8b0000;
+      padding: 10px 20px;
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      margin-bottom: 60px;
-      flex-wrap: wrap;
     }
-
-    .service-item img {
-      width: 300px;
-      border-radius: 15px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: bold;
     }
+    nav a:hover { text-decoration: underline; }
 
-    .service-text {
-      max-width: 400px;
-      margin: 20px;
-      text-align: left;
-    }
-
-    .service-text h3 {
-      font-size: 1.8em;
-      margin-bottom: 15px;
-      color: #b22222;
-    }
-
-    .service-text p {
-      font-size: 1.1em;
-      line-height: 1.6em;
-    }
-
-    /* 進場動畫效果 */
-    .fade-in-left, .fade-in-right {
-      opacity: 0;
-      transform: translateX(50px);
-      transition: all 0.8s ease-out;
-    }
-
-    .fade-in-left {
-      transform: translateX(-50px);
-    }
-
-    .fade-in-left.show, .fade-in-right.show {
-      opacity: 1;
-      transform: translateX(0);
-    }
-
-    /* =========================
-       浮動社群按鈕
-    ========================= */
-    .social-icons {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 10000;
-    }
-
-    .social-icons img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.1);
-    }
-
-    /* =========================
-       QR Code 彈窗
-    ========================= */
-    .qr-popup {
-      display: none;
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      background: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      z-index: 10001;
+    /* Hero 區塊 */
+    .hero {
+      position: relative;
       text-align: center;
+      overflow: hidden;
+    }
+    .hero-bg {
+      width: 100%;
+      height: 70vh;
+      object-fit: cover;
+      filter: brightness(0.6);
+    }
+    .hero-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      text-shadow: 0 0 15px black;
+    }
+    .hero-text h1 {
+      font-size: 4rem;
+      font-family: 'KaiTi', 'DFKai-SB', serif;
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      margin-top: 10px;
     }
 
-    .qr-popup img {
-      width: 150px;
+    /* 最新公告 */
+    .announcement {
+      padding: 50px 20px;
+      text-align: center;
+      background: #fff8e1;
+    }
+    .announcement h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+    .announcement-item {
+      background: white;
+      padding: 20px;
+      margin: 0 auto;
+      max-width: 600px;
+      border-radius: 15px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .announcement-item h3 {
+      color: #d35400;
+    }
+    .announcement-item .btn {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 10px 20px;
+      background: #d35400;
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      transition: 0.3s;
+    }
+    .announcement-item .btn:hover {
+      background: #e67e22;
+    }
+
+    /* 響應式字體縮放 */
+    @media (max-width: 768px) {
+      .hero-text h1 { font-size: 2.5rem; }
+      .hero-text p { font-size: 1rem; }
     }
   </style>
 </head>
 <body>
 
-  <!-- 跑馬燈公告 -->
-  <div class="marquee-notice">
-    🌟 最新公告：中元普渡報名開放中，歡迎線上登記參加 🌟
+<!-- 導覽列 -->
+<nav>
+  <div class="logo">卓蘭妙玄宮</div>
+  <div class="nav-links">
+    <a href="#about">關於</a>
+    <a href="#services">服務</a>
+    <a href="#announcement">公告</a>
+    <a href="#calendar">行事曆</a>
+    <a href="#contact">聯絡</a>
   </div>
+</nav>
 
-  <!-- Header 導覽列 -->
-  <header>
-    <h1>卓蘭妙玄宮</h1>
-    <nav>
-      <a href="#">關於我們</a>
-      <a href="#">服務項目</a>
-      <a href="#">最新公告</a>
-      <a href="#">行事曆</a>
-      <a href="#">聯絡我們</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- 服務項目區塊 -->
-    <section class="services-section">
-      <h2>我們的服務</h2>
-
-      <div class="service-item fade-in-left">
-        <img src="images/service1.jpg" alt="服務一">
-        <div class="service-text">
-          <h3>問事服務</h3>
-          <p>提供民眾問事、指點迷津服務，幫助您解決生活與工作上的疑惑。</p>
-        </div>
-      </div>
-
-      <div class="service-item fade-in-right">
-        <img src="images/service2.jpg" alt="服務二">
-        <div class="service-text">
-          <h3>收驚服務</h3>
-          <p>專業師父協助收驚，安定心神，讓生活重回平安順遂。</p>
-        </div>
-      </div>
-
-      <div class="service-item fade-in-left">
-        <img src="images/service3.jpg" alt="服務三">
-        <div class="service-text">
-          <h3>中元普渡法會</h3>
-          <p>每年舉辦中元普渡及法會超渡先人，提供線上報名服務。</p>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    © 2025 卓蘭妙玄宮 | 地址：苗栗縣卓蘭鎮仁愛路14-1號 | 電話：04-25896101
-  </footer>
-
-  <!-- 浮動社群按鈕 -->
-  <div class="social-icons">
-    <img src="images/line-icon.png" alt="LINE" id="line-btn">
-    <img src="images/fb-icon.png" alt="Facebook" onclick="window.open('https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW')">
+<!-- Hero 區塊 -->
+<section class="hero">
+  <div class="hero-content">
+    <img src="images/S__10657796.jpg" alt="妙玄宮神像" class="hero-bg">
+    <div class="hero-text">
+      <h1>妙玄宮</h1>
+      <p>主祀：大行菩薩、代行僧菩薩、九天玄女</p>
+    </div>
   </div>
+</section>
 
-  <!-- QR Code 彈出 -->
-  <div class="qr-popup" id="qr-popup">
-    <p>掃描加入官方LINE</p>
-    <img src="images/line-qr.png" alt="LINE QR Code">
+<!-- 最新公告區塊 -->
+<section class="announcement" id="announcement">
+  <h2>📢 最新公告</h2>
+  <div class="announcement-item">
+    <h3>中元普渡法會報名中</h3>
+    <p>日期：農曆七月十五日（國曆 2025/08/07）<br>
+       地點：卓蘭妙玄宮（苗栗縣卓蘭鎮仁愛路14-1號）<br>
+       內容：贊普、個人供品、祖先超渡<br>
+    </p>
+    <a href="registration.html" class="btn">立即線上報名</a>
   </div>
+</section>
 
-  <script>
-    // 滾動淡入動畫
-    function checkFadeIn() {
-      const elements = document.querySelectorAll('.fade-in-left, .fade-in-right');
-      elements.forEach(el => {
-        const rect = el.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          el.classList.add('show');
-        }
-      });
-    }
-    window.addEventListener('DOMContentLoaded', checkFadeIn);
-    window.addEventListener('scroll', checkFadeIn);
-
-    // 浮動 LINE QR Code
-    const lineBtn = document.getElementById('line-btn');
-    const qrPopup = document.getElementById('qr-popup');
-    let popupVisible = false;
-
-    lineBtn.addEventListener('click', () => {
-      popupVisible = !popupVisible;
-      qrPopup.style.display = popupVisible ? 'block' : 'none';
-    });
-  </script>
+<!-- 底部 -->
+<footer style="text-align:center; padding: 20px; background:#8b0000; color:white;">
+  <p>© 2025 卓蘭妙玄宮 | 電話：04-25896101 | FB：<a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" style="color:white;">官方粉專</a></p>
+</footer>
 
 </body>
 </html>
