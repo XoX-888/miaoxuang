@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ page.title }} - {{ site.title }}</title>
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+  <header>
+    <nav>
+      <ul>
+        <li><a href="{{ '/' | relative_url }}">首頁</a></li>
+        <li><a href="{{ '/about.html' | relative_url }}">關於本宮</a></li>
+        <li><a href="{{ '/service.html' | relative_url }}">服務項目</a></li>
+        <li><a href="{{ '/news.html' | relative_url }}">最新消息</a></li>
+        <li><a href="{{ '/calendar.html' | relative_url }}">行事曆</a></li>
+        <li><a href="{{ '/contact.html' | relative_url }}">聯絡我們</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    {{ content }}
+  </main>
+
+  <footer>
+    <p>&copy; 2025 卓蘭妙玄宮</p>
+  </footer>
+</body>
+</html>
