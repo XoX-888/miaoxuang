@@ -1,16 +1,9 @@
-/* 重設預設值 */
+/* 重設 */
 body, html {
     margin: 0;
     padding: 0;
     height: 100%;
-    font-family: Arial, sans-serif;
-}
-
-/* 背景圖片 */
-.bg img {
-    width: 100%;
-    height: auto;
-    display: block;
+    font-family: 'Noto Serif TC', serif;
 }
 
 /* 導覽列 */
@@ -19,15 +12,15 @@ body, html {
     top: 0;
     width: 100%;
     background: rgba(0,0,0,0.6);
-    padding: 15px 0;
     text-align: center;
+    padding: 15px 0;
     z-index: 1000;
 }
 
 .navbar ul {
+    list-style: none;
     margin: 0;
     padding: 0;
-    list-style: none;
 }
 
 .navbar li {
@@ -41,11 +34,38 @@ body, html {
     font-size: 18px;
 }
 
-/* 主要內容置中 */
-.content {
+/* 滿版神像展示 */
+.hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.hero img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 重要：完整顯示圖片 */
+    object-position: center;
+    background-color: black; /* 空白區域補黑底 */
+}
+
+/* 文字浮層 */
+.overlay {
     position: absolute;
-    top: 50%;
+    bottom: 10%;
     width: 100%;
     text-align: center;
-    transform: translateY(-50%);
+    color: white;
+    text-shadow: 2px 2px 6px black;
+}
+
+.overlay h1 {
+    font-size: 3rem;
+    margin: 0;
+}
+
+.overlay p {
+    font-size: 1.5rem;
+    margin-top: 10px;
 }
