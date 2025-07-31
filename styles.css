@@ -2,45 +2,11 @@
    全局設定
 ========================= */
 body {
-  font-family: sans-serif;
+  font-family: "Microsoft JhengHei", sans-serif;
   margin: 0;
   padding-top: 48px; /* 避免頂部被跑馬燈遮住 */
   background-color: #fffefc;
   color: #333;
-}
-
-/* =========================
-   Header & 導覽列
-========================= */
-header {
-  background-color: #f5e8d7;
-  padding: 1em;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-nav a {
-  margin: 0 10px;
-  color: #5e412f;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-/* =========================
-   主要內容區塊
-========================= */
-main {
-  padding: 2em;
-}
-
-/* =========================
-   頁尾
-========================= */
-footer {
-  background-color: #f5e8d7;
-  text-align: center;
-  padding: 1em;
-  font-size: 0.9em;
 }
 
 /* =========================
@@ -61,10 +27,113 @@ footer {
 }
 
 /* =========================
+   Header & 導覽列
+========================= */
+header {
+  background-color: #f5e8d7;
+  padding: 1em;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+nav a {
+  margin: 0 10px;
+  color: #5e412f;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #b22222;
+}
+
+/* =========================
    Banner 區塊
 ========================= */
 .banner {
   position: relative;
   width: 100%;
   height: 400px; /* 可依需求調整高度 */
-  overflow
+  overflow: hidden;
+}
+
+.banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* =========================
+   我們的服務區塊
+========================= */
+.services-section {
+  padding: 80px 20px;
+  background: #fdf8f2;
+  text-align: center;
+}
+
+.services-section h2 {
+  font-size: 2.5em;
+  margin-bottom: 50px;
+  color: #8b0000;
+}
+
+.service-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 60px;
+  flex-wrap: wrap;
+}
+
+.service-item img {
+  width: 300px;
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.service-text {
+  max-width: 400px;
+  margin: 20px;
+  text-align: left;
+}
+
+.service-text h3 {
+  font-size: 1.8em;
+  margin-bottom: 15px;
+  color: #b22222;
+}
+
+.service-text p {
+  font-size: 1.1em;
+  line-height: 1.6em;
+}
+
+/* 進場動畫效果 */
+.fade-in-left, .fade-in-right {
+  opacity: 0;
+  transition: all 0.8s ease-out;
+}
+
+.fade-in-left {
+  transform: translateX(-50px);
+}
+
+.fade-in-right {
+  transform: translateX(50px);
+}
+
+.fade-in-left.show, .fade-in-right.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* =========================
+   頁尾
+========================= */
+footer {
+  background-color: #f5e8d7;
+  text-align: center;
+  padding: 1em;
+  font-size: 0.9em;
+}
