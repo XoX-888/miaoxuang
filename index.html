@@ -72,6 +72,28 @@
     }
 
     /* =========================
+       放大圖片彈窗樣式
+    ========================= */
+    .zoomed-image {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0,0,0,0.8);
+      padding: 20px;
+      z-index: 9999;
+    }
+
+    .zoomed-image img {
+      width: 300px;
+      height: 300px;
+      object-fit: contain;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    /* =========================
        QR Code 彈窗
     ========================= */
     .qr-popup {
@@ -105,6 +127,11 @@
     <img src="images/fb-icon.png" alt="Facebook" onclick="window.open('https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW')">
   </div>
 
+  <!-- 放大LINE圖片 -->
+  <div class="zoomed-image" id="zoomed-image">
+    <img src="images/line-icon.png" alt="LINE" id="zoomed-line">
+  </div>
+
   <!-- QR Code 彈出 -->
   <div class="qr-popup" id="qr-popup">
     <p>掃描加入官方LINE</p>
@@ -112,11 +139,24 @@
   </div>
 
   <script>
-    // 浮動 LINE QR Code
+    // 放大 LINE 圖片
     const lineBtn = document.getElementById('line-btn');
+    const zoomedImage = document.getElementById('zoomed-image');
+    const zoomedLine = document.getElementById('zoomed-line');
     const qrPopup = document.getElementById('qr-popup');
     let popupVisible = false;
 
+    lineBtn.addEventListener('click', () => {
+      // 顯示放大圖片
+      zoomedImage.style.display = 'block';
+    });
+
+    zoomedLine.addEventListener('click', () => {
+      // 隱藏放大圖片
+      zoomedImage.style.display = 'none';
+    });
+
+    // 顯示或隱藏 QR Code
     lineBtn.addEventListener('click', () => {
       popupVisible = !popupVisible;
       qrPopup.style.display = popupVisible ? 'block' : 'none';
