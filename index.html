@@ -4,7 +4,140 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css"><!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卓蘭妙玄宮</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: "Noto Serif TC", serif;
+      background: #f9e3b3;
+      color: #333;
+    }
+
+    /* 導覽列 */
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 40px;
+      padding: 20px;
+      background: #f5d28c;
+      font-weight: bold;
+    }
+    nav a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    /* 主視覺 */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 60px 20px 40px;
+      background: linear-gradient(to bottom, #f9e3b3, #f5d28c);
+      overflow: hidden;
+    }
+
+    .hero img.sun {
+      position: absolute;
+      top: 60px;
+      left: 20%;
+      width: 200px;
+      opacity: 0.3;
+    }
+
+    .hero h1 {
+      font-size: 80px;
+      font-weight: bold;
+      margin: 0;
+      color: #000;
+      z-index: 2;
+      position: relative;
+    }
+
+    .hero .subtitle {
+      font-size: 20px;
+      color: #b30000;
+      position: relative;
+      margin-bottom: 20px;
+    }
+
+    .hero img.buddha {
+      max-width: 280px;
+      margin-top: 30px;
+    }
+
+    /* 公告與聯絡資訊 */
+    .info {
+      background: #f5d28c;
+      padding: 30px 20px;
+      text-align: center;
+      font-size: 18px;
+    }
+    .info p {
+      margin: 8px 0;
+    }
+    .footer {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 10px;
+      font-size: 16px;
+    }
+    .footer a {
+      color: #0044cc;
+      text-decoration: none;
+    }
+
+    /* RWD 手機版調整 */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 48px;
+      }
+      .hero img.buddha {
+        max-width: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 導覽列 -->
+  <nav>
+    <a href="#">首頁</a>
+    <a href="#">關於本宮</a>
+    <a href="#">服務項目</a>
+    <a href="#">最新消息</a>
+    <a href="#">行事曆</a>
+    <a href="#">線上報名</a>
+    <a href="#">聯絡我們</a>
+  </nav>
+
+  <!-- 主視覺區 -->
+  <div class="hero">
+    <div class="subtitle">代行僧菩薩</div>
+    <h1>妙玄宮</h1>
+    <img src="images/buddha.png" alt="代行僧菩薩" class="buddha">
+  </div>
+
+  <!-- 公告與聯絡資訊 -->
+  <div class="info">
+    <p>姻事時間備 15:00-18:00 / 19:00-21:30<br>每雙周星期二、十五</p>
+    <p>✘ 不猜事、每週日休宮、僅供問事與收驚服務</p>
+    <div class="footer">
+      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW">Facebook</a>
+      <span>苗栗縣卓蘭鎮仁愛路14-1號</span>
+      <span>📞 04-25896101</span>
+    </div>
+  </div>
+
+</body>
+</html>
+
 </head>
 <body>
   <!-- 導覽列 -->
