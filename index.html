@@ -10,7 +10,87 @@
     ========================= */
     body {
       font-family: sans-serif;
+      margin: 0;<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>卓蘭妙玄宮</title>
+  <style>
+    /* =========================
+       全局設定
+    ========================= */
+    body {
+      font-family: sans-serif;
       margin: 0;
+      padding-top: 0;
+      background: url('images/main-bg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+
+    /* =========================
+       主標題區塊（移動至頁面頂部）
+    ========================= */
+    .main-title {
+      position: fixed;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      color: gold;
+      font-size: 3em;
+      text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
+      z-index: 100;
+      padding-top: 20px;
+    }
+
+    /* =========================
+       固定在頁面下方的導航欄
+    ========================= */
+    .navbar {
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      background-color: rgba(245, 232, 215, 0.85);
+      text-align: center;
+      padding: 10px 0;
+      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .navbar a {
+      margin: 0 20px;
+      color: #5e412f;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- 主標題 -->
+  <div class="main-title">
+    <h1>卓蘭妙玄宮</h1>
+  </div>
+
+  <!-- 固定在頁面下方的導航欄 -->
+  <div class="navbar">
+    <a href="#">首頁</a>
+    <a href="#">本宮介紹</a>
+    <a href="#">服務項目</a>
+    <a href="#">最新消息</a>
+    <a href="#">行事曆</a>
+    <a href="#">與我聯絡</a>
+  </div>
+
+</body>
+</html>
+
       padding-top: 0;
       background: url('images/main-bg.jpg') no-repeat center center fixed;
       background-size: cover;
