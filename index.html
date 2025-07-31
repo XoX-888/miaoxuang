@@ -27,11 +27,21 @@
       box-shadow: 0 2px 4px rgba(0,0,0,0.1);
     }
 
+    nav {
+      text-align: center;
+      margin-top: 20px;
+    }
+
     nav a {
-      margin: 0 10px;
+      margin: 0 15px;
       color: #5e412f;
       text-decoration: none;
       font-weight: bold;
+      font-size: 1.2em;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
     }
 
     /* =========================
@@ -46,20 +56,21 @@
     }
 
     /* =========================
-       最新公告區塊
+       內容區域
     ========================= */
-    .announcement {
+    .content {
       background-color: rgba(255, 248, 225, 0.85);
-      padding: 20px;
-      margin: 50px 0;
+      padding: 30px;
+      margin-top: 50px;
+      margin-bottom: 50px;
       text-align: center;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    .announcement h2 {
-      font-size: 2em;
-      color: #8b0000;
+    .content p {
+      font-size: 1.2em;
+      line-height: 1.6;
     }
 
     /* =========================
@@ -74,14 +85,8 @@
       box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    .contact h2 {
-      font-size: 2em;
-      color: #8b0000;
-    }
-
     .contact p {
       font-size: 1.2em;
-      color: #333;
     }
 
     .social-icons {
@@ -117,8 +122,15 @@
     </nav>
   </header>
 
+  <!-- 內容區域 -->
+  <div class="content">
+    <h2>服務時間</h2>
+    <p>15:00 ～ 18:00, 19:00 ～ 21:30</p>
+    <p>每週一、十五號閉宮，請來訪前確認。</p>
+  </div>
+
   <!-- 最新公告 -->
-  <section id="announcement" class="announcement">
+  <section id="announcement" class="content">
     <h2>最新公告</h2>
     <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
   </section>
@@ -129,20 +141,10 @@
     <p>地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
     <p>電話：04-25896101</p>
     <div class="social-icons">
-      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">
-        F
-      </a>
-      <a href="https://line.me/R/ti/p/%40example" target="_blank">
-        L
-      </a>
+      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">F</a>
+      <a href="https://line.me/R/ti/p/%40example" target="_blank">L</a>
     </div>
   </section>
-
-  <!-- 浮動社群按鈕 -->
-  <div class="social-icons">
-    <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">F</a>
-    <a href="https://line.me/R/ti/p/%40example" target="_blank">L</a>
-  </div>
 
 </body>
 </html>
