@@ -35,7 +35,7 @@
     }
 
     /* =========================
-       標題區塊
+       主標題區塊
     ========================= */
     .main-title {
       text-align: center;
@@ -46,72 +46,64 @@
     }
 
     /* =========================
-       浮動社群按鈕
+       最新公告區塊
     ========================= */
-    .social-icons {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      z-index: 10000;
-    }
-
-    .social-icons img {
-      width: 50px;
-      height: 50px;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
-      transition: transform 0.2s;
-    }
-
-    .social-icons img:hover {
-      transform: scale(1.1);
-    }
-
-    /* =========================
-       放大圖片彈窗樣式
-    ========================= */
-    .zoomed-image {
-      display: none;
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: rgba(0,0,0,0.8);
+    .announcement {
+      background-color: rgba(255, 248, 225, 0.85);
       padding: 20px;
-      z-index: 9999;
+      margin: 50px 0;
+      text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    .zoomed-image img {
-      width: 300px;
-      height: 300px;
-      object-fit: contain;
-      border-radius: 8px;
-      cursor: pointer;
+    .announcement h2 {
+      font-size: 2em;
+      color: #8b0000;
     }
 
     /* =========================
-       QR Code 彈窗
+       聯絡我們區塊
     ========================= */
-    .qr-popup {
-      display: none;
-      position: fixed;
-      bottom: 90px;
-      right: 20px;
-      background: white;
-      padding: 10px;
-      border-radius: 10px;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-      z-index: 10001;
+    .contact {
+      background-color: rgba(245, 232, 215, 0.85);
+      padding: 30px;
+      margin: 50px 0;
       text-align: center;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
     }
 
-    .qr-popup img {
-      width: 150px;
+    .contact h2 {
+      font-size: 2em;
+      color: #8b0000;
     }
+
+    .contact p {
+      font-size: 1.2em;
+      color: #333;
+    }
+
+    .social-icons {
+      margin-top: 20px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      background-color: #4267B2;
+      padding: 10px 15px;
+      border-radius: 50%;
+      color: white;
+      font-size: 1.5em;
+      text-decoration: none;
+    }
+
+    .social-icons a:hover {
+      background-color: #365899;
+    }
+
   </style>
 </head>
 <body>
@@ -119,49 +111,38 @@
   <!-- 主標題 -->
   <header>
     <h1 class="main-title">妙玄宮</h1>
+    <nav>
+      <a href="#announcement">最新公告</a>
+      <a href="#contact">聯絡我們</a>
+    </nav>
   </header>
+
+  <!-- 最新公告 -->
+  <section id="announcement" class="announcement">
+    <h2>最新公告</h2>
+    <p>中元普渡法會報名中，歡迎線上登記供品與超渡項目。</p>
+  </section>
+
+  <!-- 聯絡我們 -->
+  <section id="contact" class="contact">
+    <h2>聯絡我們</h2>
+    <p>地址：苗栗縣卓蘭鎮仁愛路14-1號</p>
+    <p>電話：04-25896101</p>
+    <div class="social-icons">
+      <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">
+        F
+      </a>
+      <a href="https://line.me/R/ti/p/%40example" target="_blank">
+        L
+      </a>
+    </div>
+  </section>
 
   <!-- 浮動社群按鈕 -->
   <div class="social-icons">
-    <img src="images/line-icon.png" alt="LINE" id="line-btn">
-    <img src="images/fb-icon.png" alt="Facebook" onclick="window.open('https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW')">
+    <a href="https://www.facebook.com/profile.php?id=100064331726590&locale=zh_TW" target="_blank">F</a>
+    <a href="https://line.me/R/ti/p/%40example" target="_blank">L</a>
   </div>
-
-  <!-- 放大LINE圖片 -->
-  <div class="zoomed-image" id="zoomed-image">
-    <img src="images/line-icon.png" alt="LINE" id="zoomed-line">
-  </div>
-
-  <!-- QR Code 彈出 -->
-  <div class="qr-popup" id="qr-popup">
-    <p>掃描加入官方LINE</p>
-    <img src="images/line-qr.png" alt="LINE QR Code">
-  </div>
-
-  <script>
-    // 放大 LINE 圖片
-    const lineBtn = document.getElementById('line-btn');
-    const zoomedImage = document.getElementById('zoomed-image');
-    const zoomedLine = document.getElementById('zoomed-line');
-    const qrPopup = document.getElementById('qr-popup');
-    let popupVisible = false;
-
-    lineBtn.addEventListener('click', () => {
-      // 顯示放大圖片
-      zoomedImage.style.display = 'block';
-    });
-
-    zoomedLine.addEventListener('click', () => {
-      // 隱藏放大圖片
-      zoomedImage.style.display = 'none';
-    });
-
-    // 顯示或隱藏 QR Code
-    lineBtn.addEventListener('click', () => {
-      popupVisible = !popupVisible;
-      qrPopup.style.display = popupVisible ? 'block' : 'none';
-    });
-  </script>
 
 </body>
 </html>
