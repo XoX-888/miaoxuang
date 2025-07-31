@@ -9,21 +9,22 @@
       margin: 0;
       padding: 0;
       height: 100%;
+      background-color: black;
       font-family: 'Noto Serif TC', serif;
       overflow: hidden;
-      background-color: black;
     }
 
-    /* 背景全幅神像圖（完整顯示） */
-    .background {
+    /* 背景圖片自動縮放並完整顯示 */
+    .background img {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: url('images/S__10657796.jpg') no-repeat center center;
-      background-size: contain; /* 改成完整顯示整張圖 */
-      background-color: black;  /* 留黑底 */
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 100vw;
+      max-height: 100vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
       z-index: -2;
     }
 
@@ -34,7 +35,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.45);
+      background-color: rgba(0, 0, 0, 0.35);
       z-index: -1;
     }
 
@@ -58,30 +59,12 @@
     nav a:hover {
       color: gold;
     }
-
-    /* 金色毛筆字 + 淡入動畫 */
-    .title {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      color: gold;
-      font-size: 100px;
-      font-weight: bold;
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.8),
-                   0 0 30px rgba(255, 215, 0, 0.5);
-      opacity: 0;
-      animation: fadeIn 3s ease forwards;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translate(-50%, -40%); }
-      to { opacity: 1; transform: translate(-50%, -50%); }
-    }
   </style>
 </head>
 <body>
-  <div class="background"></div>
+  <div class="background">
+    <img src="images/S__10657796.jpg" alt="神像背景">
+  </div>
   <div class="overlay"></div>
   <nav>
     <a href="#">關於</a>
@@ -89,6 +72,5 @@
     <a href="#">公告</a>
     <a href="#">聯絡</a>
   </nav>
-  <div class="title">妙玄宮</div>
 </body>
 </html>
