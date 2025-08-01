@@ -1,67 +1,76 @@
 body {
-    margin: 0;
-    padding: 0;
-    background-color: #fdf1dc;
-    font-family: "Microsoft JhengHei", sans-serif;
-    overflow-x: hidden;
+  margin: 0;
+  font-family: "Microsoft JhengHei", sans-serif;
+  background-color: #fdf1d1;
 }
 
-/* 主背景用 CSS 控制，置中自動縮放 */
-.main-bg {
-    width: 100%;
-    height: 100vh;
-    background: url('images/main-bg.png') no-repeat center center;
-    background-size: contain; /* 等比例縮放 */
-}
-
-/* 左右雲彩 */
-.cloud-left, .cloud-right {
-    position: fixed;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 250px;
-    z-index: 0;
-}
-
-.cloud-left { left: 0; }
-.cloud-right { right: 0; }
-
-/* 跑馬燈公告 */
 .marquee-notice {
-    background: #fff3cd;
-    color: #7c4a00;
-    padding: 8px 0;
-    font-size: 14px;
-    text-align: center;
-    border-bottom: 1px solid #f0d58c;
-    z-index: 10;
-    position: relative;
+  background: #f9e5b6;
+  color: #6b4b00;
+  text-align: center;
+  padding: 8px;
+  font-size: 14px;
 }
 
-/* 導覽列 */
-nav {
-    background-color: #f8e5c2;
-    text-align: center;
-    padding: 10px 0;
-    position: relative;
-    z-index: 2;
+.hero {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-nav a {
-    color: #5a3c00;
-    text-decoration: none;
-    margin: 0 15px;
-    font-weight: bold;
-    transition: color 0.3s;
+.hero img.main-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+  margin: 0 auto;
 }
 
-nav a:hover {
-    color: #d35400;
+.cloud, .lotus {
+  position: absolute;
+  max-width: 20%;
+  height: auto;
 }
 
+.cloud-left {
+  top: 20%;
+  left: -10%;
+}
+
+.cloud-right {
+  top: 20%;
+  right: -10%;
+}
+
+.lotus-left {
+  bottom: 5%;
+  left: -8%;
+}
+
+.lotus-right {
+  bottom: 5%;
+  right: -8%;
+}
+
+/* 手機版調整 */
 @media (max-width: 768px) {
-    .cloud-left,
-    .cloud-right {
-        width: 150px;
-    }
+  .cloud, .lotus {
+    max-width: 30%;
+  }
+  .cloud-left { top: 10%; left: -15%; }
+  .cloud-right { top: 10%; right: -15%; }
+  .lotus-left { bottom: 0; left: -12%; }
+  .lotus-right { bottom: 0; right: -12%; }
+}
+
+.navbar {
+  text-align: center;
+  padding: 15px 0;
+}
+
+.navbar a {
+  color: #4b2e00;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: bold;
 }
