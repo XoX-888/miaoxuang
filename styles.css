@@ -1,107 +1,80 @@
 body {
   margin: 0;
-  padding: 0;
-  background-color: #fff5e0;
-  text-align: center;
   font-family: "Microsoft JhengHei", sans-serif;
+  background-color: #000;
   overflow-x: hidden;
 }
 
-/* 跑馬燈公告 */
-.marquee-notice {
-  background-color: #ffe9b5;
-  padding: 5px;
-  font-size: 16px;
-  white-space: nowrap;
+/* 主背景容器 */
+.main-background {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
 }
 
-/* 主視覺容器 */
-.main-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin: 20px 0;
-}
-
-/* 主圖 - 電腦版 */
+/* 主背景圖：桌機鋪滿，手機等比縮放 */
 .main-bg {
-  max-width: 90%;
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 雲彩 */
+.cloud {
+  position: absolute;
+  top: 0;
+  width: 20%;
   height: auto;
   z-index: 2;
-  position: relative;
-  display: block;
-  margin: 0 auto;
+  pointer-events: none;
 }
 
-/* 浮動雲彩 */
-.cloud-left, .cloud-right {
-  position: fixed;
-  top: 20%;
-  width: 150px;
-  z-index: 1;
-}
 .cloud-left {
-  left: 10px;
+  left: 0;
 }
+
 .cloud-right {
-  right: 10px;
+  right: 0;
 }
 
-/* 浮動蓮花 */
+/* 蓮花 */
 .lotus {
-  position: fixed;
-  bottom: 5%;
-  width: 180px;
-  z-index: 1;
+  position: absolute;
+  bottom: 0;
+  width: 15%;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
 }
+
 .lotus-left {
-  left: 5%;
+  left: 2%;
 }
+
 .lotus-right {
-  right: 5%;
+  right: 2%;
 }
 
-/* 導覽列 */
-.navbar {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  background-color: #ffe9b5;
-  padding: 10px 0;
-}
-.navbar a {
-  text-decoration: none;
-  color: #000;
-  font-weight: bold;
+/* 內容區塊 */
+.content {
+  text-align: center;
+  color: white;
+  padding: 40px 20px;
 }
 
-/* 手機響應式 */
+/* 手機版調整 */
 @media (max-width: 768px) {
-  /* 主圖滿版顯示 */
-  .main-bg {
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-    display: block;
-    margin: 0 auto;
+  .cloud {
+    width: 35%;
+    opacity: 0.8;
   }
 
-  /* 隱藏蓮花 */
   .lotus {
-    display: none;
+    width: 25%;
+    opacity: 0.9;
   }
 
-  /* 雲彩縮小 + 半透明 */
-  .cloud-left, .cloud-right {
-    width: 80px;
-    opacity: 0.5;
-    top: 10%;
-  }
-
-  /* 導覽列縮小 */
-  .navbar {
-    flex-wrap: wrap;
-    gap: 10px;
+  .content {
     font-size: 14px;
   }
 }
