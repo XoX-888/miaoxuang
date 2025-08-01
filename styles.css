@@ -7,6 +7,20 @@ body {
   overflow-x: hidden;
 }
 
+/* === 桌機版固定畫面 === */
+@media (min-width: 769px) {
+  html, body {
+    height: 100%;
+    overflow: hidden; /* 禁止滾動 */
+  }
+
+  body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}
+
 /* 主背景容器 */
 .main-background {
   position: relative;
@@ -35,13 +49,8 @@ body {
   z-index: 2;
 }
 
-.cloud-left {
-  left: 0;
-}
-
-.cloud-right {
-  right: 0;
-}
+.cloud-left { left: 0; }
+.cloud-right { right: 0; }
 
 /* 蓮花 */
 .lotus {
@@ -53,13 +62,8 @@ body {
   z-index: 3;
 }
 
-.lotus-left {
-  left: 0;
-}
-
-.lotus-right {
-  right: 0;
-}
+.lotus-left { left: 0; }
+.lotus-right { right: 0; }
 
 /* 內容區塊 */
 .content {
@@ -69,13 +73,12 @@ body {
 
 /* 手機響應式 */
 @media (max-width: 768px) {
-  .cloud {
-    width: 28vw;
+  body {
+    overflow-y: auto; /* 手機可滾動 */
   }
 
-  .lotus {
-    width: 22vw;
-  }
+  .cloud { width: 28vw; }
+  .lotus { width: 22vw; }
 }
 
 @media (max-width: 480px) {
