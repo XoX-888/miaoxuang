@@ -4,91 +4,31 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
-  <style>
-    body {
-      margin: 0;
-      background-color: #fdf6ec; /* 背景色補滿空白 */
-      overflow-x: hidden;
-    }
-
-    /* 背景圖片 */
-    .bg-img {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: contain; /* 完整顯示圖片，不裁切 */
-      z-index: -1;
-      background-color: #fdf6ec; /* 填補空白區域 */
-    }
-
-    /* 跑馬燈公告 */
-    .marquee-notice {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background-color: rgba(255, 248, 225, 0.9);
-      color: #5e412f;
-      font-weight: bold;
-      padding: 8px 0;
-      z-index: 100;
-      font-size: 1em;
-      white-space: nowrap;
-      overflow: hidden;
-    }
-    .marquee-notice p {
-      display: inline-block;
-      animation: marquee 15s linear infinite;
-      margin: 0;
-    }
-    @keyframes marquee {
-      0% { transform: translateX(100%); }
-      100% { transform: translateX(-100%); }
-    }
-
-    /* 底部導覽列 */
-    .navbar {
-      position: fixed;
-      bottom: 0;
-      width: 100%;
-      background-color: rgba(245, 232, 215, 0.85);
-      text-align: center;
-      padding: 10px 0;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
-    }
-    .navbar a {
-      margin: 0 20px;
-      color: #5e412f;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.2em;
-    }
-    .navbar a:hover {
-      text-decoration: underline;
-    }
-  </style>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- 背景圖片 -->
-  <img src="images/main-bg.jpg" class="bg-img">
-
   <!-- 跑馬燈公告 -->
   <div class="marquee-notice">
-    <p>🔔 辦事時間為 15:00～18:00、19:00～21:30。每逢農曆初一、十五、星期一靜修日、農曆七月及重要宮慶祭典皆 ❌ 不辦事。建議先電話詢問師姐是否在宮中以免白跑一趟。</p>
+    🔔 辦事時間為 15:00～18:00、19:00～21:30。每逢農曆初一、十五、星期一靜修日及農曆七月重要宮慶祭典皆不辦事。
   </div>
 
-  <!-- 底部導覽列 -->
-  <div class="navbar">
-    <a href="#">首頁</a>
-    <a href="#">本宮介紹</a>
-    <a href="#">服務項目</a>
-    <a href="#">最新消息</a>
-    <a href="#">行事曆</a>
-    <a href="#">與我聯絡</a>
-  </div>
+  <!-- 雲彩 -->
+  <img src="images/cloud-left.png" alt="左雲彩" class="cloud-left">
+  <img src="images/cloud-right.png" alt="右雲彩" class="cloud-right">
+
+  <!-- 主背景容器 -->
+  <div class="main-bg"></div>
+
+  <!-- 導覽列 -->
+  <nav>
+      <a href="#">首頁</a>
+      <a href="#">本宮介紹</a>
+      <a href="#">服務項目</a>
+      <a href="#">最新消息</a>
+      <a href="#">行事曆</a>
+      <a href="#">與我聯絡</a>
+  </nav>
 
 </body>
 </html>
