@@ -15,21 +15,25 @@ body {
   white-space: nowrap;
 }
 
-/* 主視覺 */
+/* 主視覺容器 */
 .main-content {
   display: flex;
   justify-content: center;
   align-items: center;
   margin: 20px 0;
 }
+
+/* 主圖 - 電腦版 */
 .main-bg {
   max-width: 90%;
   height: auto;
   z-index: 2;
   position: relative;
+  display: block;
+  margin: 0 auto;
 }
 
-/* 祥雲 */
+/* 浮動雲彩 */
 .cloud-left, .cloud-right {
   position: fixed;
   top: 20%;
@@ -43,7 +47,7 @@ body {
   right: 10px;
 }
 
-/* 蓮花 */
+/* 浮動蓮花 */
 .lotus {
   position: fixed;
   bottom: 5%;
@@ -73,22 +77,28 @@ body {
 
 /* 手機響應式 */
 @media (max-width: 768px) {
+  /* 主圖滿版顯示 */
+  .main-bg {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+    margin: 0 auto;
+  }
+
   /* 隱藏蓮花 */
   .lotus {
     display: none;
   }
 
-  /* 雲彩縮小 & 調整透明度 */
+  /* 雲彩縮小 + 半透明 */
   .cloud-left, .cloud-right {
     width: 80px;
     opacity: 0.5;
-    top: 15%;
+    top: 10%;
   }
 
-  .main-bg {
-    max-width: 95%;
-  }
-
+  /* 導覽列縮小 */
   .navbar {
     flex-wrap: wrap;
     gap: 10px;
