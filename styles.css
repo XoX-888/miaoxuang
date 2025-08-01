@@ -1,42 +1,22 @@
-/* 全站設定 */
 body {
   margin: 0;
-  padding: 0;
   font-family: "Microsoft JhengHei", sans-serif;
-  background-color: #fff;
-  overflow-x: hidden;
+  overflow: hidden; /* 桌機禁止滾動 */
 }
 
-/* === 桌機版固定畫面 === */
-@media (min-width: 769px) {
-  html, body {
-    height: 100%;
-    overflow: hidden; /* 禁止滾動 */
-  }
-
-  body {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-  }
-}
-
-/* 主背景容器 */
+/* 主背景容器填滿螢幕 */
 .main-background {
   position: relative;
   width: 100%;
-  max-width: 1920px;
-  margin: 0 auto;
+  height: 100vh; /* 100% 視窗高度 */
   overflow: hidden;
-  aspect-ratio: 16/9; /* 保持背景比例 */
 }
 
-/* 主背景圖 */
-.main-background .main-bg {
+.main-bg {
+  position: absolute;
   width: 100%;
   height: 100%;
   object-fit: cover;
-  display: block;
 }
 
 /* 雲彩 */
@@ -45,10 +25,8 @@ body {
   top: 0;
   width: 20vw;
   max-width: 400px;
-  height: auto;
   z-index: 2;
 }
-
 .cloud-left { left: 0; }
 .cloud-right { right: 0; }
 
@@ -58,32 +36,33 @@ body {
   bottom: 0;
   width: 18vw;
   max-width: 300px;
-  height: auto;
   z-index: 3;
 }
-
 .lotus-left { left: 0; }
 .lotus-right { right: 0; }
 
-/* 內容區塊 */
+/* 內容置中 */
 .content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   text-align: center;
-  padding: 40px 20px;
+  color: #fff;
+  text-shadow: 0 0 8px rgba(0,0,0,0.6);
 }
 
-/* 手機響應式 */
+/* 手機版允許滾動 */
 @media (max-width: 768px) {
   body {
-    overflow-y: auto; /* 手機可滾動 */
+    overflow-y: auto;
   }
-
-  .cloud { width: 28vw; }
-  .lotus { width: 22vw; }
-}
-
-@media (max-width: 480px) {
-  /* 手機極小螢幕隱藏裝飾，避免擋到主圖 */
-  .cloud, .lotus {
-    display: none;
+  .main-background {
+    height: auto;
+  }
+  .content {
+    position: static;
+    transform: none;
+    padding: 40px 20px;
   }
 }
