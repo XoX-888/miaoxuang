@@ -5,72 +5,50 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>卓蘭妙玄宮</title>
   <style>
-    /* =========================
-       全局設定
-    ========================= */
-body {
-  font-family: sans-serif;
-  margin: 0;
-  padding-top: 0;
-  background: url('images/main-bg.jpg') no-repeat center center fixed;
-  background-size: cover; /* 使圖片覆蓋整個區域 */
-  background-position: center; /* 保證圖片居中顯示 */
-  background-attachment: fixed;
-  color: #fff;
-}
-
-    /* =========================
-       主標題區塊（移動至頁面頂部）
-    ========================= */
-    .main-title {
-      position: fixed;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      color: gold;
-      font-size: 3em;
-      text-shadow: 3px 3px 10px rgba(0,0,0,0.7);
-      z-index: 100;
-      padding-top: 20px;
+    body {
+      margin: 0;
+      background-color: #fdf6ec; /* 背景色補滿空白 */
+      overflow-x: hidden;
     }
 
-    /* =========================
-       跑馬燈公告（CSS 動畫）
-    ========================= */
-    .marquee-notice {
+    /* 背景圖片 */
+    .bg-img {
       position: fixed;
-      top: 50px;
+      top: 0;
       left: 0;
       width: 100%;
-      background-color: #fff8e1;
+      height: 100%;
+      object-fit: contain; /* 完整顯示圖片，不裁切 */
+      z-index: -1;
+      background-color: #fdf6ec; /* 填補空白區域 */
+    }
+
+    /* 跑馬燈公告 */
+    .marquee-notice {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 248, 225, 0.9);
       color: #5e412f;
       font-weight: bold;
       padding: 8px 0;
       z-index: 100;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
       font-size: 1em;
       white-space: nowrap;
       overflow: hidden;
     }
-
     .marquee-notice p {
       display: inline-block;
       animation: marquee 15s linear infinite;
       margin: 0;
     }
-
     @keyframes marquee {
-      0% {
-        transform: translateX(100%);
-      }
-      100% {
-        transform: translateX(-100%);
-      }
+      0% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
     }
 
-    /* =========================
-       固定在頁面下方的導航欄
-    ========================= */
+    /* 底部導覽列 */
     .navbar {
       position: fixed;
       bottom: 0;
@@ -80,7 +58,6 @@ body {
       padding: 10px 0;
       box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
     }
-
     .navbar a {
       margin: 0 20px;
       color: #5e412f;
@@ -88,29 +65,29 @@ body {
       font-weight: bold;
       font-size: 1.2em;
     }
-
     .navbar a:hover {
       text-decoration: underline;
     }
-
   </style>
 </head>
 <body>
+
+  <!-- 背景圖片 -->
+  <img src="images/main-bg.jpg" class="bg-img">
 
   <!-- 跑馬燈公告 -->
   <div class="marquee-notice">
     <p>🔔 辦事時間為 15:00～18:00、19:00～21:30。每逢農曆初一、十五、星期一靜修日、農曆七月及重要宮慶祭典皆 ❌ 不辦事。建議先電話詢問師姐是否在宮中以免白跑一趟。</p>
   </div>
 
-
-  <!-- 固定在頁面下方的導航欄 -->
+  <!-- 底部導覽列 -->
   <div class="navbar">
-    <a href="index.html">首頁</a>
-    <a href="about.html">本宮介紹</a>
-    <a href="service.html">服務項目</a>
-    <a href="news.html">最新消息</a>
-    <a href="calendar.html">行事曆</a>
-    <a href="contact.html">與我聯絡</a>
+    <a href="#">首頁</a>
+    <a href="#">本宮介紹</a>
+    <a href="#">服務項目</a>
+    <a href="#">最新消息</a>
+    <a href="#">行事曆</a>
+    <a href="#">與我聯絡</a>
   </div>
 
 </body>
