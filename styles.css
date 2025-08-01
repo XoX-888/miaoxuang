@@ -1,76 +1,97 @@
 body {
   margin: 0;
+  padding: 0;
+  background-color: #fff5e0;
+  text-align: center;
   font-family: "Microsoft JhengHei", sans-serif;
-  background-color: #fdf1d1;
+  overflow-x: hidden;
 }
 
+/* 跑馬燈公告 */
 .marquee-notice {
-  background: #f9e5b6;
-  color: #6b4b00;
-  text-align: center;
-  padding: 8px;
-  font-size: 14px;
+  background-color: #ffe9b5;
+  padding: 5px;
+  font-size: 16px;
+  white-space: nowrap;
 }
 
-.hero {
+/* 主視覺 */
+.main-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px 0;
+}
+.main-bg {
+  max-width: 90%;
+  height: auto;
+  z-index: 2;
   position: relative;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
 }
 
-.hero img.main-bg {
-  display: block;
-  width: 100%;
-  height: auto;
-  margin: 0 auto;
+/* 祥雲 */
+.cloud-left, .cloud-right {
+  position: fixed;
+  top: 20%;
+  width: 150px;
+  z-index: 1;
 }
-
-.cloud, .lotus {
-  position: absolute;
-  max-width: 20%;
-  height: auto;
-}
-
 .cloud-left {
-  top: 20%;
-  left: -10%;
+  left: 10px;
 }
-
 .cloud-right {
-  top: 20%;
-  right: -10%;
+  right: 10px;
 }
 
+/* 蓮花 */
+.lotus {
+  position: fixed;
+  bottom: 5%;
+  width: 180px;
+  z-index: 1;
+}
 .lotus-left {
-  bottom: 5%;
-  left: -8%;
+  left: 5%;
 }
-
 .lotus-right {
-  bottom: 5%;
-  right: -8%;
+  right: 5%;
 }
 
-/* 手機版調整 */
-@media (max-width: 768px) {
-  .cloud, .lotus {
-    max-width: 30%;
-  }
-  .cloud-left { top: 10%; left: -15%; }
-  .cloud-right { top: 10%; right: -15%; }
-  .lotus-left { bottom: 0; left: -12%; }
-  .lotus-right { bottom: 0; right: -12%; }
-}
-
+/* 導覽列 */
 .navbar {
-  text-align: center;
-  padding: 15px 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  background-color: #ffe9b5;
+  padding: 10px 0;
+}
+.navbar a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
 }
 
-.navbar a {
-  color: #4b2e00;
-  text-decoration: none;
-  margin: 0 10px;
-  font-weight: bold;
+/* 手機響應式 */
+@media (max-width: 768px) {
+  /* 隱藏蓮花 */
+  .lotus {
+    display: none;
+  }
+
+  /* 雲彩縮小 & 調整透明度 */
+  .cloud-left, .cloud-right {
+    width: 80px;
+    opacity: 0.5;
+    top: 15%;
+  }
+
+  .main-bg {
+    max-width: 95%;
+  }
+
+  .navbar {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 14px;
+  }
 }
