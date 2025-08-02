@@ -3,7 +3,7 @@ html, body {
   padding: 0;
   font-family: "Microsoft JhengHei", sans-serif;
   height: 100vh;
-  overflow: hidden;
+  overflow: hidden; /* 桌機不捲動 */
   background-color: #fff;
 }
 
@@ -33,6 +33,7 @@ html, body {
   100% { transform: translateX(-100%); }
 }
 
+/* 主視覺區 */
 .hero {
   position: relative;
   width: 100%;
@@ -40,36 +41,21 @@ html, body {
   overflow: hidden;
 }
 
-/* 左右延伸背景 */
-.hero::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: url('images/main-bg.png') center bottom / cover no-repeat;
-  filter: blur(12px);
-  transform: scale(1.2);
-  z-index: 0;
-}
-
-/* 中間主背景保持原位置 */
 .hero img.main-bg {
-  position: relative;
+  position: absolute;
   top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  height: 90%;
+  right: 0;
+  transform: translateY(-50%);
   width: auto;
-  z-index: 1;
+  height: 90%;
+  max-height: 90%;
 }
 
-/* 左側強化雲朵導覽 */
+/* 左側雲朵導覽（桌機版） */
 .left-floating-menu {
   position: fixed;
   top: 50%;
-  left: 5%;
+  left: 3%;
   transform: translateY(-50%);
   display: flex;
   flex-direction: column;
@@ -81,26 +67,16 @@ html, body {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 220px;
-  height: 90px;
+  width: 180px;
+  height: 70px;
   background: url('images/cloud-btn.png') no-repeat center / contain;
   text-decoration: none;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   text-align: center;
   transition: 0.3s;
-  animation: cloudFloat 4s ease-in-out infinite;
-
-  /* 金光漸變文字 */
-  background-image: linear-gradient(90deg, #ffd700, #fff3b0, #ffd700);
-  background-size: 200% auto;
-  color: transparent;
-  -webkit-background-clip: text;
-  background-clip: text;
-  animation: cloudFloat 4s ease-in-out infinite, goldShine 3s linear infinite;
-
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.9))
-          drop-shadow(0 0 5px rgba(0,0,0,0.25));
+  color: #ffd700;
+  text-shadow: 0 0 5px #fff, 0 0 10px rgba(255,215,0,0.7);
 }
 
 .left-floating-menu a:hover {
@@ -109,87 +85,30 @@ html, body {
           drop-shadow(0 0 8px rgba(0,0,0,0.3));
 }
 
-/* 雲朵漂浮動畫 */
-@keyframes cloudFloat {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-5px); }
-}
-
-/* 金光流動動畫 */
-@keyframes goldShine {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 200% 50%; }
-}
-
-/* 修正主內容區 */
-.sub-page .page-content {
-  max-width: 1000px;
-  margin: 150px auto 50px;
-  padding: 20px;
-  color: #fff;
-  text-shadow: 0 0 5px #000; /* 讓文字在背景上清楚 */
-}
-.sub-page .gods {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 30px;
-  margin-top: 30px;
-}
-.sub-page .gods figure {
-  width: 250px;
-  text-align: center;
-  color: #fff;
-}
-.sub-page .gods img {
-  width: 100%;
-  height: auto;
-}
-/* 手機版 (螢幕寬度小於768px) */
+/* 手機版 RWD */
 @media screen and (max-width: 768px) {
+  html, body {
+    overflow: auto; /* 手機允許上下捲動 */
+    height: auto;
+  }
 
-  /* 主背景置中顯示 */
+  .hero {
+    height: auto; /* 高度自適應圖片 */
+    display: flex;
+    justify-content: center;
+  }
+
   .hero img.main-bg {
     position: relative;
     top: auto;
     right: auto;
-    left: 50%;
-    transform: translateX(-50%);
+    transform: none;
     width: 100%;
     height: auto;
+    max-width: 100%;
   }
 
-  /* 左側雲朵導覽改為底部水平排列 */
-  .left-floating-menu {
-    position: fixed;
-    bottom: 10px;
-    top: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  .left-floating-menu a {
-    width: 60px;
-    height: 60px;
-    font-size: 14px;
-  }
-/* 手機版 (螢幕寬度小於768px) */
-@media screen and (max-width: 768px) {
-
-  /* 主背景置中顯示 */
-  .hero img.main-bg {
-    position: relative;
-    top: auto;
-    right: auto;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-    height: auto;
-  }
-
-  /* 左側雲朵導覽改為底部水平排列 */
+  /* 導覽改為底部橫排 */
   .left-floating-menu {
     position: fixed;
     bottom: 10px;
