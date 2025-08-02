@@ -1,0 +1,96 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft JhengHei", sans-serif;
+  height: 100vh;
+  overflow: hidden; 
+  background-color: #fff;
+}
+
+.marquee-notice {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.8);
+  color: #d00;
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  z-index: 1000;
+}
+
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* 左右延伸背景 */
+.hero::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('images/main-bg.png') center bottom / cover no-repeat;
+  filter: blur(12px);
+  transform: scale(1.2);
+  z-index: 0;
+}
+
+/* 中間主背景保持原位置 */
+.hero img.main-bg {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 90%;
+  width: auto;
+  z-index: 1;
+}
+
+/* 左側強化雲朵導覽 */
+.left-floating-menu {
+  position: fixed;
+  top: 50%;
+  left: 5%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  z-index: 1000;
+}
+
+.left-floating-menu a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 220px;
+  height: 90px;
+  background: url('images/cloud-btn.png') no-repeat center / contain;
+  text-decoration: none;
+  color: #333;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  transition: 0.3s;
+  animation: cloudFloat 4s ease-in-out infinite;
+  filter: drop-shadow(0 0 10px rgba(255,255,255,0.9))
+          drop-shadow(0 0 5px rgba(0,0,0,0.25));
+}
+
+.left-floating-menu a:hover {
+  transform: scale(1.08);
+  color: #d00;
+  filter: drop-shadow(0 0 15px rgba(255,255,255,1))
+          drop-shadow(0 0 8px rgba(0,0,0,0.3));
+}
+
+/* 漂浮動畫 */
+@keyframes cloudFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
