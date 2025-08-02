@@ -145,3 +145,64 @@ html, body {
   width: 100%;
   height: auto;
 }
+/* 手機版 (螢幕寬度小於768px) */
+@media screen and (max-width: 768px) {
+
+  /* 主背景置中顯示 */
+  .hero img.main-bg {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+  }
+
+  /* 左側雲朵導覽改為底部水平排列 */
+  .left-floating-menu {
+    position: fixed;
+    bottom: 10px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .left-floating-menu a {
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+  }
+/* 手機版 (螢幕寬度小於768px) */
+@media screen and (max-width: 768px) {
+
+  /* 主背景置中顯示 */
+  .hero img.main-bg {
+    position: relative;
+    top: auto;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: auto;
+  }
+
+  /* 左側雲朵導覽改為底部水平排列 */
+  .left-floating-menu {
+    position: fixed;
+    bottom: 10px;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    flex-direction: row;
+    gap: 10px;
+  }
+
+  .left-floating-menu a {
+    width: 60px;
+    height: 60px;
+    font-size: 14px;
+  }
+}
