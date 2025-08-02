@@ -3,11 +3,11 @@ html, body {
   padding: 0;
   font-family: "Microsoft JhengHei", sans-serif;
   height: 100vh;
-  overflow: hidden; 
+  overflow: hidden;
   background-color: #fff;
 }
 
-/* 跑馬燈公告透明背景 */
+/* 跑馬燈公告 */
 .marquee-notice {
   position: fixed;
   top: 0;
@@ -54,7 +54,7 @@ html, body {
   z-index: 0;
 }
 
-/* 中間主背景保持原位置（首頁才有） */
+/* 中間主背景保持原位置 */
 .hero img.main-bg {
   position: relative;
   top: 50%;
@@ -65,26 +65,16 @@ html, body {
   z-index: 1;
 }
 
-/* 左側雲朵金光文字導覽（共用） */
+/* 左側強化雲朵導覽 */
 .left-floating-menu {
   position: fixed;
+  top: 50%;
   left: 5%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 25px;
   z-index: 1000;
-}
-
-/* 首頁導覽下移 */
-body.index-page .left-floating-menu {
-  top: 55%;
-  transform: translateY(-50%);
-}
-
-/* 其他頁面正常置中 */
-body.sub-page .left-floating-menu {
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .left-floating-menu a {
@@ -131,50 +121,27 @@ body.sub-page .left-floating-menu {
   100% { background-position: 200% 50%; }
 }
 
-/* 主內容區基礎樣式 */
-.page-content {
-  position: relative;
-  z-index: 2;
-}
-
-
-/* 本宮介紹頁面樣式 */
-.about {
-  max-width: 900px;
+/* 修正主內容區 */
+.sub-page .page-content {
+  max-width: 1000px;
   margin: 150px auto 50px;
-  color: white;
-  text-shadow: 0 0 5px black;
   padding: 20px;
+  color: #fff;
+  text-shadow: 0 0 5px #000; /* 讓文字在背景上清楚 */
 }
-
-.about h2 {
-  font-size: 28px;
-  margin-bottom: 15px;
-  border-bottom: 2px solid rgba(255, 215, 0, 0.6);
-  padding-bottom: 5px;
-}
-
-.about p {
-  line-height: 1.8;
-  margin-bottom: 20px;
-}
-
-.gods {
+.sub-page .gods {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 30px;
 }
-
-.gods figure {
+.sub-page .gods figure {
+  width: 250px;
   text-align: center;
+  color: #fff;
 }
-
-.gods img {
-  max-width: 120px;
-  margin-bottom: 5px;
-  filter: drop-shadow(0 0 10px rgba(255,255,255,0.8));
-}
-
-.gods figcaption {
-  font-weight: bold;
+.sub-page .gods img {
+  width: 100%;
+  height: auto;
 }
