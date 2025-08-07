@@ -108,20 +108,32 @@ html, body {
     max-width: 100%;
   }
 
-  /* 導覽改為底部橫排 */
+  /*
+   * 導覽在手機版不再固定於螢幕底部。
+   * 由於桌機版的導覽是固定在畫面左側，手機版如果同樣固定在畫面底部
+   * 會造成背景圖下方出現過大的留白區域，且 7 個導覽按鈕擠在一行中
+   * 顯得壅擠。改為讓導覽區塊跟著內容正常排列在背景圖下方，並允許
+   * 自動換行，這樣就能充分利用背景圖下方的空白區域，同時讓按鈕
+   * 排列得更為整齊。
+   */
   .left-floating-menu {
-    position: fixed;
-    bottom: 10px;
-    top: auto;
-    left: 50%;
-    transform: translateX(-50%);
+    /* 取消固定定位，讓導覽自然位於 hero 後方 */
+    position: static;
+    /* 置中排列並允許換行 */
+    display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 10px;
+    margin: 20px 0;
+    width: 100%;
+    transform: none;
   }
 
   .left-floating-menu a {
-    width: 60px;
-    height: 60px;
+    /* 調整尺寸以適應多行排版 */
+    width: 70px;
+    height: 70px;
     font-size: 14px;
   }
 }
