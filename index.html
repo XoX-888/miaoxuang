@@ -135,18 +135,17 @@
         jsonData[key] = value;
       });
 
-     fetch('https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec', {
+      fetch('https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec', {
         method: 'POST',
-        body: JSON.stringify(jsonData),
-        // 移除自訂 Content-Type 標頭，並使用 no-cors 模式避免瀏覽器的 CORS 預檢
-        mode: 'no-cors'
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(jsonData)
       })
       .then(() => {
-        // 使用 no-cors 時無法讀取回傳內容，直接跳轉成功頁面
         window.location.href = "success.html";
       })
       .catch(() => {
-        // 若網路錯誤或連線失敗，顯示提示訊息
         alert("❌ 無法送出表單，請確認網路或稍後再試！");
       });
     });
