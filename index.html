@@ -135,12 +135,12 @@
       jsonData[key] = value;
     });
 
-    fetch('https://script.google.com/macros/s/YOUR_DEPLOYED_SCRIPT_URL/exec', {
-      method: 'POST',
-      body: JSON.stringify(jsonData),
-      headers: {
-        "Content-Type": "application/json"
-      }
+    fetch("https://script.google.com/macros/s/https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec", {
+  method: "POST",
+  body: JSON.stringify(jsonData),
+  headers: {
+    "Content-Type": "application/json"
+  }
     })
     .then(res => res.text())
     .then(() => {
