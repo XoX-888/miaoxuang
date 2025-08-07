@@ -135,5 +135,7 @@ html, body {
     width: 70px;
     height: 70px;
     font-size: 14px;
+    background-size: contain;
   }
+}
 }
