@@ -78,10 +78,10 @@
     <input type="number" name="【一】個人贊普桌（每桌含金紙 3600 元）" min="0" max="9">
 
     <label>【二】財水桌（每桌3600元）</label>
-    <input type="number" name="【二】財水桌（每桌 3500 元）" min="0" max="1">
+    <input type="number" name="【二】財水桌（每桌 3600 元）" min="0" max="1">
 
     <label>【三】藥草桌（每桌3600元）</label>
-    <input type="number" name="【三】藥草桌（3500 元）" min="0" max="1">
+    <input type="number" name="【三】藥草桌（3600 元）" min="0" max="1">
 
     <label>【四】五色豆桌（時價）</label>
     <input type="number" name="【四】五色豆桌（時價）" min="0" max="1">
@@ -90,7 +90,7 @@
     <input type="number" name="【五】五蔬果桌（時價）" min="0" max="1">
 
     <label>【六】肉粽桌（時價）</label>
-    <input type="number" name="【六】肉粽桌（時價）" min="0" max="2">
+    <input type="number" name="【六】肉粽桌（時價）" min="0" max="1">
 
     <label>【七】百米桌（1700元）</label>
     <input type="number" name="【七】百米桌（50 台斤/份，1700 元）" min="0" max="36">
@@ -135,16 +135,20 @@
         jsonData[key] = value;
       });
 
-fetch('https://script.google.com/macros/s/AKfycbzw6_.../exec', {
-  method: 'POST',
-  body: JSON.stringify(jsonData),
-  mode: 'no-cors'            // 避免預檢請求
-})
-.then(() => {
-  // 使用 no-cors 時無法讀取回傳內容，直接跳轉成功頁
-  window.location.href = "success.html";
-})
-.catch(() => alert("❌ 無法送出表單，請確認網路或稍後再試！"));
+     fetch('https://script.google.com/macros/s/AKfycbzw6_4pAxVJU9difuYVdybFZrrTtunqKj2VkG9jeo1uP3lPDlT4u7qnsLsGwJGZpL3vrA/exec', {
+        method: 'POST',
+        body: JSON.stringify(jsonData),
+        // 移除自訂 Content-Type 標頭，並使用 no-cors 模式避免瀏覽器的 CORS 預檢
+        mode: 'no-cors'
+      })
+      .then(() => {
+        // 使用 no-cors 時無法讀取回傳內容，直接跳轉成功頁面
+        window.location.href = "success.html";
+      })
+      .catch(() => {
+        // 若網路錯誤或連線失敗，顯示提示訊息
+        alert("❌ 無法送出表單，請確認網路或稍後再試！");
+      });
     });
   </script>
 
