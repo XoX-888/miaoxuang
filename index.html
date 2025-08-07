@@ -135,21 +135,16 @@
         jsonData[key] = value;
       });
 
-     fetch('https://script.google.com/macros/s/AKfycbzw6_4pAxVJU9difuYVdybFZrrTtunqKj2VkG9jeo1uP3lPDlT4u7qnsLsGwJGZpL3vrA/exec', {
-        method: 'POST',
-        body: JSON.stringify(jsonData),
-        headers: {
-          'Content-Type': 'application/json'
-        }
-      })
-      .then(res => {
-        if (res.ok) {
-          window.location.href = "success.html"; // 跳轉報名成功頁面
-        } else {
-          alert("❌ 報名失敗，請稍後再試！");
-        }
-      })
-      .catch(() => alert("❌ 無法送出表單，請確認網路或稍後再試！"));
+fetch('https://script.google.com/macros/s/AKfycbzw6_.../exec', {
+  method: 'POST',
+  body: JSON.stringify(jsonData),
+  mode: 'no-cors'            // 避免預檢請求
+})
+.then(() => {
+  // 使用 no-cors 時無法讀取回傳內容，直接跳轉成功頁
+  window.location.href = "success.html";
+})
+.catch(() => alert("❌ 無法送出表單，請確認網路或稍後再試！"));
     });
   </script>
 
