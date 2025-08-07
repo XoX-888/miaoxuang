@@ -1,10 +1,45 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>卓蘭妙玄宮 - 🏠 首頁</title>
   <link rel="stylesheet" href="styles.css">
+  <style>
+    form {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #f8f8f8;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 12px rgba(0,0,0,0.1);
+    }
+    form label {
+      display: block;
+      margin: 12px 0 6px;
+      font-weight: bold;
+    }
+    form input[type="text"],
+    form input[type="number"] {
+      width: 100%;
+      padding: 8px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+    }
+    form button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      border: none;
+      background: #c7a15b;
+      color: #fff;
+      font-size: 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    form button:hover {
+      background: #b8903a;
+    }
+  </style>
 </head>
 <body class="index-page">
 
@@ -18,7 +53,7 @@
     <img src="images/main-bg.png" class="main-bg" alt="妙玄宮主背景">
   </div>
 
-  <!-- 左側雲朵導覽（手機版會移到底部橫排） -->
+  <!-- 左側雲朵導覽 -->
   <div class="left-floating-menu">
     <a href="index.html">🏠 首頁</a>
     <a href="about.html">🙏 本宮介紹</a>
@@ -29,5 +64,95 @@
     <a href="contact.html">☎️ 聯絡我們</a>
   </div>
 
+  <!-- 報名表單 -->
+  <form id="puduForm">
+    <h2>中元普渡報名表</h2>
+
+    <label for="name">姓名</label>
+    <input type="text" name="姓名" required>
+
+    <label for="phone">電話</label>
+    <input type="text" name="電話" required>
+
+    <label>【一】個人贊普桌（每桌3600元）</label>
+    <input type="number" name="【一】個人贊普桌（每桌含金紙 3600 元）" min="0" max="9">
+
+    <label>【二】財水桌（每桌3500元）</label>
+    <input type="number" name="【二】財水桌（每桌 3500 元）" min="0" max="1">
+
+    <label>【三】藥草桌</label>
+    <input type="number" name="【三】藥草桌（3500 元）" min="0" max="1">
+
+    <label>【四】五色豆桌（時價）</label>
+    <input type="number" name="【四】五色豆桌（時價）" min="0" max="1">
+
+    <label>【五】五蔬果桌（時價）</label>
+    <input type="number" name="【五】五蔬果桌（時價）" min="0" max="1">
+
+    <label>【六】肉粽桌（時價）</label>
+    <input type="number" name="【六】肉粽桌（時價）" min="0" max="2">
+
+    <label>【七】百米桌（1700元）</label>
+    <input type="number" name="【七】百米桌（50 台斤/份，1700 元）" min="0" max="36">
+
+    <label>【八】個人供品（1700元）</label>
+    <input type="number" name="【八】個人供品（1700 元/份）" min="0">
+
+    <label>【九】共同普渡桌（3200元/人）</label>
+    <input type="number" name="【九】共同普渡桌（3200 元/人）" min="0">
+
+    <label>冤親債主（份數）</label>
+    <input type="number" name="冤親債主" min="0">
+
+    <label>嬰靈（份數）</label>
+    <input type="number" name="嬰靈" min="0">
+
+    <label>地基主（份數）</label>
+    <input type="number" name="地基主" min="0">
+
+    <label>各姓祖先（份數）</label>
+    <input type="number" name="各姓祖先" min="0">
+
+    <label>祖先姓氏</label>
+    <input type="text" name="祖先姓氏">
+
+    <label>專超亡魂（份數）</label>
+    <input type="number" name="專超亡魂" min="0">
+
+    <label>專超亡魂姓名</label>
+    <input type="text" name="專超亡魂姓名">
+
+    <button type="submit">送出報名</button>
+  </form>
+
+  <script>
+    document.getElementById('puduForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const form = e.target;
+      const data = new FormData(form);
+      const jsonData = {};
+      data.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      fetch('YOUR_SCRIPT_URL', {
+        method: 'POST',
+        body: JSON.stringify(jsonData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(res => {
+        if (res.ok) {
+          window.location.href = "success.html"; // 報名成功頁面
+        } else {
+          alert("送出失敗，請稍後再試！");
+        }
+      })
+      .catch(() => alert("送出失敗，請檢查網路或稍後再試！"));
+    });
+  </script>
+
 </body>
 </html>
+
