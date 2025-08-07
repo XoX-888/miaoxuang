@@ -135,7 +135,7 @@
         jsonData[key] = value;
       });
 
-      fetch('YOUR_SCRIPT_URL', {
+      fetch('https://script.google.com/macros/s/AKfycbxEWCni8oEiONPhsRO0H4Zs32fixANXgeWQ6slj38znOZEE7TvDIbSNuQY2vzPzc2TXpw/exec', {
         method: 'POST',
         body: JSON.stringify(jsonData),
         headers: {
@@ -144,15 +144,14 @@
       })
       .then(res => {
         if (res.ok) {
-          window.location.href = "success.html"; // 報名成功頁面
+          window.location.href = "success.html"; // 跳轉報名成功頁面
         } else {
-          alert("送出失敗，請稍後再試！");
+          alert("❌ 報名失敗，請稍後再試！");
         }
       })
-      .catch(() => alert("送出失敗，請檢查網路或稍後再試！"));
+      .catch(() => alert("❌ 無法送出表單，請確認網路或稍後再試！"));
     });
   </script>
 
 </body>
 </html>
-
