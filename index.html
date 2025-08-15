@@ -125,44 +125,44 @@
     <button type="submit">送出報名</button>
   </form>
 
-  <script>
-    // 你的 Apps Script 部署網址（/exec）
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
+ <script>
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
 
-    document.getElementById('puduForm').addEventListener('submit', function (e) {
-      e.preventDefault();
+  document.getElementById('puduForm').addEventListener('submit', function (e) {
+    e.preventDefault();
 
-      const form = e.target;
-      const fd = new FormData(form);
+    const form = e.target;
+    const fd = new FormData(form);
 
-      // 轉成一般物件（保留原欄位名，不動你的命名/文案）
-      const jsonData = {};
-      fd.forEach((value, key) => {
-        jsonData[key] = value;
-      });
+    const jsonData = {};
+    fd.forEach((value, key) => { jsonData[key] = value; });
 
-      // 用 URLSearchParams 包裝，避免 CORS 預檢
-      const payload = new URLSearchParams();
-      payload.set("payload", JSON.stringify(jsonData));
+    const payload = new URLSearchParams();
+    payload.set("payload", JSON.stringify(jsonData));
 
-      // 送出（不手動設 Content-Type）
-      fetch(SCRIPT_URL, {
-        method: "POST",
-        body: payload
-      })
-      .then(res => res.text())
-      .then(txt => {
-        if (txt && txt.toLowerCase().includes('success')) {
-          window.location.href = "success.html";
-        } else {
-          alert("❌ 送出失敗：" + (txt || "未知錯誤"));
+    fetch(SCRIPT_URL, { method: "POST", body: payload })
+      .then(async (res) => {
+        const txt = await res.text();           // 讀取後端回應原文
+        console.log("GAS response:", res.status, txt);
+
+        // HTTP 狀態不是 2xx → 直接視為錯誤
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}：${txt || "（無內容）"}`);
         }
+
+        // 後端字串含 success → 視為成功
+        if (txt && txt.toLowerCase().includes("success")) {
+          window.location.href = "success.html";
+          return;
+        }
+
+        // 其他文字直接顯示，幫助排錯
+        throw new Error(`伺服器回應：${txt || "（空白）"}`);
       })
-      .catch(err => {
-        console.error(err);
-        alert("❌ 無法送出表單，請稍後再試！");
+      .catch((err) => {
+        alert("❌ 送出失敗：" + err.message);
       });
-    });
-  </script>
+  });
+</script>
 </body>
 </html>
