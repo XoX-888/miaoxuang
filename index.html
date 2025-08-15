@@ -65,7 +65,7 @@
   </div>
 
   <!-- 報名表單 -->
-  <form id="puduForm">
+  <form id="puduForm" action="javascript:void(0);" onsubmit="return false;">
     <h2>中元普渡報名表</h2>
 
     <label for="name">姓名</label>
@@ -125,67 +125,51 @@
     <button type="submit">送出報名</button>
   </form>
 
- <script>
-  // 用你剛部署好的 /exec
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
+  <script>
+    // 用你部署好的 /exec
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
 
-  document.getElementById('puduForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+    // 等 DOM 準備好再綁定
+    document.addEventListener('DOMContentLoaded', function () {
+      const form = document.getElementById('puduForm');
+      if (!form) {
+        alert("找不到表單 #puduForm，請確認 id 是否相同");
+        return;
+      }
 
-    const form = e.target;
-    const fd = new FormData(form);
+      // 再保險一次：阻止預設提交
+      form.onsubmit = function (ev) {
+        ev.preventDefault();
+        return false;
+      };
 
-    // 保留你原本欄位名（不動文案/命名）
-    const jsonData = {};
-    fd.forEach((value, key) => { jsonData[key] = value; });
+      form.addEventListener('submit', async function (e) {
+        try {
+          e.preventDefault();
 
-    // 避免預檢：用 URLSearchParams 打包成單一欄位 payload
-    const payload = new URLSearchParams();
-    payload.set("payload", JSON.stringify(jsonData));
+          // 收集資料
+          const fd = new FormData(form);
+          const jsonData = {};
+          fd.forEach((v, k) => { jsonData[k] = v; });
 
-    fetch(SCRIPT_URL, { method: "POST", body: payload })
-      .then(async (res) => {
-        const txt = await res.text();
-        // 失敗時把狀態碼與回應文字顯示出來方便定位
-        if (!res.ok) throw new Error(`HTTP ${res.status}：${txt || "（無內容）"}`);
-        if (!txt || !txt.toLowerCase().includes("success")) throw new Error(`伺服器回應：${txt || "（空白）"}`);
-        // 成功 → 跳轉成功頁
-        window.location.href = "success.html";
-      })
-      .catch((err) => {
-        alert("❌ 送出失敗：" + err.message);
+          // 避免預檢：用 URLSearchParams 打包成單一欄位 payload
+          const payload = new URLSearchParams();
+          payload.set("payload", JSON.stringify(jsonData));
+
+          // 送出
+          const res = await fetch(SCRIPT_URL, { method: "POST", body: payload });
+          const txt = await res.text();
+
+          if (!res.ok) throw new Error(`HTTP ${res.status}：${txt || "（無內容）"}`);
+          if (!txt || !txt.toLowerCase().includes("success")) throw new Error(`伺服器回應：${txt || "（空白）"}`);
+
+          // 成功 → 跳成功頁
+          window.location.href = "success.html";
+        } catch (err) {
+          alert("❌ 送出失敗：" + (err && err.message ? err.message : String(err)));
+        }
       });
-  });<script>
-  // 用你剛部署好的 /exec
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
-
-  document.getElementById('puduForm').addEventListener('submit', function (e) {
-    e.preventDefault();
-
-    const form = e.target;
-    const fd = new FormData(form);
-
-    // 保留你原本欄位名（不動文案/命名）
-    const jsonData = {};
-    fd.forEach((value, key) => { jsonData[key] = value; });
-
-    // 避免預檢：用 URLSearchParams 打包成單一欄位 payload
-    const payload = new URLSearchParams();
-    payload.set("payload", JSON.stringify(jsonData));
-
-    fetch(SCRIPT_URL, { method: "POST", body: payload })
-      .then(async (res) => {
-        const txt = await res.text();
-        // 失敗時把狀態碼與回應文字顯示出來方便定位
-        if (!res.ok) throw new Error(`HTTP ${res.status}：${txt || "（無內容）"}`);
-        if (!txt || !txt.toLowerCase().includes("success")) throw new Error(`伺服器回應：${txt || "（空白）"}`);
-        // 成功 → 跳轉成功頁
-        window.location.href = "success.html";
-      })
-      .catch((err) => {
-        alert("❌ 送出失敗：" + err.message);
-      });
-
-</script>
+    });
+  </script>
 </body>
 </html>
