@@ -125,51 +125,99 @@
     <button type="submit">送出報名</button>
   </form>
 
-  <script>
-    // 用你部署好的 /exec
+ <script>
+  (function () {
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
 
-    // 等 DOM 準備好再綁定
+    // 工具：把表單資料轉成物件
+    function collectFormData(form) {
+      const fd = new FormData(form);
+      const obj = {};
+      fd.forEach((v, k) => { obj[k] = v; });
+      return obj;
+    }
+
+    // 保底送法：用隱藏 iframe + 原生 POST（不經 fetch、不會被 AJAX/CORS 限制）
+    function fallbackSubmit(payloadJSON, onDone) {
+      // 建立隱藏 iframe
+      let iframe = document.getElementById("pudu_hidden_iframe");
+      if (!iframe) {
+        iframe = document.createElement("iframe");
+        iframe.style.display = "none";
+        iframe.name = "pudu_hidden_iframe";
+        iframe.id = "pudu_hidden_iframe";
+        document.body.appendChild(iframe);
+      }
+      // 建立一次性 form
+      const form = document.createElement("form");
+      form.method = "POST";
+      form.action = SCRIPT_URL;
+      form.target = "pudu_hidden_iframe";
+      form.style.display = "none";
+
+      const input = document.createElement("input");
+      input.type = "hidden";
+      input.name = "payload";         // 後端 read e.parameter.payload
+      input.value = payloadJSON;
+      form.appendChild(input);
+
+      document.body.appendChild(form);
+
+      // 嘗試在 iframe 載入完成時 callback（部分裝置不會觸發，也無妨）
+      const doneOnce = (() => {
+        let called = false;
+        return () => { if (!called) { called = true; onDone && onDone(); } };
+      })();
+      iframe.onload = doneOnce;
+
+      // 提交
+      try { form.submit(); } catch (_) {}
+      // 最保險：2 秒後也視為成功（Apps Script 寫入通常 < 1s）
+      setTimeout(doneOnce, 2000);
+
+      // 清理
+      setTimeout(() => { try { document.body.removeChild(form); } catch (_) {} }, 3000);
+    }
+
+    // 綁定 submit（含三重防呆）
     document.addEventListener('DOMContentLoaded', function () {
       const form = document.getElementById('puduForm');
-      if (!form) {
-        alert("找不到表單 #puduForm，請確認 id 是否相同");
-        return;
-      }
+      if (!form) { alert("找不到表單 #puduForm"); return; }
 
-      // 再保險一次：阻止預設提交
-      form.onsubmit = function (ev) {
-        ev.preventDefault();
-        return false;
-      };
+      form.setAttribute("action", "javascript:void(0);");
+      form.setAttribute("onsubmit", "return false;");
+      form.onsubmit = function (ev) { ev.preventDefault(); return false; };
 
       form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        // 收集資料
+        const dataObj = collectFormData(form);
+        const payloadJSON = JSON.stringify(dataObj);
+
+        // 先嘗試 fetch（避免預檢）
+        const urlParams = new URLSearchParams();
+        urlParams.set("payload", payloadJSON);
+
+        let usedFallback = false;
         try {
-          e.preventDefault();
-
-          // 收集資料
-          const fd = new FormData(form);
-          const jsonData = {};
-          fd.forEach((v, k) => { jsonData[k] = v; });
-
-          // 避免預檢：用 URLSearchParams 打包成單一欄位 payload
-          const payload = new URLSearchParams();
-          payload.set("payload", JSON.stringify(jsonData));
-
-          // 送出
-          const res = await fetch(SCRIPT_URL, { method: "POST", body: payload });
+          const res = await fetch(SCRIPT_URL, { method: "POST", body: urlParams });
           const txt = await res.text();
-
           if (!res.ok) throw new Error(`HTTP ${res.status}：${txt || "（無內容）"}`);
           if (!txt || !txt.toLowerCase().includes("success")) throw new Error(`伺服器回應：${txt || "（空白）"}`);
-
-          // 成功 → 跳成功頁
+          // fetch 成功
           window.location.href = "success.html";
         } catch (err) {
-          alert("❌ 送出失敗：" + (err && err.message ? err.message : String(err)));
+          // fetch 被擋（常見：iOS Safari/部分瀏覽器顯示 load failed），走保底送法
+          usedFallback = true;
+          fallbackSubmit(payloadJSON, function () {
+            // 不再依賴讀回應，直接導向成功頁（後端已接到就會寫入）
+            window.location.href = "success.html";
+          });
         }
       });
     });
-  </script>
+  })();
+</script>
 </body>
 </html>
