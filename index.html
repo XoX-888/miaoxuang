@@ -125,96 +125,74 @@
     <button type="submit">送出報名</button>
   </form>
 
- <script>
+<script>
   (function () {
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
 
-    // 工具：把表單資料轉成物件
-    function collectFormData(form) {
-      const fd = new FormData(form);
-      const obj = {};
-      fd.forEach((v, k) => { obj[k] = v; });
-      return obj;
-    }
+    // 你「報名紀錄」表頭的欄位名稱（要與表單 input 的 name 完全一致）
+    const FIELD_NAMES = [
+      '姓名','電話',
+      '【一】個人贊普桌（每桌含金紙 3600 元）',
+      '【二】財水桌（每桌 3600 元）',
+      '【三】藥草桌（3600 元）',
+      '【四】五色豆桌（時價）',
+      '【五】五蔬果桌（時價）',
+      '【六】肉粽桌（時價）',
+      '【七】百米桌（50 台斤/份，1700 元）',
+      '【八】個人供品（1700 元/份）',
+      '【九】共同普渡桌（3200 元/人）',
+      '冤親債主','嬰靈','地基主','各姓祖先','祖先姓氏','專超亡魂','專超亡魂姓名'
+    ];
 
-    // 保底送法：用隱藏 iframe + 原生 POST（不經 fetch、不會被 AJAX/CORS 限制）
-    function fallbackSubmit(payloadJSON, onDone) {
-      // 建立隱藏 iframe
-      let iframe = document.getElementById("pudu_hidden_iframe");
-      if (!iframe) {
-        iframe = document.createElement("iframe");
-        iframe.style.display = "none";
-        iframe.name = "pudu_hidden_iframe";
-        iframe.id = "pudu_hidden_iframe";
-        document.body.appendChild(iframe);
-      }
-      // 建立一次性 form
-      const form = document.createElement("form");
-      form.method = "POST";
-      form.action = SCRIPT_URL;
-      form.target = "pudu_hidden_iframe";
-      form.style.display = "none";
-
-      const input = document.createElement("input");
-      input.type = "hidden";
-      input.name = "payload";         // 後端 read e.parameter.payload
-      input.value = payloadJSON;
-      form.appendChild(input);
-
-      document.body.appendChild(form);
-
-      // 嘗試在 iframe 載入完成時 callback（部分裝置不會觸發，也無妨）
-      const doneOnce = (() => {
-        let called = false;
-        return () => { if (!called) { called = true; onDone && onDone(); } };
-      })();
-      iframe.onload = doneOnce;
-
-      // 提交
-      try { form.submit(); } catch (_) {}
-      // 最保險：2 秒後也視為成功（Apps Script 寫入通常 < 1s）
-      setTimeout(doneOnce, 2000);
-
-      // 清理
-      setTimeout(() => { try { document.body.removeChild(form); } catch (_) {} }, 3000);
-    }
-
-    // 綁定 submit（含三重防呆）
     document.addEventListener('DOMContentLoaded', function () {
-      const form = document.getElementById('puduForm');
-      if (!form) { alert("找不到表單 #puduForm"); return; }
+      const visibleForm = document.getElementById('puduForm');
+      if (!visibleForm) { alert('找不到表單 #puduForm'); return; }
 
-      form.setAttribute("action", "javascript:void(0);");
-      form.setAttribute("onsubmit", "return false;");
-      form.onsubmit = function (ev) { ev.preventDefault(); return false; };
+      // 保險：阻止預設提交與整頁重整
+      visibleForm.setAttribute('action', 'javascript:void(0);');
+      visibleForm.setAttribute('onsubmit', 'return false;');
+      visibleForm.onsubmit = (ev) => { ev.preventDefault(); return false; };
 
-      form.addEventListener('submit', async function (e) {
+      // 監聽送出
+      visibleForm.addEventListener('submit', function (e) {
         e.preventDefault();
 
-        // 收集資料
-        const dataObj = collectFormData(form);
-        const payloadJSON = JSON.stringify(dataObj);
-
-        // 先嘗試 fetch（避免預檢）
-        const urlParams = new URLSearchParams();
-        urlParams.set("payload", payloadJSON);
-
-        let usedFallback = false;
-        try {
-          const res = await fetch(SCRIPT_URL, { method: "POST", body: urlParams });
-          const txt = await res.text();
-          if (!res.ok) throw new Error(`HTTP ${res.status}：${txt || "（無內容）"}`);
-          if (!txt || !txt.toLowerCase().includes("success")) throw new Error(`伺服器回應：${txt || "（空白）"}`);
-          // fetch 成功
-          window.location.href = "success.html";
-        } catch (err) {
-          // fetch 被擋（常見：iOS Safari/部分瀏覽器顯示 load failed），走保底送法
-          usedFallback = true;
-          fallbackSubmit(payloadJSON, function () {
-            // 不再依賴讀回應，直接導向成功頁（後端已接到就會寫入）
-            window.location.href = "success.html";
-          });
+        // 1) 建立隱藏 iframe（不跳轉頁面）
+        let iframe = document.getElementById('pudu_hidden_iframe');
+        if (!iframe) {
+          iframe = document.createElement('iframe');
+          iframe.name = 'pudu_hidden_iframe';
+          iframe.id = 'pudu_hidden_iframe';
+          iframe.style.display = 'none';
+          document.body.appendChild(iframe);
         }
+
+        // 2) 建立一次性「真正要送到 GAS 的純 HTML 表單」
+        const postForm = document.createElement('form');
+        postForm.method = 'POST';
+        postForm.action = SCRIPT_URL;
+        postForm.target = 'pudu_hidden_iframe';
+        postForm.style.display = 'none';
+
+        // 3) 把畫面上表單的值，逐欄位複製到 postForm（name 與你的表頭完全一致）
+        const formData = new FormData(visibleForm);
+        FIELD_NAMES.forEach((name) => {
+          const value = formData.get(name) ?? '';
+          const input = document.createElement('input');
+          input.type = 'hidden';
+          input.name = name;      // ★ 關鍵：逐欄位送出給 GAS
+          input.value = value;
+          postForm.appendChild(input);
+        });
+
+        document.body.appendChild(postForm);
+
+        // 4) 送出；送達後 1.5 秒導向成功頁（不依賴跨網域回應）
+        try { postForm.submit(); } catch (_) {}
+        setTimeout(() => { window.location.href = 'success.html'; }, 1500);
+
+        // 5) 清理
+        setTimeout(() => { try { document.body.removeChild(postForm); } catch (_) {} }, 3000);
       });
     });
   })();
