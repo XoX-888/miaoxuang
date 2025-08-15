@@ -124,28 +124,34 @@
 
     <button type="submit">送出報名</button>
   </form>
-
 <script>
+  // 你的 Apps Script 部署網址（請換成你自己的）
+  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycby4haESd2Nou2ZBfNZbmhzmNt6PtVMqCwOucY0CUzbq/dev";
+
   document.getElementById('puduForm').addEventListener('submit', function (e) {
     e.preventDefault();
+
     const form = e.target;
-    const data = new FormData(form);
+    const fd = new FormData(form);
+
+    // 轉成一般物件（保留你原本欄位名，不動）
     const jsonData = {};
-    data.forEach((value, key) => {
+    fd.forEach((value, key) => {
       jsonData[key] = value;
     });
 
-    // 1) 用 URLSearchParams 包 payload，避免預檢
-const payload = new URLSearchParams();
-payload.set("payload", JSON.stringify(data));
+    // 用 URLSearchParams 包裝，避免 CORS 預檢
+    const payload = new URLSearchParams();
+    payload.set("payload", JSON.stringify(jsonData));
 
-// 2) 送出時「不要」自己設 Content-Type，讓瀏覽器自動帶
-fetch(SCRIPT_URL, {
-  method: "POST",
-  body: payload
-});
+    // 不手動設 Content-Type，讓瀏覽器自帶（避免預檢）
+    fetch(SCRIPT_URL, {
+      method: "POST",
+      body: payload
+    })
     .then(res => res.text())
     .then(() => {
+      // 成功轉跳（沿用你原本流程）
       window.location.href = "success.html";
     })
     .catch(() => {
