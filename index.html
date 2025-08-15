@@ -124,38 +124,45 @@
 
     <button type="submit">送出報名</button>
   </form>
-<script>
-  // 你的 Apps Script 部署網址（請換成你自己的）
-  const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
 
-  document.getElementById('puduForm').addEventListener('submit', function (e) {
-    e.preventDefault();
+  <script>
+    // 你的 Apps Script 部署網址（/exec）
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
 
-    const form = e.target;
-    const fd = new FormData(form);
+    document.getElementById('puduForm').addEventListener('submit', function (e) {
+      e.preventDefault();
 
-    // 轉成一般物件（保留你原本欄位名，不動）
-    const jsonData = {};
-    fd.forEach((value, key) => {
-      jsonData[key] = value;
+      const form = e.target;
+      const fd = new FormData(form);
+
+      // 轉成一般物件（保留原欄位名，不動你的命名/文案）
+      const jsonData = {};
+      fd.forEach((value, key) => {
+        jsonData[key] = value;
+      });
+
+      // 用 URLSearchParams 包裝，避免 CORS 預檢
+      const payload = new URLSearchParams();
+      payload.set("payload", JSON.stringify(jsonData));
+
+      // 送出（不手動設 Content-Type）
+      fetch(SCRIPT_URL, {
+        method: "POST",
+        body: payload
+      })
+      .then(res => res.text())
+      .then(txt => {
+        if (txt && txt.toLowerCase().includes('success')) {
+          window.location.href = "success.html";
+        } else {
+          alert("❌ 送出失敗：" + (txt || "未知錯誤"));
+        }
+      })
+      .catch(err => {
+        console.error(err);
+        alert("❌ 無法送出表單，請稍後再試！");
+      });
     });
-
-    // 用 URLSearchParams 包裝，避免 CORS 預檢
-    const payload = new URLSearchParams();
-    payload.set("payload", JSON.stringify(jsonData));
-
-    // 不手動設 Content-Type，讓瀏覽器自帶（避免預檢）
-    fetch(SCRIPT_URL, {
-      method: "POST",
-      body: payload
-    })
-    .then(res => res.text())
-    .then(() => {
-      // 成功轉跳（沿用你原本流程）
-      window.location.href = "success.html";
-    })
-    .catch(() => {
-      alert("❌ 無法送出表單，請稍後再試！");
-    });
-  });
-</script>
+  </script>
+</body>
+</html>
