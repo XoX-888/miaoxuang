@@ -18,27 +18,14 @@
       flex-direction: column;
       text-align: center;
     }
-    h1 {
-      font-size: 32px;
-      color: #c7a15b;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 18px;
-      color: #333;
-    }
+    h1 { font-size: 32px; color: #c7a15b; margin-bottom: 20px; }
+    p  { font-size: 18px; color: #333; margin: 0.2rem 0; }
     .btn-home {
-      margin-top: 30px;
-      padding: 10px 20px;
-      font-size: 16px;
-      background: #c7a15b;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
+      margin-top: 30px; padding: 10px 20px; font-size: 16px;
+      background: #c7a15b; color: #fff; text-decoration: none; border-radius: 8px;
     }
-    .btn-home:hover {
-      background: #b8903a;
-    }
+    .btn-home:hover { background: #b8903a; }
+    .timer { color:#777; font-size: 14px; margin-top:8px; }
   </style>
 </head>
 <body>
@@ -47,7 +34,29 @@
   <p>感謝您參與卓蘭妙玄宮乙巳年中元普渡。</p>
   <p>敬請靜候本宮聯繫，如有疑問請致電：<br>📞 04-25896101 或 0977-336-880</p>
 
-  <a href="index.html" class="btn-home">返回首頁</a>
+  < "miaoxuang/index.html" >
+  <a id="homeLink" href="index.html" class="btn-home">立即返回首頁</a>
+  <div class="timer" id="timerText">5 秒後自動返回首頁…</div>
 
+  <script>
+    // ✅ 設定首頁路徑（必要時改成 "/miaoxuang/index.html" 或你的實際首頁檔案）
+    const HOMEPAGE = "index.html";
+
+    // 讓按鈕與自動導向都用同一路徑
+    document.getElementById("homeLink").setAttribute("href", HOMEPAGE);
+
+    // 顯示倒數並在 5 秒後自動回首頁
+    let left = 5;
+    const textEl = document.getElementById("timerText");
+    const timer = setInterval(() => {
+      left--;
+      if (left <= 0) {
+        clearInterval(timer);
+        location.href = HOMEPAGE;
+      } else {
+        textEl.textContent = left + " 秒後自動返回首頁…";
+      }
+    }, 1000);
+  </script>
 </body>
 </html>
