@@ -14,31 +14,15 @@
       border-radius: 12px;
       box-shadow: 0 0 12px rgba(0,0,0,0.1);
     }
-    form label {
-      display: block;
-      margin: 12px 0 6px;
-      font-weight: bold;
-    }
-    form input[type="text"],
-    form input[type="number"] {
-      width: 100%;
-      padding: 8px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
+    form label { display:block; margin:12px 0 6px; font-weight:bold; }
+    form input[type="text"], form input[type="number"] {
+      width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;
     }
     form button {
-      margin-top: 20px;
-      padding: 12px 24px;
-      border: none;
-      background: #c7a15b;
-      color: #fff;
-      font-size: 16px;
-      border-radius: 8px;
-      cursor: pointer;
+      margin-top:20px; padding:12px 24px; border:none; background:#c7a15b;
+      color:#fff; font-size:16px; border-radius:8px; cursor:pointer;
     }
-    form button:hover {
-      background: #b8903a;
-    }
+    form button:hover { background:#b8903a; }
   </style>
 </head>
 <body class="index-page">
@@ -64,8 +48,21 @@
     <a href="contact.html">☎️ 聯絡我們</a>
   </div>
 
-  <!-- 報名表單 -->
-  <form id="puduForm" action="javascript:void(0);" onsubmit="return false;">
+  <!-- 隱藏 iframe：承接跨網域 POST（畫面不跳走） -->
+  <iframe name="pudu_hidden_iframe" id="pudu_hidden_iframe" style="display:none;"></iframe>
+
+  <!-- 報名表單：純 HTML 直送 GAS（不要再攔截 submit） -->
+  <form
+    id="puduForm"
+    action="https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec"
+    method="POST"
+    target="pudu_hidden_iframe"
+    enctype="application/x-www-form-urlencoded"
+    accept-charset="UTF-8"
+  >
+    <!-- 固定會送的除錯欄位 -->
+    <input type="hidden" name="__ping" value="1">
+
     <h2>中元普渡報名表</h2>
 
     <label for="name">姓名</label>
@@ -125,77 +122,21 @@
     <button type="submit">送出報名</button>
   </form>
 
-<script>
-  (function () {
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec";
-
-    // 你「報名紀錄」表頭的欄位名稱（要與表單 input 的 name 完全一致）
-    const FIELD_NAMES = [
-      '姓名','電話',
-      '【一】個人贊普桌（每桌含金紙 3600 元）',
-      '【二】財水桌（每桌 3600 元）',
-      '【三】藥草桌（3600 元）',
-      '【四】五色豆桌（時價）',
-      '【五】五蔬果桌（時價）',
-      '【六】肉粽桌（時價）',
-      '【七】百米桌（50 台斤/份，1700 元）',
-      '【八】個人供品（1700 元/份）',
-      '【九】共同普渡桌（3200 元/人）',
-      '冤親債主','嬰靈','地基主','各姓祖先','祖先姓氏','專超亡魂','專超亡魂姓名'
-    ];
-
-    document.addEventListener('DOMContentLoaded', function () {
-      const visibleForm = document.getElementById('puduForm');
-      if (!visibleForm) { alert('找不到表單 #puduForm'); return; }
-
-      // 保險：阻止預設提交與整頁重整
-      visibleForm.setAttribute('action', 'javascript:void(0);');
-      visibleForm.setAttribute('onsubmit', 'return false;');
-      visibleForm.onsubmit = (ev) => { ev.preventDefault(); return false; };
-
-      // 監聽送出
-      visibleForm.addEventListener('submit', function (e) {
-        e.preventDefault();
-
-        // 1) 建立隱藏 iframe（不跳轉頁面）
-        let iframe = document.getElementById('pudu_hidden_iframe');
-        if (!iframe) {
-          iframe = document.createElement('iframe');
-          iframe.name = 'pudu_hidden_iframe';
-          iframe.id = 'pudu_hidden_iframe';
-          iframe.style.display = 'none';
-          document.body.appendChild(iframe);
-        }
-
-        // 2) 建立一次性「真正要送到 GAS 的純 HTML 表單」
-        const postForm = document.createElement('form');
-        postForm.method = 'POST';
-        postForm.action = SCRIPT_URL;
-        postForm.target = 'pudu_hidden_iframe';
-        postForm.style.display = 'none';
-
-        // 3) 把畫面上表單的值，逐欄位複製到 postForm（name 與你的表頭完全一致）
-        const formData = new FormData(visibleForm);
-        FIELD_NAMES.forEach((name) => {
-          const value = formData.get(name) ?? '';
-          const input = document.createElement('input');
-          input.type = 'hidden';
-          input.name = name;      // ★ 關鍵：逐欄位送出給 GAS
-          input.value = value;
-          postForm.appendChild(input);
-        });
-
-        document.body.appendChild(postForm);
-
-        // 4) 送出；送達後 1.5 秒導向成功頁（不依賴跨網域回應）
-        try { postForm.submit(); } catch (_) {}
-        setTimeout(() => { window.location.href = 'success.html'; }, 1500);
-
-        // 5) 清理
-        setTimeout(() => { try { document.body.removeChild(postForm); } catch (_) {} }, 3000);
+  <!-- iframe 載入（代表 POST 完成）後，1.5 秒自動跳成功頁 -->
+  <script>
+    (function(){
+      var jumped = false;
+      var ifr = document.getElementById('pudu_hidden_iframe');
+      ifr.addEventListener('load', function(){
+        if (jumped) return;
+        jumped = true;
+        setTimeout(function(){ location.href = 'success.html'; }, 1500);
       });
-    });
-  })();
+    })();
+  </script>
+</body>
+</html>
+
 </script>
 </body>
 </html>
