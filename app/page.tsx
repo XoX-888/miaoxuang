@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { FormEvent, useMemo, useState } from 'react';
 
 const options = [
@@ -57,26 +58,44 @@ export default function Home() {
 
   return (
     <>
-      <header>
-        <a className="brand" href="#top"><span className="seal">妙</span><span><strong>卓蘭妙玄宮</strong><small>代行僧菩薩道場</small></span></a>
-        <nav><a href="#puja">普度法會</a><a href="#items">贊普項目</a><a href="#register">線上報名</a><a href="#contact">聯絡資訊</a></nav>
-        <a className="fb" href="https://www.facebook.com/100064331726590/" target="_blank" rel="noreferrer">Facebook</a>
+      <header className="siteHeader">
+        <a className="brand" href="#top" aria-label="回到卓蘭妙玄宮首頁">
+          <span className="seal">妙</span>
+          <span><strong className="templeWordmark">卓蘭妙玄宮</strong><small>代行僧菩薩道場</small></span>
+        </a>
+        <nav aria-label="主要導覽">
+          <a href="#puja">最新公告</a>
+          <a href="#belief">宮廟介紹</a>
+          <a href="#items">普度項目</a>
+          <a href="#volunteer">志工招募</a>
+          <a href="#register">線上報名</a>
+          <a href="#contact">聯絡資訊</a>
+        </nav>
+        <div className="headerActions">
+          <a className="socialLink" href="https://www.facebook.com/100064331726590/" target="_blank" rel="noreferrer">Facebook</a>
+          <a className="navRegister" href="#register">立即報名</a>
+        </div>
       </header>
 
       <main id="top">
         <section className="hero">
           <div className="heroCopy">
-            <p className="eyebrow">苗栗卓蘭・慈悲化世</p>
-            <h1>卓蘭<br /><span>妙玄宮</span></h1>
-            <p className="slogan">慈悲化世・代行祈願・功德圓滿</p>
+            <h1 className="templeWordmark">卓蘭妙玄宮</h1>
             <p>一個屬於大家的佛堂，歡迎各地信徒參香。以代行僧菩薩慈悲、無懼與引導的精神，陪伴有緣眾生祈福植福。</p>
             <div className="actions"><a className="primary" href="#register">中元普度立即報名</a><a className="ghost" href="tel:0425896101">致電宮方</a></div>
           </div>
-          <div className="deityCard">
-            <div className="halo" />
-            <img src="/daixing-bodhisattva.svg" alt="卓蘭妙玄宮代行僧菩薩水墨主視覺" />
-            <div><span>主祀信仰</span><strong>代行僧菩薩</strong><p>大肚能容天下難容之事，開口便笑世上可笑之人。</p></div>
-          </div>
+          <figure className="deityCard">
+            <Image
+              className="heroImage"
+              src="/daixing-bodhisattva-hero.jpg"
+              alt="卓蘭妙玄宮代行僧菩薩水墨主視覺"
+              width={941}
+              height={1672}
+              priority
+              sizes="(max-width: 900px) 92vw, 38vw"
+            />
+            <figcaption>代行僧菩薩・水墨主視覺</figcaption>
+          </figure>
         </section>
 
         <section id="puja" className="announcement section">
@@ -88,7 +107,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="belief section">
+        <section id="belief" className="belief section">
           <div className="quote">「一心虔誠，萬事圓成」</div>
           <div>
             <p>代行僧菩薩祖靈源自浙江奉化雪竇寺，左手持蒲扇，象徵慈悲、無懼與引導；身掛佛珠，象徵智慧、佛法與輪迴。</p>
@@ -103,7 +122,7 @@ export default function Home() {
           </div>
         </section>
 
-        <section className="volunteer section">
+        <section id="volunteer" className="volunteer section">
           <div><span>VOLUNTEERS</span><h2>善心志工招募</h2><p>8 月 18、19、20 日歡迎前來參加，其中 8 月 18、19 日需要大量志工。讓我們一同共襄盛舉。</p></div>
           <a href="#register">我要報名志工</a>
         </section>
@@ -127,12 +146,12 @@ export default function Home() {
         </section>
 
         <section id="contact" className="contact section">
-          <div><span>CONTACT</span><h2>卓蘭妙玄宮</h2><p>苗栗縣卓蘭鎮新榮里仁愛路14之1</p></div>
+          <div><span>CONTACT</span><h2 className="templeWordmark">卓蘭妙玄宮</h2><p>苗栗縣卓蘭鎮新榮里仁愛路14之1</p></div>
           <div className="contactLinks"><a href="tel:0425896101">04-25896101</a><a href="tel:0977336880">0977-336880</a><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=苗栗縣卓蘭鎮新榮里仁愛路14之1">開啟地圖</a><a target="_blank" rel="noreferrer" href="https://www.facebook.com/100064331726590/">Facebook 粉絲專頁</a></div>
         </section>
       </main>
 
-      <footer><strong>卓蘭妙玄宮</strong><p>慈悲化世・代行祈願・功德圓滿</p><small>© {new Date().getFullYear()} 卓蘭妙玄宮</small></footer>
+      <footer><strong className="templeWordmark">卓蘭妙玄宮</strong><small>© {new Date().getFullYear()} 卓蘭妙玄宮</small></footer>
     </>
   );
 }
