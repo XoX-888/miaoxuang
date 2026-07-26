@@ -1,0 +1,73 @@
+.register {
+  align-items: start;
+}
+
+.formPujaSummary {
+  margin-top: 42px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(181, 138, 67, .42);
+}
+
+.formPujaSummary h3 {
+  margin: 0 0 12px;
+  color: #2f271f;
+  font-size: clamp(26px, 2.6vw, 36px);
+  font-weight: 800;
+  letter-spacing: .08em;
+}
+
+.formPujaSummary > p {
+  margin: 0 0 18px;
+  color: #756758;
+  font-size: 14px;
+  line-height: 1.85;
+}
+
+.formPujaList {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid rgba(181, 138, 67, .26);
+}
+
+.formPujaList li {
+  padding: 14px 0;
+  display: grid;
+  grid-template-columns: 42px minmax(0, 1fr);
+  gap: 12px;
+  border-bottom: 1px solid rgba(181, 138, 67, .26);
+}
+
+.formPujaList em {
+  padding-top: 2px;
+  color: #a9782d;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 900;
+  letter-spacing: .08em;
+}
+
+.formPujaList h4 {
+  margin: 0 0 4px;
+  color: #302820;
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.45;
+}
+
+.formPujaList li p {
+  margin: 0;
+  color: #776a5d;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+  .formPujaSummary {
+    margin-top: 34px;
+  }
+
+  .formPujaList {
+    margin-bottom: 38px;
+  }
+}

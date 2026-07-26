@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { RegistrationForm } from './components/RegistrationForm';
-import { newsItems } from './site-data';
+import { newsItems, pujaOptions } from './site-data';
 
 export default function Home() {
   return (
@@ -67,9 +67,21 @@ export default function Home() {
 
         <section id="register" className="register section">
           <div className="formIntro">
-            <span>ONLINE REGISTRATION</span><h2>法會線上報名</h2>
+            <span>ONLINE REGISTRATION</span><h2>丙午年中元普渡法會</h2>
             <p>填寫後系統會產生專屬報名編號，資料送至宮方登記表。名額、擲筊、付款及收據由宮方聯絡確認。</p>
             <ul><li>普渡後會告知細項及收據證明</li><li>供品如需自行帶回，請在備註提前告知</li><li>專超嬰靈採不公開姓名方式</li></ul>
+            <div className="formPujaSummary">
+              <h3>普度參與項目</h3>
+              <p>「時價」項目依廠商或採買報價實收工本費。個人贊普桌等大項需擲筊，三聖杯即可參加。</p>
+              <ol className="formPujaList">
+                {pujaOptions.slice(0, 17).map((item, index) => (
+                  <li key={item[0]}>
+                    <em>{String(index + 1).padStart(2, '0')}</em>
+                    <div><h4>{item[0]}</h4><p>{item[1]}</p></div>
+                  </li>
+                ))}
+              </ol>
+            </div>
           </div>
           <RegistrationForm />
         </section>
