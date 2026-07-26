@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { RegistrationForm } from './components/RegistrationForm';
-import { newsItems, pujaOptions } from './site-data';
+import { newsItems } from './site-data';
 
 export default function Home() {
   return (
@@ -13,7 +13,6 @@ export default function Home() {
         <nav aria-label="主要導覽">
           <a href="#puja">最新公告</a>
           <a href="#belief">宮廟介紹</a>
-          <a href="#items">普度項目</a>
           <a href="#volunteer">志工招募</a>
           <a href="#register">線上報名</a>
           <a href="#contact">聯絡資訊</a>
@@ -58,13 +57,6 @@ export default function Home() {
           <div>
             <p>代行僧菩薩祖靈源自浙江奉化雪竇寺，左手持蒲扇，象徵慈悲、無懼與引導；身掛佛珠，象徵智慧、佛法與輪迴。</p>
             <p>佛珠一轉，轉盡悲歡離合緣滅起；願眾生以善念植福，以慈心同行。</p>
-          </div>
-        </section>
-
-        <section id="items" className="items section">
-          <div className="titleBlock light"><span>PUJA ITEMS</span><h2>普度參與項目</h2><p>「時價」項目依廠商或採買報價實收工本費。個人贊普桌等大項需擲筊，三聖杯即可參加。</p></div>
-          <div className="itemGrid">
-            {pujaOptions.slice(0, 17).map((item, index) => <article key={item[0]}><em>{String(index + 1).padStart(2, '0')}</em><h3>{item[0]}</h3><p>{item[1]}</p></article>)}
           </div>
         </section>
 
