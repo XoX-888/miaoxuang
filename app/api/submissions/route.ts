@@ -12,15 +12,16 @@ export async function POST(request: Request) {
 
     const params = new URLSearchParams({
       __ping: '1',
-      表單來源: '妙玄宮官方網站',
+      表單來源: '卓蘭妙玄宮中元普度報名網站',
       姓名: String(body.name),
       電話: String(body.phone),
       地址: String(body.address || ''),
       服務需求: String(body.service),
+      數量份數: String(body.quantity || '1'),
       方便聯絡時段: String(body.contactTime || ''),
       填單內容: String(body.details),
       報名編號: String(body.reference || ''),
-      建立時間: new Date().toISOString()
+      建立時間: new Date().toLocaleString('zh-TW', { timeZone: 'Asia/Taipei' })
     });
 
     const response = await fetch(GAS_URL, {
@@ -36,7 +37,7 @@ export async function POST(request: Request) {
   } catch (error) {
     console.error('submission_error', error);
     return NextResponse.json(
-      { ok: false, message: '系統暫時無法送出，請撥打 04-25896101。' },
+      { ok: false, message: '系統暫時無法送出，請撥打 04-25896101 或 0977-336880。' },
       { status: 502 }
     );
   }
