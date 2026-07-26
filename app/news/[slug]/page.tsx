@@ -39,9 +39,21 @@ export default async function NewsDetailPage({ params }: NewsDetailProps) {
         <section className="newsRegistration section">
           <div className="newsDetailIntro">
             <span>ONLINE REGISTRATION</span>
-            <h2>活動線上報名</h2>
+            <h2>丙午年中元普渡法會</h2>
             <p>選擇參與項目並填寫資料，送出後系統會產生報名編號，再由宮方聯絡確認名額、費用及收據。</p>
             <ul><li>供品如需自行帶回，請於備註說明</li><li>專超嬰靈採不公開姓名方式</li><li>志工日期為 8 月 18、19、20 日</li></ul>
+            <section className="newsPujaSummary" aria-labelledby="news-puja-heading">
+              <h3 id="news-puja-heading">普度參與項目</h3>
+              <p>「時價」項目依廠商或採買報價實收工本費。個人贊普桌等大項需擲筊，三聖杯即可參加。</p>
+              <ol>
+                {pujaOptions.slice(0, 17).map((option, index) => (
+                  <li key={option[0]}>
+                    <em>{String(index + 1).padStart(2, '0')}</em>
+                    <div><h4>{option[0]}</h4><p>{option[1]}</p></div>
+                  </li>
+                ))}
+              </ol>
+            </section>
           </div>
           <RegistrationForm />
         </section>
@@ -70,3 +82,4 @@ export default async function NewsDetailPage({ params }: NewsDetailProps) {
     </main>
   );
 }
+

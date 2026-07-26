@@ -5,7 +5,6 @@ import './theme-responsive.css';
 import './news-board.css';
 import './news-pages.css';
 import './news-gallery.css';
-import './form-puja.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://miaoxuang.vercel.app'),
@@ -41,3 +40,4 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     </html>
   );
 }
+
