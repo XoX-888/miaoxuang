@@ -60,8 +60,7 @@ export default function Home() {
     <>
       <header className="siteHeader">
         <a className="brand" href="#top" aria-label="回到卓蘭妙玄宮首頁">
-          <span className="seal">妙</span>
-          <span><strong className="templeWordmark">卓蘭妙玄宮</strong><small>代行僧菩薩道場</small></span>
+          <Image className="brandLogo" src="/miaoxuang-logo.svg" alt="卓蘭妙玄宮" width={360} height={92} priority unoptimized />
         </a>
         <nav aria-label="主要導覽">
           <a href="#puja">最新公告</a>
@@ -78,24 +77,22 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="hero">
+        <section className="hero heroBlessing">
+          <Image
+            className="heroBackdrop"
+            src="/daixing-bodhisattva-blessing.jpg"
+            alt="代行僧菩薩在高處慈悲俯視宮廟與眾生"
+            fill
+            priority
+            sizes="100vw"
+          />
+          <div className="heroVeil" aria-hidden="true" />
           <div className="heroCopy">
+            <p className="heroKicker">代行僧菩薩道場</p>
             <h1 className="templeWordmark">卓蘭妙玄宮</h1>
             <p>一個屬於大家的佛堂，歡迎各地信徒參香。以代行僧菩薩慈悲、無懼與引導的精神，陪伴有緣眾生祈福植福。</p>
             <div className="actions"><a className="primary" href="#register">中元普度立即報名</a><a className="ghost" href="tel:0425896101">致電宮方</a></div>
           </div>
-          <figure className="deityCard">
-            <Image
-              className="heroImage"
-              src="/daixing-bodhisattva-hero.jpg"
-              alt="卓蘭妙玄宮代行僧菩薩水墨主視覺"
-              width={941}
-              height={1672}
-              priority
-              sizes="(max-width: 900px) 92vw, 38vw"
-            />
-            <figcaption>代行僧菩薩・水墨主視覺</figcaption>
-          </figure>
         </section>
 
         <section id="puja" className="announcement section">

@@ -33,30 +33,13 @@
 .siteHeader .brand {
   align-self: center;
   justify-self: start;
-  gap: 14px;
+  display: block;
 }
 
-.siteHeader .brand strong {
-  font-size: 25px;
-  line-height: 1.15;
-}
-
-.siteHeader .brand small {
-  margin-top: 6px;
-  color: #8b7b68;
-  font-size: 11px;
-  letter-spacing: .22em;
-}
-
-.siteHeader .seal {
-  width: 52px;
-  height: 52px;
-  border: 1px solid var(--name-gold);
-  border-radius: 2px;
-  color: var(--name-gold);
-  font-family: "標楷體", "DFKai-SB", "KaiTi", serif;
-  font-size: 29px;
-  transform: rotate(-2deg);
+.brandLogo {
+  display: block;
+  width: clamp(270px, 23vw, 360px);
+  height: auto;
 }
 
 .siteHeader nav {
@@ -131,62 +114,57 @@
   transform: rotate(-2deg);
 }
 
-.hero {
+.hero.heroBlessing {
   min-height: calc(100vh - 136px);
-  grid-template-columns: minmax(0, 1fr) minmax(360px, 500px);
-  gap: clamp(48px, 7vw, 110px);
-  padding-top: clamp(54px, 7vh, 90px);
-  padding-bottom: clamp(54px, 7vh, 90px);
+  padding: clamp(70px, 9vh, 120px) max(7vw, 28px);
+  display: flex;
+  align-items: center;
+  isolation: isolate;
+  background: #100e0c;
 }
 
-.hero h1.templeWordmark {
-  max-width: 760px;
-  margin: 0 0 36px;
-  font-size: clamp(70px, 8vw, 126px);
-  line-height: 1;
+.heroBlessing .heroBackdrop {
+  z-index: -3;
+  object-fit: cover;
+  object-position: center center;
 }
 
-.deityCard {
-  min-height: 0;
-  width: 100%;
-  max-width: 500px;
-  margin: 0;
-  padding: 14px 14px 0;
-  display: block;
-  justify-self: center;
-  overflow: hidden;
-  border: 1px solid rgba(201, 164, 95, .48);
-  border-radius: 250px 250px 5px 5px;
-  background: #e9dfd0;
-  box-shadow: 0 42px 100px rgba(0, 0, 0, .36);
-  text-align: center;
+.heroVeil {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    linear-gradient(90deg, rgba(8, 7, 6, .98) 0%, rgba(8, 7, 6, .85) 25%, rgba(8, 7, 6, .34) 49%, rgba(8, 7, 6, .04) 72%),
+    linear-gradient(180deg, rgba(0, 0, 0, .08) 55%, rgba(0, 0, 0, .55) 100%);
 }
 
-.deityCard::after {
-  content: none;
+.heroBlessing .heroCopy {
+  width: min(650px, 50vw);
+  position: relative;
+  z-index: 2;
 }
 
-.deityCard .heroImage {
-  position: static !important;
-  display: block;
-  width: 100% !important;
-  height: auto !important;
-  min-height: 0;
-  margin: 0 !important;
-  border: 0 !important;
-  border-radius: 238px 238px 0 0 !important;
-  background: #eee7dc;
-  box-shadow: none !important;
-  object-fit: contain !important;
-}
-
-.deityCard figcaption {
-  padding: 15px 8px 17px;
-  color: #77634a;
+.heroKicker {
+  margin: 0 0 24px;
+  color: #dbc58f !important;
   font-family: "標楷體", "DFKai-SB", "KaiTi", serif;
-  font-size: 15px;
+  font-size: 17px !important;
   font-weight: 700;
-  letter-spacing: .2em;
+  letter-spacing: .38em;
+}
+
+.heroBlessing h1.templeWordmark {
+  max-width: 650px;
+  margin: 0 0 34px;
+  font-size: clamp(72px, 8vw, 124px);
+  line-height: .98;
+  filter: drop-shadow(0 4px 20px rgba(0, 0, 0, .45));
+}
+
+.heroBlessing .heroCopy > p:last-of-type {
+  max-width: 600px;
+  color: #eee5d8;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, .9);
 }
 
 footer .templeWordmark {
@@ -222,18 +200,8 @@ footer small {
     align-items: center;
   }
 
-  .siteHeader .brand strong {
-    font-size: 21px;
-  }
-
-  .siteHeader .brand small {
-    display: none;
-  }
-
-  .siteHeader .seal {
-    width: 43px;
-    height: 43px;
-    font-size: 24px;
+  .brandLogo {
+    width: min(230px, 61vw);
   }
 
   .headerActions {
@@ -276,47 +244,49 @@ footer small {
     display: none;
   }
 
-  .hero {
-    min-height: 0;
-    padding-top: 64px;
-    grid-template-columns: 1fr;
+  .hero.heroBlessing {
+    min-height: calc(100svh - 110px);
+    padding: 90px 24px 68px;
+    align-items: flex-end;
   }
 
-  .hero h1.templeWordmark {
+  .heroBlessing .heroBackdrop {
+    object-position: 66% center;
+  }
+
+  .heroVeil {
+    background:
+      linear-gradient(180deg, rgba(8, 7, 6, .04) 0%, rgba(8, 7, 6, .18) 35%, rgba(8, 7, 6, .93) 78%, rgba(8, 7, 6, .98) 100%),
+      linear-gradient(90deg, rgba(8, 7, 6, .6) 0%, transparent 68%);
+  }
+
+  .heroBlessing .heroCopy {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  .heroBlessing h1.templeWordmark {
     font-size: clamp(62px, 17vw, 98px);
-  }
-
-  .deityCard {
-    max-width: 560px;
   }
 }
 
 @media (max-width: 560px) {
-  .siteHeader .brand {
-    gap: 9px;
-  }
-
-  .siteHeader .brand strong {
-    font-size: 18px;
-    letter-spacing: .06em !important;
+  .brandLogo {
+    width: min(205px, 58vw);
   }
 
   .navRegister {
     font-size: 12px;
   }
 
-  .hero h1.templeWordmark {
+  .heroBlessing h1.templeWordmark {
     margin-bottom: 28px;
     font-size: clamp(54px, 16vw, 74px);
     letter-spacing: .08em !important;
   }
 
-  .deityCard {
-    padding: 9px 9px 0;
-    border-radius: 190px 190px 4px 4px;
-  }
-
-  .deityCard .heroImage {
-    border-radius: 181px 181px 0 0 !important;
+  .heroKicker {
+    font-size: 13px !important;
+    letter-spacing: .24em;
   }
 }

@@ -14,17 +14,17 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://miaoxuang.vercel.app',
     images: [{
-      url: '/daixing-bodhisattva-hero.jpg',
-      width: 941,
-      height: 1672,
-      alt: '卓蘭妙玄宮代行僧菩薩水墨主視覺'
+      url: '/daixing-bodhisattva-blessing.jpg',
+      width: 1672,
+      height: 941,
+      alt: '代行僧菩薩慈悲俯視宮廟與眾生'
     }]
   },
   twitter: {
     card: 'summary_large_image',
     title: '卓蘭妙玄宮｜代行僧菩薩',
     description: '中元植福普度福世法會現正報名。',
-    images: ['/daixing-bodhisattva-hero.jpg']
+    images: ['/daixing-bodhisattva-blessing.jpg']
   },
   robots: { index: true, follow: true }
 };
