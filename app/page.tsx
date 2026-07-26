@@ -25,7 +25,7 @@ export default function Home() {
       </header>
 
       <main id="top">
-        <section className="hero heroBlessing">
+        <section id="puja" className="hero heroBlessing">
           <Image
             className="heroBackdrop"
             src="/daixing-bodhisattva-blessing.jpg"
@@ -35,26 +35,12 @@ export default function Home() {
             sizes="100vw"
           />
           <div className="heroVeil" aria-hidden="true" />
-          <div className="heroCopy heroNews">
-            <p className="heroKicker">最新資訊</p>
-            <h1 className="heroNewsTitle">丙午年<span>慶贊中元植福普度福世法會</span></h1>
-            <p>法會現正受理報名，歡迎善信大德參與普度、超薦、功德及志工服務。</p>
-            <div className="actions"><Link className="primary" href="/news/zhongyuan-announcement">查看完整資訊</Link><Link className="ghost" href="/news/zhongyuan-registration">立即報名</Link></div>
-          </div>
-        </section>
-
-        <section id="puja" className="latestNews section">
-          <div className="latestNewsHeading">
-            <span>NEWS</span>
-            <h2>最新消息</h2>
-            <Link href="/news">更多消息 <b aria-hidden="true">→</b></Link>
-          </div>
-          <div className="latestNewsBody">
-            <Link className="latestNewsVisual" href="/news/zhongyuan-registration" aria-label="查看中元普度法會線上報名">
-              <Image src="/daixing-bodhisattva-blessing.jpg" alt="代行僧菩薩法會主視覺" fill sizes="(max-width: 900px) 100vw, 38vw" />
-              <span>中元普度法會<br /><b>現正報名</b></span>
-            </Link>
-            <div className="latestNewsList">
+          <div className="heroCopy heroLatestPanel">
+            <div className="heroLatestHeading">
+              <div><span>NEWS</span><h1>最新消息</h1></div>
+              <Link href="/news">更多消息 <b aria-hidden="true">→</b></Link>
+            </div>
+            <div className="heroLatestList">
               {newsItems.map((item) => (
                 <Link href={`/news/${item.slug}`} key={item.slug}>
                   <time>{item.date}</time>
