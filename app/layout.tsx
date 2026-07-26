@@ -1,7 +1,10 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import './image-overrides.css';
-import './news.css';
+import './theme-base.css';
+import './theme-responsive.css';
+import './news-board.css';
+import './news-pages.css';
+import './news-gallery.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://miaoxuang.vercel.app'),

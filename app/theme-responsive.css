@@ -1,0 +1,114 @@
+@media (max-width: 1100px) {
+  .siteHeader {
+    padding-right: 24px;
+    padding-left: 24px;
+  }
+
+  .siteHeader nav {
+    gap: 16px;
+  }
+
+  .socialLink {
+    display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .siteHeader {
+    min-height: 110px;
+    padding: 8px 16px 0;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+  }
+
+  .brandLogo {
+    width: min(230px, 61vw);
+  }
+
+  .headerActions {
+    display: flex;
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .navRegister {
+    padding-bottom: 15px;
+  }
+
+  .siteHeader nav {
+    width: 100%;
+    height: auto;
+    padding: 3px 0 11px;
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    justify-content: flex-start;
+    gap: 23px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .siteHeader nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .siteHeader nav a {
+    min-height: 0;
+    padding: 0 0 3px;
+    flex: 0 0 auto;
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    letter-spacing: .1em;
+  }
+
+  .siteHeader nav a::after {
+    display: none;
+  }
+
+  .hero.heroBlessing {
+    min-height: calc(100svh - 110px);
+    padding: 90px 24px 68px;
+    align-items: flex-end;
+  }
+
+  .heroBlessing .heroBackdrop {
+    object-position: 66% center;
+  }
+
+  .heroVeil {
+    background:
+      linear-gradient(180deg, rgba(8, 7, 6, .04) 0%, rgba(8, 7, 6, .18) 35%, rgba(8, 7, 6, .93) 78%, rgba(8, 7, 6, .98) 100%),
+      linear-gradient(90deg, rgba(8, 7, 6, .6) 0%, transparent 68%);
+  }
+
+  .heroBlessing .heroCopy {
+    width: 100%;
+    max-width: 620px;
+  }
+
+  .heroNewsTitle {
+    font-size: clamp(48px, 11vw, 76px);
+  }
+}
+
+@media (max-width: 560px) {
+  .brandLogo {
+    width: min(205px, 58vw);
+  }
+
+  .navRegister {
+    font-size: 12px;
+  }
+
+  .heroNewsTitle {
+    margin-bottom: 28px;
+    font-size: clamp(42px, 12vw, 58px);
+    letter-spacing: .06em;
+  }
+
+  .heroKicker {
+    font-size: 13px !important;
+    letter-spacing: .24em;
+  }
+}
+
