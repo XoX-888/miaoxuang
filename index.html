@@ -1,142 +1,163 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant-TW">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>卓蘭妙玄宮 - 🏠 首頁</title>
-  <link rel="stylesheet" href="styles.css">
-  <style>
-    form {
-      max-width: 600px;
-      margin: 40px auto;
-      background: #f8f8f8;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 0 12px rgba(0,0,0,0.1);
-    }
-    form label { display:block; margin:12px 0 6px; font-weight:bold; }
-    form input[type="text"], form input[type="number"] {
-      width:100%; padding:8px; border-radius:6px; border:1px solid #ccc;
-    }
-    form button {
-      margin-top:20px; padding:12px 24px; border:none; background:#c7a15b;
-      color:#fff; font-size:16px; border-radius:8px; cursor:pointer;
-    }
-    form button:hover { background:#b8903a; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="妙玄宮官方網站，提供宮廟資訊、服務項目、交通方式與線上自動填單服務。" />
+  <meta name="theme-color" content="#7f1d1d" />
+  <title>妙玄宮｜苗栗卓蘭</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
-<body class="index-page">
+<body>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="妙玄宮首頁">
+      <span class="brand-mark">妙</span>
+      <span><strong>妙玄宮</strong><small>苗栗卓蘭</small></span>
+    </a>
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="main-nav">選單</button>
+    <nav id="main-nav" class="main-nav" aria-label="主要導覽">
+      <a href="#about">本宮介紹</a>
+      <a href="#services">服務項目</a>
+      <a href="#form">線上填單</a>
+      <a href="#contact">聯絡資訊</a>
+    </nav>
+  </header>
 
-  <!-- 跑馬燈公告 -->
-  <div class="marquee-notice">
-    <p>🔔 辦事時間為 15:00～18:00、19:00～21:30。每逢農曆初一、十五、星期一靜修日、農曆七月及重要宮慶祭典皆 ❌ 不辦事。建議先電話詢問師姐是否在宮中以免白跑一趟。</p>
-  </div>
+  <main>
+    <section id="home" class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <p class="eyebrow">苗栗卓蘭・祈福敬神</p>
+        <h1>妙玄宮</h1>
+        <p class="hero-copy">誠心祈願，護佑平安。提供信眾宮務諮詢與線上填單服務。</p>
+        <div class="hero-actions">
+          <a class="button primary" href="#form">立即線上填單</a>
+          <a class="button secondary" href="tel:0425896101">電話聯絡</a>
+        </div>
+      </div>
+      <div class="hero-card" aria-label="開放資訊">
+        <span>開放時間</span>
+        <strong>每日 15:00–21:00</strong>
+        <p>前往前建議先致電確認宮務安排。</p>
+      </div>
+    </section>
 
-  <!-- 主視覺區 -->
-  <div class="hero">
-    <img src="images/main-bg.png" class="main-bg" alt="妙玄宮主背景">
-  </div>
+    <section id="about" class="section intro-section">
+      <div class="section-heading">
+        <span>ABOUT</span>
+        <h2>關於妙玄宮</h2>
+      </div>
+      <div class="intro-grid">
+        <article class="feature-card">
+          <span class="feature-number">01</span>
+          <h3>誠心敬神</h3>
+          <p>以莊重、清淨與尊重傳統的精神，服務每一位前來參拜與諮詢的信眾。</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">02</span>
+          <h3>便利服務</h3>
+          <p>線上先填寫需求，減少現場重複登記，讓宮務人員能更有效率地協助。</p>
+        </article>
+        <article class="feature-card">
+          <span class="feature-number">03</span>
+          <h3>在地信仰</h3>
+          <p>位於苗栗縣卓蘭鎮仁愛路，服務地方信眾並傳承良善、感恩與互助精神。</p>
+        </article>
+      </div>
+    </section>
 
-  <!-- 左側雲朵導覽 -->
-  <div class="left-floating-menu">
-    <a href="index.html">🏠 首頁</a>
-    <a href="about.html">🙏 本宮介紹</a>
-    <a href="service.html">🕯️ 服務項目</a>
-    <a href="news.html">📢 最新消息</a>
-    <a href="calendar.html">📅 行事曆</a>
-    <a href="signup.html">📝 活動報名</a>
-    <a href="contact.html">☎️ 聯絡我們</a>
-  </div>
+    <section id="services" class="section services-section">
+      <div class="section-heading light">
+        <span>SERVICES</span>
+        <h2>服務項目</h2>
+      </div>
+      <div class="service-list">
+        <article><h3>宮務諮詢</h3><p>可先透過線上填單留下需求與方便聯絡時間。</p></article>
+        <article><h3>祈福登記</h3><p>填寫祈福人資料、祈願內容及相關備註。</p></article>
+        <article><h3>活動報名</h3><p>宮慶、法會、祭典或其他活動可統一線上登記。</p></article>
+        <article><h3>功德芳名</h3><p>可先提交基本資料，實際項目與金額再由宮方確認。</p></article>
+      </div>
+    </section>
 
-  <!-- 隱藏 iframe：承接跨網域 POST（畫面不跳走） -->
-  <iframe name="pudu_hidden_iframe" id="pudu_hidden_iframe" style="display:none;"></iframe>
+    <section id="form" class="section form-section">
+      <div class="form-copy">
+        <div class="section-heading">
+          <span>ONLINE FORM</span>
+          <h2>自動填單系統</h2>
+        </div>
+        <p>填寫後會自動送至妙玄宮既有的 Google 表單後端，並顯示送出結果。請確認電話與資料正確。</p>
+        <ul>
+          <li>手機與電腦皆可使用</li>
+          <li>自動整理姓名、電話、服務需求與備註</li>
+          <li>避免現場重複手寫，提高登記效率</li>
+        </ul>
+      </div>
 
-  <!-- 報名表單：純 HTML 直送 GAS（不要再攔截 submit） -->
-  <form
-    id="puduForm"
-    action="https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec"
-    method="POST"
-    target="pudu_hidden_iframe"
-    enctype="application/x-www-form-urlencoded"
-    accept-charset="UTF-8"
-  >
-    <!-- 固定會送的除錯欄位 -->
-    <input type="hidden" name="__ping" value="1">
+      <div class="form-card">
+        <form id="templeForm" action="https://script.google.com/macros/s/AKfycbxywEzIABRBNQCQrkbYuzi16wWEfdpnmy_RKzV8TLNoL8KNBZksjVDzy1ZZ8nO7hKaPfQ/exec" method="POST" target="submitFrame" enctype="application/x-www-form-urlencoded" accept-charset="UTF-8">
+          <input type="hidden" name="__ping" value="1" />
+          <input type="hidden" name="表單來源" value="妙玄宮官方網站" />
+          <div class="field-grid">
+            <label>姓名<span>*</span><input type="text" name="姓名" autocomplete="name" required /></label>
+            <label>聯絡電話<span>*</span><input type="tel" name="電話" autocomplete="tel" inputmode="tel" required /></label>
+          </div>
+          <div class="field-grid">
+            <label>服務需求<span>*</span>
+              <select name="服務需求" required>
+                <option value="">請選擇</option>
+                <option>宮務諮詢</option>
+                <option>祈福登記</option>
+                <option>活動報名</option>
+                <option>功德芳名</option>
+                <option>其他</option>
+              </select>
+            </label>
+            <label>方便聯絡時段
+              <select name="方便聯絡時段">
+                <option>15:00–17:00</option>
+                <option>17:00–19:00</option>
+                <option>19:00–21:00</option>
+              </select>
+            </label>
+          </div>
+          <label>地址<input type="text" name="地址" autocomplete="street-address" /></label>
+          <label>填單內容或祈願事項<span>*</span><textarea name="填單內容" rows="5" required placeholder="請填寫需求、姓名資料、活動名稱或其他備註"></textarea></label>
+          <label class="consent"><input type="checkbox" required /><span>我確認以上資料正確，並同意妙玄宮為聯絡與宮務處理使用。</span></label>
+          <button id="submitButton" class="submit-button" type="submit">送出資料</button>
+          <p id="formStatus" class="form-status" role="status" aria-live="polite"></p>
+        </form>
+        <iframe name="submitFrame" id="submitFrame" title="表單送出結果" hidden></iframe>
+      </div>
+    </section>
 
-    <h2>中元普渡報名表</h2>
+    <section id="contact" class="section contact-section">
+      <div class="contact-panel">
+        <div class="section-heading light">
+          <span>CONTACT</span>
+          <h2>聯絡與交通</h2>
+        </div>
+        <div class="contact-items">
+          <p><span>地址</span><strong>苗栗縣卓蘭鎮仁愛路14-1號</strong></p>
+          <p><span>電話</span><a href="tel:0425896101">04-25896101</a></p>
+          <p><span>營業時間</span><strong>下午 3:00 至晚上 9:00</strong></p>
+        </div>
+        <div class="contact-actions">
+          <a class="button primary" href="https://www.google.com/maps/search/?api=1&query=%E8%8B%97%E6%A0%97%E7%B8%A3%E5%8D%93%E8%98%AD%E9%8E%AE%E4%BB%81%E6%84%9B%E8%B7%AF14-1%E8%99%9F" target="_blank" rel="noopener">開啟地圖</a>
+          <a class="button secondary" href="tel:0425896101">立即撥打</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <label for="name">姓名</label>
-    <input type="text" name="姓名" required>
+  <footer>
+    <strong>妙玄宮</strong>
+    <p>苗栗縣卓蘭鎮仁愛路14-1號・04-25896101</p>
+    <small>© <span id="year"></span> 妙玄宮 All Rights Reserved.</small>
+  </footer>
 
-    <label for="phone">電話</label>
-    <input type="text" name="電話" required>
-
-    <label>【一】個人贊普桌（每桌3600元）</label>
-    <input type="number" name="【一】個人贊普桌（每桌含金紙 3600 元）" min="0" max="9">
-
-    <label>【二】財水桌（每桌3600元）</label>
-    <input type="number" name="【二】財水桌（每桌 3600 元）" min="0" max="1">
-
-    <label>【三】藥草桌（每桌3600元）</label>
-    <input type="number" name="【三】藥草桌（3600 元）" min="0" max="1">
-
-    <label>【四】五色豆桌（時價）</label>
-    <input type="number" name="【四】五色豆桌（時價）" min="0" max="1">
-
-    <label>【五】五蔬果桌（時價）</label>
-    <input type="number" name="【五】五蔬果桌（時價）" min="0" max="1">
-
-    <label>【六】肉粽桌（時價）</label>
-    <input type="number" name="【六】肉粽桌（時價）" min="0" max="1">
-
-    <label>【七】百米桌（1700元）</label>
-    <input type="number" name="【七】百米桌（50 台斤/份，1700 元）" min="0" max="36">
-
-    <label>【八】個人供品（1700元）</label>
-    <input type="number" name="【八】個人供品（1700 元/份）" min="0">
-
-    <label>【九】共同普渡桌（3200元/人）</label>
-    <input type="number" name="【九】共同普渡桌（3200 元/人）" min="0">
-
-    <label>冤親債主（份數）</label>
-    <input type="number" name="冤親債主" min="0">
-
-    <label>嬰靈（份數）</label>
-    <input type="number" name="嬰靈" min="0">
-
-    <label>地基主（份數）</label>
-    <input type="number" name="地基主" min="0">
-
-    <label>各姓祖先（份數）</label>
-    <input type="number" name="各姓祖先" min="0">
-
-    <label>祖先姓氏</label>
-    <input type="text" name="祖先姓氏">
-
-    <label>專超亡魂（份數）</label>
-    <input type="number" name="專超亡魂" min="0">
-
-    <label>專超亡魂姓名</label>
-    <input type="text" name="專超亡魂姓名">
-
-    <button type="submit">送出報名</button>
-  </form>
-
-  <!-- iframe 載入（代表 POST 完成）後，1.5 秒自動跳成功頁 -->
-  <script>
-    (function(){
-      var jumped = false;
-      var ifr = document.getElementById('pudu_hidden_iframe');
-      ifr.addEventListener('load', function(){
-        if (jumped) return;
-        jumped = true;
-        setTimeout(function(){ location.href = 'success.html'; }, 1500);
-      });
-    })();
-  </script>
-</body>
-</html>
-
-</script>
+  <script src="script.js"></script>
 </body>
 </html>
