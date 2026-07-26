@@ -1,141 +1,205 @@
-html, body {
+:root {
+  --red: #7f1d1d;
+  --red-dark: #4c1010;
+  --gold: #d8b35f;
+  --gold-light: #f4e4b5;
+  --paper: #fffaf0;
+  --ink: #2c211c;
+  --muted: #74665d;
+  --line: rgba(127, 29, 29, 0.16);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
   margin: 0;
-  padding: 0;
-  font-family: "Microsoft JhengHei", sans-serif;
-  height: 100vh;
-  overflow: hidden; /* 桌機不捲動 */
-  background-color: #fff;
+  color: var(--ink);
+  background: var(--paper);
+  font-family: "Noto Sans TC", system-ui, sans-serif;
+  line-height: 1.7;
 }
+a { color: inherit; }
+button, input, select, textarea { font: inherit; }
 
-/* 跑馬燈公告 */
-.marquee-notice {
-  position: fixed;
+.site-header {
+  position: sticky;
   top: 0;
-  left: 0;
-  width: 100%;
-  overflow: hidden;
-  background: transparent;
-  color: #d00;
-  font-weight: bold;
-  white-space: nowrap;
-  z-index: 1000;
-}
-
-.marquee-notice p {
-  display: inline-block;
-  padding-left: 100%;
-  animation: marquee 20s linear infinite;
-  text-shadow: 0 0 5px #fff, 0 0 8px rgba(255,255,255,0.7);
-}
-
-@keyframes marquee {
-  0%   { transform: translateX(0%); }
-  100% { transform: translateX(-100%); }
-}
-
-/* 主視覺區 */
-.hero {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  overflow: hidden;
-}
-
-.hero img.main-bg {
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
-  width: auto;
-  height: 90%;
-  max-height: 90%;
-}
-
-/* 左側雲朵導覽（桌機版） */
-.left-floating-menu {
-  position: fixed;
-  top: 50%;
-  left: 3%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-  z-index: 1000;
-}
-
-.left-floating-menu a {
+  z-index: 50;
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding: 14px clamp(20px, 5vw, 72px);
+  background: rgba(255, 250, 240, 0.92);
+  border-bottom: 1px solid var(--line);
+  backdrop-filter: blur(14px);
+}
+.brand { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+.brand-mark {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  color: #fff;
+  background: var(--red);
+  font-family: "Noto Serif TC", serif;
+  font-size: 24px;
+  box-shadow: 0 8px 22px rgba(127, 29, 29, .22);
+}
+.brand strong { display: block; font-family: "Noto Serif TC", serif; font-size: 20px; }
+.brand small { display: block; color: var(--muted); font-size: 12px; letter-spacing: .18em; }
+.main-nav { display: flex; gap: 28px; }
+.main-nav a { text-decoration: none; font-weight: 700; font-size: 14px; }
+.main-nav a:hover { color: var(--red); }
+.menu-toggle { display: none; border: 0; background: transparent; font-weight: 700; }
+
+.hero {
+  min-height: 78vh;
+  position: relative;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.25fr .75fr;
+  align-items: center;
+  gap: 48px;
+  padding: 92px clamp(24px, 7vw, 110px);
+  color: white;
+  background:
+    radial-gradient(circle at 75% 25%, rgba(216,179,95,.32), transparent 34%),
+    linear-gradient(135deg, #3b0c0c 0%, #7f1d1d 58%, #a53226 100%);
+}
+.hero::before {
+  content: "妙玄";
+  position: absolute;
+  right: -2vw;
+  bottom: -13vw;
+  color: rgba(255,255,255,.045);
+  font-family: "Noto Serif TC", serif;
+  font-size: clamp(130px, 27vw, 420px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -.12em;
+}
+.hero-content, .hero-card { position: relative; z-index: 2; }
+.eyebrow { color: var(--gold-light); font-weight: 700; letter-spacing: .34em; }
+.hero h1 { margin: 8px 0 18px; font-family: "Noto Serif TC", serif; font-size: clamp(64px, 10vw, 140px); line-height: 1; }
+.hero-copy { max-width: 620px; font-size: clamp(18px, 2.2vw, 27px); }
+.hero-actions, .contact-actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.button {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  width: 180px;
-  height: 70px;
-  background: url('images/cloud-btn.png') no-repeat center / contain;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 1px solid transparent;
+  border-radius: 999px;
   text-decoration: none;
-  font-size: 20px;
-  font-weight: bold;
-  text-align: center;
-  transition: 0.3s;
-  color: #ffd700;
-  text-shadow: 0 0 5px #fff, 0 0 10px rgba(255,215,0,0.7);
+  font-weight: 700;
+}
+.button.primary { background: var(--gold); color: #34140d; }
+.button.secondary { border-color: rgba(255,255,255,.48); color: white; }
+.hero-card {
+  padding: 34px;
+  border: 1px solid rgba(255,255,255,.25);
+  border-radius: 24px;
+  background: rgba(255,255,255,.1);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 24px 80px rgba(0,0,0,.18);
+}
+.hero-card span { color: var(--gold-light); font-size: 13px; letter-spacing: .2em; }
+.hero-card strong { display: block; margin: 10px 0; font-family: "Noto Serif TC", serif; font-size: clamp(27px, 3.2vw, 42px); }
+
+.section { padding: 96px clamp(24px, 7vw, 110px); }
+.section-heading span { color: var(--red); font-weight: 700; font-size: 12px; letter-spacing: .3em; }
+.section-heading h2 { margin: 8px 0 36px; font-family: "Noto Serif TC", serif; font-size: clamp(34px, 5vw, 58px); line-height: 1.2; }
+.section-heading.light span { color: var(--gold-light); }
+.section-heading.light h2 { color: white; }
+.intro-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.feature-card { padding: 34px; border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.62); }
+.feature-number { color: var(--gold); font-family: "Noto Serif TC", serif; font-size: 30px; font-weight: 900; }
+.feature-card h3, .service-list h3 { margin: 8px 0; font-family: "Noto Serif TC", serif; font-size: 24px; }
+.feature-card p, .service-list p { color: var(--muted); }
+
+.services-section { color: white; background: #241411; }
+.service-list { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.15); }
+.service-list article { padding: 34px; background: #241411; }
+.service-list p { color: rgba(255,255,255,.68); }
+
+.form-section { display: grid; grid-template-columns: .8fr 1.2fr; gap: clamp(36px, 7vw, 100px); align-items: start; }
+.form-copy { position: sticky; top: 100px; }
+.form-copy ul { padding-left: 1.2em; color: var(--muted); }
+.form-card { padding: clamp(24px, 4vw, 46px); border-radius: 26px; background: white; box-shadow: 0 24px 70px rgba(79, 45, 25, .12); }
+.field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+label { display: block; margin-bottom: 18px; font-weight: 700; }
+label > span { color: var(--red); }
+input, select, textarea {
+  width: 100%;
+  margin-top: 8px;
+  padding: 13px 14px;
+  border: 1px solid #d7c8bd;
+  border-radius: 12px;
+  color: var(--ink);
+  background: #fffcf7;
+  outline: none;
+}
+input:focus, select:focus, textarea:focus { border-color: var(--red); box-shadow: 0 0 0 3px rgba(127,29,29,.09); }
+textarea { resize: vertical; }
+.consent { display: flex; gap: 10px; align-items: flex-start; color: var(--muted); font-weight: 400; }
+.consent input { width: 18px; margin-top: 5px; }
+.consent span { color: inherit; }
+.submit-button {
+  width: 100%;
+  min-height: 54px;
+  border: 0;
+  border-radius: 14px;
+  color: white;
+  background: var(--red);
+  font-weight: 700;
+  cursor: pointer;
+}
+.submit-button:disabled { opacity: .65; cursor: wait; }
+.form-status { min-height: 28px; margin: 12px 0 0; text-align: center; font-weight: 700; }
+.form-status.success { color: #18723b; }
+.form-status.error { color: #b42318; }
+
+.contact-section { background: linear-gradient(135deg, #4c1010, #7f1d1d); }
+.contact-panel { max-width: 1100px; margin: auto; }
+.contact-items { display: grid; grid-template-columns: 1.6fr .8fr 1fr; gap: 18px; }
+.contact-items p { padding: 24px; border: 1px solid rgba(255,255,255,.18); border-radius: 18px; color: white; background: rgba(255,255,255,.06); }
+.contact-items span { display: block; margin-bottom: 8px; color: var(--gold-light); font-size: 12px; letter-spacing: .2em; }
+.contact-items a { font-size: 22px; font-weight: 700; }
+footer { padding: 44px 24px; text-align: center; color: #dbcfc6; background: #1d1110; }
+footer strong { color: white; font-family: "Noto Serif TC", serif; font-size: 24px; }
+footer p { margin: 8px 0; }
+
+@media (max-width: 900px) {
+  .hero { grid-template-columns: 1fr; min-height: auto; }
+  .intro-grid, .service-list, .form-section, .contact-items { grid-template-columns: 1fr; }
+  .form-copy { position: static; }
 }
 
-.left-floating-menu a:hover {
-  transform: scale(1.08);
-  filter: drop-shadow(0 0 15px rgba(255,255,255,1))
-          drop-shadow(0 0 8px rgba(0,0,0,0.3));
-}
-
-/* 手機版 RWD */
-@media screen and (max-width: 768px) {
-  html, body {
-    overflow: auto; /* 手機允許上下捲動 */
-    height: auto;
+@media (max-width: 720px) {
+  .site-header { padding: 12px 18px; }
+  .menu-toggle { display: block; }
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 14px;
+    right: 14px;
+    flex-direction: column;
+    gap: 0;
+    padding: 10px;
+    border: 1px solid var(--line);
+    border-radius: 16px;
+    background: var(--paper);
+    box-shadow: 0 16px 40px rgba(0,0,0,.12);
   }
-
-  .hero {
-    height: auto; /* 高度自適應圖片 */
-    display: flex;
-    justify-content: center;
-  }
-
-  .hero img.main-bg {
-    position: relative;
-    top: auto;
-    right: auto;
-    transform: none;
-    width: 100%;
-    height: auto;
-    max-width: 100%;
-  }
-
-  /*
-   * 導覽在手機版不再固定於螢幕底部。
-   * 由於桌機版的導覽是固定在畫面左側，手機版如果同樣固定在畫面底部
-   * 會造成背景圖下方出現過大的留白區域，且 7 個導覽按鈕擠在一行中
-   * 顯得壅擠。改為讓導覽區塊跟著內容正常排列在背景圖下方，並允許
-   * 自動換行，這樣就能充分利用背景圖下方的空白區域，同時讓按鈕
-   * 排列得更為整齊。
-   */
-  .left-floating-menu {
-    /* 取消固定定位，讓導覽自然位於 hero 後方 */
-    position: static;
-    /* 置中排列並允許換行 */
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px;
-    margin: 20px 0;
-    width: 100%;
-    transform: none;
-  }
-
-  .left-floating-menu a {
-    /* 調整尺寸以適應多行排版 */
-    width: 70px;
-    height: 70px;
-    font-size: 14px;
-    background-size: contain;
-  }
-}
+  .main-nav.open { display: flex; }
+  .main-nav a { padding: 12px; }
+  .hero { padding: 68px 22px; }
+  .hero h1 { font-size: 68px; }
+  .hero-actions .button { width: 100%; }
+  .section { padding: 70px 22px; }
+  .field-grid { grid-template-columns: 1fr; gap: 0; }
+  .form-card { padding: 22px; }
 }
