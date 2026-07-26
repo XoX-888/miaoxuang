@@ -153,12 +153,25 @@
   letter-spacing: .38em;
 }
 
-.heroBlessing h1.templeWordmark {
-  max-width: 650px;
+.heroNewsTitle {
+  max-width: 720px;
   margin: 0 0 34px;
-  font-size: clamp(72px, 8vw, 124px);
-  line-height: .98;
+  color: var(--name-gold);
+  font-family: "標楷體", "DFKai-SB", "KaiTi", "STKaiti", "Noto Serif TC", serif;
+  font-size: clamp(52px, 5.8vw, 86px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: .08em;
   filter: drop-shadow(0 4px 20px rgba(0, 0, 0, .45));
+}
+
+.heroNewsTitle span {
+  display: block;
+  margin-top: 16px;
+  color: #ead7a8;
+  font-size: .54em;
+  line-height: 1.35;
+  letter-spacing: .1em;
 }
 
 .heroBlessing .heroCopy > p:last-of-type {
@@ -265,8 +278,8 @@ footer small {
     max-width: 620px;
   }
 
-  .heroBlessing h1.templeWordmark {
-    font-size: clamp(62px, 17vw, 98px);
+  .heroNewsTitle {
+    font-size: clamp(48px, 11vw, 76px);
   }
 }
 
@@ -279,10 +292,10 @@ footer small {
     font-size: 12px;
   }
 
-  .heroBlessing h1.templeWordmark {
+  .heroNewsTitle {
     margin-bottom: 28px;
-    font-size: clamp(54px, 16vw, 74px);
-    letter-spacing: .08em !important;
+    font-size: clamp(42px, 12vw, 58px);
+    letter-spacing: .06em;
   }
 
   .heroKicker {

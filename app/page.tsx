@@ -87,11 +87,11 @@ export default function Home() {
             sizes="100vw"
           />
           <div className="heroVeil" aria-hidden="true" />
-          <div className="heroCopy">
-            <p className="heroKicker">代行僧菩薩道場</p>
-            <h1 className="templeWordmark">卓蘭妙玄宮</h1>
-            <p>一個屬於大家的佛堂，歡迎各地信徒參香。以代行僧菩薩慈悲、無懼與引導的精神，陪伴有緣眾生祈福植福。</p>
-            <div className="actions"><a className="primary" href="#register">中元普度立即報名</a><a className="ghost" href="tel:0425896101">致電宮方</a></div>
+          <div className="heroCopy heroNews">
+            <p className="heroKicker">最新資訊</p>
+            <h1 className="heroNewsTitle">丙午年<span>慶贊中元植福普度福世法會</span></h1>
+            <p>法會現正受理報名，歡迎善信大德參與普度、超薦、功德及志工服務。</p>
+            <div className="actions"><a className="primary" href="#puja">查看完整資訊</a><a className="ghost" href="#register">立即報名</a></div>
           </div>
         </section>
 
