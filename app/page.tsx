@@ -74,7 +74,7 @@ export default function Home() {
           </div>
           <div className="deityCard">
             <div className="halo" />
-            <img src="https://graph.facebook.com/100064331726590/picture?type=large" alt="卓蘭妙玄宮" />
+            <img src="/daixing-bodhisattva.svg" alt="卓蘭妙玄宮代行僧菩薩水墨主視覺" />
             <div><span>主祀信仰</span><strong>代行僧菩薩</strong><p>大肚能容天下難容之事，開口便笑世上可笑之人。</p></div>
           </div>
         </section>
