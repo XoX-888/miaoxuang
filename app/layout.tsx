@@ -3,14 +3,20 @@ import './globals.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://miaoxuang.vercel.app'),
-  title: { default: '妙玄宮｜苗栗卓蘭', template: '%s｜妙玄宮' },
-  description: '妙玄宮官方網站，提供宮務資訊、祈福登記、活動報名與線上自動填單服務。',
-  keywords: ['妙玄宮', '卓蘭宮廟', '苗栗宮廟', '祈福', '法會報名'],
+  title: { default: '卓蘭妙玄宮｜代行僧菩薩・中元普度法會', template: '%s｜卓蘭妙玄宮' },
+  description: '卓蘭妙玄宮官方網站。丙午年慶贊中元植福普度福世法會現正報名，提供普度、超薦、祈福、志工與線上自動填單服務。',
+  keywords: ['卓蘭妙玄宮', '代行僧菩薩', '中元普度', '苗栗宮廟', '卓蘭宮廟', '超薦', '法會報名'],
   openGraph: {
-    title: '妙玄宮｜苗栗卓蘭',
-    description: '誠心祈願，護佑平安。',
+    title: '卓蘭妙玄宮｜代行僧菩薩',
+    description: '慈悲化世・代行祈願・功德圓滿。中元普度法會現正報名。',
     locale: 'zh_TW',
-    type: 'website'
+    type: 'website',
+    url: 'https://miaoxuang.vercel.app'
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: '卓蘭妙玄宮｜代行僧菩薩',
+    description: '中元植福普度福世法會現正報名。'
   },
   robots: { index: true, follow: true }
 };
