@@ -1,17 +1,33 @@
 'use client';
 
-import { FormEvent, useState } from 'react';
+import { FormEvent, useMemo, useState } from 'react';
 
-const services = [
-  ['宮務諮詢', '先填寫需求與方便聯絡時間'],
-  ['祈福登記', '登記祈福人與祈願事項'],
-  ['活動報名', '法會、祭典及宮慶活動'],
-  ['功德芳名', '資料先登記，項目由宮方確認']
+const options = [
+  ['個人贊普桌', '3,600 元／桌（含金紙，限 9 桌）'],
+  ['財水桌', '3,600 元／桌（限 13 桌）'],
+  ['藥草桌', '3,600 元／桌（限 1 桌）'],
+  ['五色豆桌', '材料實收工本費，依報價'],
+  ['五蔬果桌', '材料實收工本費，依報價'],
+  ['肉粽桌', '每桌 228 顆，材料實收工本費，限 2 名'],
+  ['個人贊助白米', '每份 50 台斤，1,700 元，共 36 名'],
+  ['個人普渡供品', '每份 1,700 元，可帶回或再次捐出'],
+  ['共同普渡桌', '每人 3,200 元，普渡後統一佈施'],
+  ['贊普功德', '金額請由宮方聯絡確認'],
+  ['冤親債主', '每份 1,500 元'],
+  ['專超嬰靈', '每份 1,500 元，不公開姓名'],
+  ['專超亡靈', '每份 1,500 元'],
+  ['各姓祖先', '每份 1,500 元'],
+  ['地基主', '每份 1,500 元'],
+  ['寵物亡靈', '每份 1,500 元'],
+  ['當日隨緣贊助功德主', '隨緣贊助'],
+  ['志工報名', '8 月 18、19、20 日']
 ];
 
 export default function Home() {
   const [status, setStatus] = useState('');
   const [sending, setSending] = useState(false);
+  const [selected, setSelected] = useState(options[0][0]);
+  const selectedInfo = useMemo(() => options.find((item) => item[0] === selected)?.[1], [selected]);
 
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,7 +35,7 @@ export default function Home() {
     setStatus('');
     const form = event.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    const reference = `MXG-${Date.now().toString().slice(-8)}`;
+    const reference = `MXG-${new Date().getFullYear()}-${Date.now().toString().slice(-7)}`;
 
     try {
       const response = await fetch('/api/submissions', {
@@ -29,8 +45,9 @@ export default function Home() {
       });
       const result = await response.json();
       if (!response.ok) throw new Error(result.message);
-      setStatus(`送出成功，報名編號：${reference}`);
+      setStatus(`報名資料已送出，編號：${reference}。宮方將與您聯絡確認。`);
       form.reset();
+      setSelected(options[0][0]);
     } catch (error) {
       setStatus(error instanceof Error ? error.message : '送出失敗，請稍後再試。');
     } finally {
@@ -41,62 +58,81 @@ export default function Home() {
   return (
     <>
       <header>
-        <a className="brand" href="#top"><b>妙</b><span><strong>妙玄宮</strong><small>苗栗卓蘭</small></span></a>
-        <nav><a href="#about">本宮介紹</a><a href="#services">服務項目</a><a href="#form">線上填單</a><a href="#contact">聯絡資訊</a></nav>
+        <a className="brand" href="#top"><span className="seal">妙</span><span><strong>卓蘭妙玄宮</strong><small>代行僧菩薩道場</small></span></a>
+        <nav><a href="#puja">普度法會</a><a href="#items">贊普項目</a><a href="#register">線上報名</a><a href="#contact">聯絡資訊</a></nav>
+        <a className="fb" href="https://www.facebook.com/100064331726590/" target="_blank" rel="noreferrer">Facebook</a>
       </header>
 
       <main id="top">
         <section className="hero">
-          <div className="heroText">
-            <p className="kicker">苗栗卓蘭・祈福敬神</p>
-            <h1>妙玄宮</h1>
-            <p>誠心祈願，護佑平安。提供信眾宮務諮詢、活動報名與線上自動填單服務。</p>
-            <div className="actions"><a className="primary" href="#form">立即線上填單</a><a className="secondary" href="tel:0425896101">電話聯絡</a></div>
+          <div className="heroCopy">
+            <p className="eyebrow">苗栗卓蘭・慈悲化世</p>
+            <h1>卓蘭<br /><span>妙玄宮</span></h1>
+            <p className="slogan">慈悲化世・代行祈願・功德圓滿</p>
+            <p>一個屬於大家的佛堂，歡迎各地信徒參香。以代行僧菩薩慈悲、無懼與引導的精神，陪伴有緣眾生祈福植福。</p>
+            <div className="actions"><a className="primary" href="#register">中元普度立即報名</a><a className="ghost" href="tel:0425896101">致電宮方</a></div>
           </div>
-          <aside><span>開放時間</span><strong>每日 15:00–21:00</strong><p>前往前建議先致電確認宮務安排。</p></aside>
-        </section>
-
-        <section id="about" className="section">
-          <div className="heading"><span>ABOUT</span><h2>關於妙玄宮</h2></div>
-          <div className="cards">
-            {[
-              ['01', '誠心敬神', '以莊重、清淨與尊重傳統的精神服務信眾。'],
-              ['02', '便利服務', '線上先填資料，減少現場重複登記。'],
-              ['03', '在地信仰', '位於苗栗卓蘭，傳承良善、感恩與互助精神。']
-            ].map((item) => <article key={item[0]}><em>{item[0]}</em><h3>{item[1]}</h3><p>{item[2]}</p></article>)}
+          <div className="deityCard">
+            <div className="halo" />
+            <img src="https://graph.facebook.com/100064331726590/picture?type=large" alt="卓蘭妙玄宮" />
+            <div><span>主祀信仰</span><strong>代行僧菩薩</strong><p>大肚能容天下難容之事，開口便笑世上可笑之人。</p></div>
           </div>
         </section>
 
-        <section id="services" className="dark section">
-          <div className="heading"><span>SERVICES</span><h2>服務項目</h2></div>
-          <div className="serviceGrid">{services.map((item) => <article key={item[0]}><h3>{item[0]}</h3><p>{item[1]}</p></article>)}</div>
+        <section id="puja" className="announcement section">
+          <div className="titleBlock"><span>NOW OPEN</span><h2>丙午年<br />慶贊中元植福普度福世法會</h2></div>
+          <div className="notice">
+            <b>❗️報名開始</b>
+            <p>欲參與普度各項，歡迎透過網站完成登記。報名後由宮方確認名額、擲筊項目、費用與收據細項。</p>
+            <div className="facts"><span>宮主 王祺</span><span>04-25896101</span><span>0977-336880</span></div>
+          </div>
         </section>
 
-        <section id="form" className="section formSection">
+        <section className="belief section">
+          <div className="quote">「一心虔誠，萬事圓成」</div>
           <div>
-            <div className="heading"><span>ONLINE FORM</span><h2>自動填單系統</h2></div>
-            <p>系統會自動產生報名編號並將資料送至宮方登記表。實際服務內容與費用由宮方聯絡確認。</p>
-            <ul><li>手機與電腦皆可使用</li><li>自動整理姓名、電話與服務需求</li><li>送出後顯示專屬報名編號</li></ul>
+            <p>代行僧菩薩祖靈源自浙江奉化雪竇寺，左手持蒲扇，象徵慈悲、無懼與引導；身掛佛珠，象徵智慧、佛法與輪迴。</p>
+            <p>佛珠一轉，轉盡悲歡離合緣滅起；願眾生以善念植福，以慈心同行。</p>
+          </div>
+        </section>
+
+        <section id="items" className="items section">
+          <div className="titleBlock light"><span>PUJA ITEMS</span><h2>普度參與項目</h2><p>「時價」項目依廠商或採買報價實收工本費。個人贊普桌等大項需擲筊，三聖杯即可參加。</p></div>
+          <div className="itemGrid">
+            {options.slice(0, 17).map((item, index) => <article key={item[0]}><em>{String(index + 1).padStart(2, '0')}</em><h3>{item[0]}</h3><p>{item[1]}</p></article>)}
+          </div>
+        </section>
+
+        <section className="volunteer section">
+          <div><span>VOLUNTEERS</span><h2>善心志工招募</h2><p>8 月 18、19、20 日歡迎前來參加，其中 8 月 18、19 日需要大量志工。讓我們一同共襄盛舉。</p></div>
+          <a href="#register">我要報名志工</a>
+        </section>
+
+        <section id="register" className="register section">
+          <div className="formIntro">
+            <span>ONLINE REGISTRATION</span><h2>法會線上報名</h2>
+            <p>填寫後系統會產生專屬報名編號，資料送至宮方登記表。名額、擲筊、付款及收據由宮方聯絡確認。</p>
+            <ul><li>普渡後會告知細項及收據證明</li><li>供品如需自行帶回，請在備註提前告知</li><li>專超嬰靈採不公開姓名方式</li></ul>
           </div>
           <form onSubmit={submit}>
             <div className="two"><label>姓名＊<input name="name" autoComplete="name" required /></label><label>聯絡電話＊<input name="phone" type="tel" inputMode="tel" autoComplete="tel" required /></label></div>
-            <div className="two"><label>服務需求＊<select name="service" required defaultValue=""><option value="" disabled>請選擇</option>{services.map((item) => <option key={item[0]}>{item[0]}</option>)}<option>其他</option></select></label><label>方便聯絡時段<select name="contactTime"><option>15:00–17:00</option><option>17:00–19:00</option><option>19:00–21:00</option></select></label></div>
+            <label>報名項目＊<select name="service" required value={selected} onChange={(event) => setSelected(event.target.value)}>{options.map((item) => <option key={item[0]}>{item[0]}</option>)}</select><small>{selectedInfo}</small></label>
+            <div className="two"><label>數量／份數<input name="quantity" type="number" min="1" defaultValue="1" /></label><label>方便聯絡時段<select name="contactTime"><option>15:00–18:00</option><option>19:00–21:00</option></select></label></div>
             <label>地址<input name="address" autoComplete="street-address" /></label>
-            <label>填單內容或祈願事項＊<textarea name="details" rows={5} required /></label>
-            <label className="agree"><input type="checkbox" required />我確認資料正確，並同意宮方為聯絡與宮務處理使用。</label>
-            <button disabled={sending}>{sending ? '送出中…' : '送出資料'}</button>
+            <label>超薦對象／供品處理／其他說明＊<textarea name="details" rows={5} required placeholder="例如：超薦姓名、供品自行帶回、志工可參與日期等" /></label>
+            <label className="agree"><input type="checkbox" required />我確認資料正確，並同意宮方為法會聯絡及宮務處理使用。</label>
+            <button disabled={sending}>{sending ? '資料送出中…' : '送出法會報名'}</button>
             <p className="status" aria-live="polite">{status}</p>
           </form>
         </section>
 
         <section id="contact" className="contact section">
-          <div className="heading"><span>CONTACT</span><h2>聯絡與交通</h2></div>
-          <div className="contactGrid"><p><span>地址</span><strong>苗栗縣卓蘭鎮仁愛路14-1號</strong></p><p><span>電話</span><a href="tel:0425896101">04-25896101</a></p><p><span>營業時間</span><strong>下午3點至晚上9點</strong></p></div>
-          <div className="actions"><a className="primary" target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=%E8%8B%97%E6%A0%97%E7%B8%A3%E5%8D%93%E8%98%AD%E9%8E%AE%E4%BB%81%E6%84%9B%E8%B7%AF14-1%E8%99%9F">開啟地圖</a><a className="secondary" href="tel:0425896101">立即撥打</a></div>
+          <div><span>CONTACT</span><h2>卓蘭妙玄宮</h2><p>苗栗縣卓蘭鎮新榮里仁愛路14之1</p></div>
+          <div className="contactLinks"><a href="tel:0425896101">04-25896101</a><a href="tel:0977336880">0977-336880</a><a target="_blank" rel="noreferrer" href="https://www.google.com/maps/search/?api=1&query=苗栗縣卓蘭鎮新榮里仁愛路14之1">開啟地圖</a><a target="_blank" rel="noreferrer" href="https://www.facebook.com/100064331726590/">Facebook 粉絲專頁</a></div>
         </section>
       </main>
 
-      <footer><strong>妙玄宮</strong><p>苗栗縣卓蘭鎮仁愛路14-1號・04-25896101</p><small>© {new Date().getFullYear()} 妙玄宮</small></footer>
+      <footer><strong>卓蘭妙玄宮</strong><p>慈悲化世・代行祈願・功德圓滿</p><small>© {new Date().getFullYear()} 卓蘭妙玄宮</small></footer>
     </>
   );
 }
