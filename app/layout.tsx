@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
+import './image-overrides.css';
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://miaoxuang.vercel.app'),
