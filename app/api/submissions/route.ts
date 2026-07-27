@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.5 seconds
-Output:
 import { NextResponse } from 'next/server';
 
 const GAS_URL = process.env.GOOGLE_APPS_SCRIPT_URL || 'https://script.google.com/macros/s/AKfycbyP7zUFSAjwHEX38Y-ydjqnTWKLNewpEkg86fZnv4CqiAm36Q8Q2R9PPBcNdHYQ69swow/exec';
