@@ -1,6 +1,3 @@
-Exit code: 0
-Wall time: 0.5 seconds
-Output:
 'use client';
 
 import { FormEvent, useMemo, useState } from 'react';
